@@ -1,0 +1,3535 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/dotnet/interface-linha-comando/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Interface de linha de comando - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interface-de-linha-de-comando" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Interface de linha de comando
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introducao/" class="md-tabs__link md-tabs__link--active">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../javascript/introducao/" class="md-tabs__link">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programas/docker/" class="md-tabs__link">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacao-e-configuracao/" class="md-nav__link">
+        Instalação e configuração
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Interface de linha de comando
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Interface de linha de comando
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet" class="md-nav__link">
+    dotnet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-build" class="md-nav__link">
+    dotnet build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-clean" class="md-nav__link">
+    dotnet clean
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-msbuild" class="md-nav__link">
+    dotnet msbuild
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-new" class="md-nav__link">
+    dotnet new
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-nuget" class="md-nav__link">
+    dotnet nuget
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet nuget">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-delete" class="md-nav__link">
+    dotnet nuget delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-locals" class="md-nav__link">
+    dotnet nuget locals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-push" class="md-nav__link">
+    dotnet nuget push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-add-source" class="md-nav__link">
+    dotnet nuget add source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-disable-source" class="md-nav__link">
+    dotnet nuget disable source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-enable-source" class="md-nav__link">
+    dotnet nuget enable source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-list-source" class="md-nav__link">
+    dotnet nuget list source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-remove-source" class="md-nav__link">
+    dotnet nuget remove source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-update-source" class="md-nav__link">
+    dotnet nuget update source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-verify" class="md-nav__link">
+    dotnet nuget verify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-pack" class="md-nav__link">
+    dotnet pack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-publish" class="md-nav__link">
+    dotnet publish
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-restore" class="md-nav__link">
+    dotnet restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-run" class="md-nav__link">
+    dotnet run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-sln" class="md-nav__link">
+    dotnet sln
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet sln">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-list" class="md-nav__link">
+    dotnet sln list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-add" class="md-nav__link">
+    dotnet sln add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-remove" class="md-nav__link">
+    dotnet sln remove
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-store" class="md-nav__link">
+    dotnet store
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-test" class="md-nav__link">
+    dotnet test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-list-reference" class="md-nav__link">
+    dotnet list reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-add-reference" class="md-nav__link">
+    dotnet add reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-remove-reference" class="md-nav__link">
+    dotnet remove reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-list-package" class="md-nav__link">
+    dotnet list package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-add-package" class="md-nav__link">
+    dotnet add package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-remove-package" class="md-nav__link">
+    dotnet remove package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-tool" class="md-nav__link">
+    dotnet tool
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-install" class="md-nav__link">
+    dotnet tool install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-list" class="md-nav__link">
+    dotnet tool list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-restore" class="md-nav__link">
+    dotnet tool restore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-run" class="md-nav__link">
+    dotnet tool run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-search" class="md-nav__link">
+    dotnet tool search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-uninstall" class="md-nav__link">
+    dotnet tool uninstall
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-update" class="md-nav__link">
+    dotnet tool update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entity-framework/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrizes-e-colecoes/" class="md-nav__link">
+        Coleções
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/assincronismo/" class="md-nav__link">
+        Javascript assíncrono
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet" class="md-nav__link">
+    dotnet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-build" class="md-nav__link">
+    dotnet build
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-clean" class="md-nav__link">
+    dotnet clean
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-msbuild" class="md-nav__link">
+    dotnet msbuild
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-new" class="md-nav__link">
+    dotnet new
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-nuget" class="md-nav__link">
+    dotnet nuget
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet nuget">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-delete" class="md-nav__link">
+    dotnet nuget delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-locals" class="md-nav__link">
+    dotnet nuget locals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-push" class="md-nav__link">
+    dotnet nuget push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-add-source" class="md-nav__link">
+    dotnet nuget add source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-disable-source" class="md-nav__link">
+    dotnet nuget disable source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-enable-source" class="md-nav__link">
+    dotnet nuget enable source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-list-source" class="md-nav__link">
+    dotnet nuget list source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-remove-source" class="md-nav__link">
+    dotnet nuget remove source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-update-source" class="md-nav__link">
+    dotnet nuget update source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-nuget-verify" class="md-nav__link">
+    dotnet nuget verify
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-pack" class="md-nav__link">
+    dotnet pack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-publish" class="md-nav__link">
+    dotnet publish
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-restore" class="md-nav__link">
+    dotnet restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-run" class="md-nav__link">
+    dotnet run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-sln" class="md-nav__link">
+    dotnet sln
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet sln">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-list" class="md-nav__link">
+    dotnet sln list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-add" class="md-nav__link">
+    dotnet sln add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-sln-remove" class="md-nav__link">
+    dotnet sln remove
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-store" class="md-nav__link">
+    dotnet store
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-test" class="md-nav__link">
+    dotnet test
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-list-reference" class="md-nav__link">
+    dotnet list reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-add-reference" class="md-nav__link">
+    dotnet add reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-remove-reference" class="md-nav__link">
+    dotnet remove reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-list-package" class="md-nav__link">
+    dotnet list package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-add-package" class="md-nav__link">
+    dotnet add package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-remove-package" class="md-nav__link">
+    dotnet remove package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dotnet-tool" class="md-nav__link">
+    dotnet tool
+  </a>
+  
+    <nav class="md-nav" aria-label="dotnet tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-install" class="md-nav__link">
+    dotnet tool install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-list" class="md-nav__link">
+    dotnet tool list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-restore" class="md-nav__link">
+    dotnet tool restore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-run" class="md-nav__link">
+    dotnet tool run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-search" class="md-nav__link">
+    dotnet tool search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-uninstall" class="md-nav__link">
+    dotnet tool uninstall
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-tool-update" class="md-nav__link">
+    dotnet tool update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/dotnet/interface-linha-comando.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="interface-de-linha-de-comando">Interface de linha de comando<a class="headerlink" href="#interface-de-linha-de-comando" title="Permanent link">&para;</a></h1>
+<p>A <strong>Command-Line Interface - CLI</strong>  (interface de linha de comando) do .NET é uma ferramenta multi plataforma para desenvolvimento, criação, execução e publicação de aplicações .NET. A CLI do .NET está incluída no SDK do .NET.</p>
+<div class="admonition note">
+<p>Para ver os argumentos e opções de um comando, execute o comando:</p>
+<div class="highlight"><pre><span></span><code>dotnet &lt;comando&gt; -h<span class="p">|</span>--help
+</code></pre></div>
+</div>
+<h2 id="dotnet">dotnet<a class="headerlink" href="#dotnet" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet">Link documentação</a></p>
+<p>Para obter informações sobre os comandos disponíveis e o ambiente:</p>
+<div class="highlight"><pre><span></span><code>dotnet <span class="o">[</span>--version<span class="o">]</span> <span class="o">[</span>--info<span class="o">]</span> <span class="o">[</span>--list-runtimes<span class="o">]</span> <span class="o">[</span>--list-sdks<span class="o">]</span>
+
+dotnet -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Listar comandos</span>
+dotnet -h
+
+<span class="c1"># Versão corrente (geralmente a mais recente instalada)</span>
+dotnet --version
+
+<span class="c1"># Litar os Sdks instalados e o local de instalação</span>
+dotnet --list-sdks
+</code></pre></div>
+</details>
+<p>Para executar um comando (requer a instalação do SDK):</p>
+<div class="highlight"><pre><span></span><code>dotnet &lt;COMMAND&gt; <span class="o">[</span>-d<span class="p">|</span>--diagnostics<span class="o">]</span> <span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span> <span class="o">[</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>command-options<span class="o">]</span> <span class="o">[</span>arguments<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>-d|--diagnostics</code>: Habilita a saída de diagnóstico.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic].</li>
+<li><code>-h|--help</code>: Imprime a documentação para um determinado comando.</li>
+</ul>
+</details>
+<p>Para executar um aplicativo:</p>
+<div class="highlight"><pre><span></span><code>dotnet <span class="o">[</span>--additionalprobingpath &lt;PATH&gt;<span class="o">]</span> <span class="o">[</span>--additional-deps &lt;PATH&gt;<span class="o">]</span>
+    <span class="o">[</span>--fx-version &lt;VERSION&gt;<span class="o">]</span>  <span class="o">[</span>--roll-forward &lt;SETTING&gt;<span class="o">]</span>
+    &lt;PATH_TO_APPLICATION&gt; <span class="o">[</span>arguments<span class="o">]</span>
+
+dotnet <span class="nb">exec</span> <span class="o">[</span>--additionalprobingpath<span class="o">]</span> <span class="o">[</span>--additional-deps &lt;PATH&gt;<span class="o">]</span>
+    <span class="o">[</span>--fx-version &lt;VERSION&gt;<span class="o">]</span>  <span class="o">[</span>--roll-forward &lt;SETTING&gt;<span class="o">]</span>
+    &lt;PATH_TO_APPLICATION&gt; <span class="o">[</span>arguments<span class="o">]</span>
+</code></pre></div>
+<h2 id="dotnet-build">dotnet build<a class="headerlink" href="#dotnet-build" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-build">Link documentação</a></p>
+<p>Compila um projeto e todas as suas dependências.</p>
+<div class="highlight"><pre><span></span><code>dotnet build <span class="o">[</span>&lt;PROJECT&gt;<span class="p">|</span>&lt;SOLUTION&gt;<span class="o">]</span> <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span>
+    <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>--force<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--no-dependencies<span class="o">]</span>
+    <span class="o">[</span>--no-incremental<span class="o">]</span> <span class="o">[</span>--no-restore<span class="o">]</span> <span class="o">[</span>--nologo<span class="o">]</span> <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span> <span class="o">[</span>--source &lt;SOURCE&gt;<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[</span>--version-suffix &lt;VERSION_SUFFIX&gt;<span class="o">]</span>
+
+dotnet build -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Especifica a versão do framework (net5.0, netcoreapp3.1, netcoreapp3.0). Padrão: última versão instalada.</li>
+<li><code>--force</code>: Forçará todas as dependências a serem resolvidas mesmo se última restauração tiver sido bem-sucedida (o mesmo que a exclusão do arquivo <code>project.assets.json</code>).</li>
+<li><code>--no-dependencies</code>: Ignora as referências P2P (projeto para projeto) e compila apenas o projeto raiz especificado.</li>
+<li><code>--no-incremental</code>: Marca o build como não segura para build incremental. Esse sinalizador desativa a compilação incremental e força uma nova recompilação do grafo de dependência do projeto.</li>
+<li><code>--no-restore</code>: Não executa uma restauração implícita durante o build.</li>
+<li><code>-o|--output &lt;OUTPUT_DIRECTORY&gt;</code>: Diretório no qual os binários compilados são colocados. Se não for especificado, o caminho padrão será <code>./bin/&lt;configuration&gt;/&lt;framework&gt;/</code>. Para projetos com várias estruturas de destino (por meio da propriedade <code>TargetFrameworks</code>), também é necessário definir <code>--framework</code> quando você especifica essa opção.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhamento do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet build</code> compila o projeto e suas dependências em um conjunto de binários. Os binários incluem o código do projeto em arquivos de IL (linguagem intermediária) com uma extensão <code>.dll</code>. Dependendo do tipo de projeto e das configurações, outros arquivos podem ser incluídos, como:</p>
+<ul>
+<li>Um executável que pode ser usado para executar o aplicativo, se o tipo de projeto for um executável.</li>
+<li>Arquivos de símbolo usados para depuração com uma extensão <code>.pdb</code>.</li>
+<li>Um arquivo <code>.deps.json</code>, que lista as dependências do aplicativo ou da biblioteca.</li>
+<li>Um arquivo <code>.runtimeconfig.json</code>, que especifica o <em>runtime</em> compartilhado e sua versão para um aplicativo.</li>
+<li>Outras bibliotecas das quais o projeto depende (por meio de referências de projeto ou referências de pacote NuGet).</li>
+</ul>
+<p>Para projetos executáveis que visam versões anteriores ao .NET Core 3,0, as dependências de biblioteca do NuGet normalmente <strong>não</strong> são copiadas para o diretório de saída. Eles são resolvidos no diretório de pacotes globais do NuGet em tempo de execução. Portanto, o produto de dotnet build não está pronto para ser transferido para outro computador para execução. Para criar uma versão do aplicativo que pode ser implantada, você precisa publicá-la (por exemplo, com o comando <code>dotnet Publish</code>).</p>
+<p>Para projetos executáveis destinados ao .NET Core 3,0 e posterior, as dependências de biblioteca são copiadas para o diretório de saída. Isso significa que, se não houver nenhuma outra lógica específica de publicação (como os projetos Web têm), a saída da compilação deverá ser implantável.</p>
+<h3> Saída de biblioteca ou executável </h3>
+
+<p>O fato de o projeto ser executável ou não é determinado pela propriedade <code>&lt;OutputType&gt;</code> do arquivo de projeto. O seguinte exemplo mostra um projeto que produz um código executável:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;PropertyGroup&gt;</span>
+  <span class="nt">&lt;OutputType&gt;</span>Exe<span class="nt">&lt;/OutputType&gt;</span>
+<span class="nt">&lt;/PropertyGroup&gt;</span>
+</code></pre></div>
+<p>Para produzir uma biblioteca, omita a propriedade <code>&lt;OutputType&gt;</code> ou altere seu valor para <code>Library</code>. A DLL de IL para uma biblioteca não contém pontos de entrada e não pode ser executada.</p>
+<h3> MSBuild </h3>
+
+<p>O comando <code>dotnet build</code> usa o MSBuild para compilar o projeto e, portanto, dá suporte a builds paralelos e incrementais.</p>
+<p>Além das próprias opções, o comando <code>dotnet build</code> também aceita opções do MSBuild, como <code>-p</code> para configurar propriedades ou <code>-l</code> para definir um <em>logger</em>.</p>
+<p>A execução <code>dotnet build</code> é equivalente à execução <code>dotnet msbuild -restore</code>, no entanto, o detalhamento padrão da saída é diferente.</p>
+<h2 id="dotnet-clean">dotnet clean<a class="headerlink" href="#dotnet-clean" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-clean">Link documentação</a></p>
+<p>Limpa a saída de um projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet clean <span class="o">[</span>&lt;PROJECT&gt;<span class="p">|</span>&lt;SOLUTION&gt;<span class="o">]</span> <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span>
+    <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>--nologo<span class="o">]</span> <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+
+dotnet clean -h<span class="p">|</span>--help
+</code></pre></div>
+<p>O comando <code>dotnet clean</code> limpará a saída da compilação anterior. Apenas as saídas criadas durante a compilação são limpas. As pastas de saídas intermediária (obj) e final (bin) serão limpas.</p>
+<h2 id="dotnet-msbuild">dotnet msbuild<a class="headerlink" href="#dotnet-msbuild" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-msbuild">Link documentação</a></p>
+<p>Compila um projeto e todas as suas dependências. Um arquivo de solução ou de projeto pode precisar ser especificado se houver vários.</p>
+<div class="highlight"><pre><span></span><code>dotnet msbuild &lt;MSBUILD_ARGUMENTS&gt;
+
+dotnet msbuild -h
+</code></pre></div>
+<p>O comando <code>dotnet msbuild</code> permite o acesso a um MSBuild totalmente funcional.</p>
+<p>O comando tem exatamente os mesmos recursos que o CLI do MSBuild existente para projetos no estilo SDK. As opções são todas iguais.</p>
+<p>O comando <code>dotnet build</code> é equivalente ao comando <code>dotnet msbuild -restore</code>. Quando você não quiser compilar o projeto e tiver um destino específico que deseja executar, use <code>dotnet build</code> ou <code>dotnet msbuild</code> e especifique o destino.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Compile um projeto e suas dependências</span>
+dotnet msbuild
+
+<span class="c1"># Compile um projeto e suas dependências usando a configuração da Versão</span>
+dotnet msbuild -property:Configuration<span class="o">=</span>Release
+
+<span class="c1"># Execute o destino de publicação e publique para o RID &quot;osx.10.11-x64&quot;</span>
+dotnet msbuild -target:Publish -property:RuntimeIdentifiers<span class="o">=</span>osx.10.11-x64
+
+<span class="c1"># Ver o projeto inteiro com todos os destinos incluídos pelo SDK</span>
+dotnet msbuild -preprocess
+<span class="c1"># Ou</span>
+dotnet msbuild -preprocess:&lt;fileName&gt;.xml
+</code></pre></div>
+</details>
+<h2 id="dotnet-new">dotnet new<a class="headerlink" href="#dotnet-new" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-new">Link documentação</a></p>
+<p>Cria um novo projeto, arquivo de configuração ou solução com base no modelo especificado.</p>
+<div class="highlight"><pre><span></span><code>dotnet new &lt;TEMPLATE&gt; <span class="o">[</span>--dry-run<span class="o">]</span> <span class="o">[</span>--force<span class="o">]</span> <span class="o">[</span>-i<span class="p">|</span>--install <span class="o">{</span>PATH<span class="p">|</span>NUGET_ID<span class="o">}]</span>
+    <span class="o">[</span>-lang<span class="p">|</span>--language <span class="o">{</span><span class="s2">&quot;C#&quot;</span><span class="p">|</span><span class="s2">&quot;F#&quot;</span><span class="p">|</span>VB<span class="o">}]</span> <span class="o">[</span>-n<span class="p">|</span>--name &lt;OUTPUT_NAME&gt;<span class="o">]</span>
+    <span class="o">[</span>--nuget-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-u<span class="p">|</span>--uninstall<span class="o">]</span> <span class="o">[</span>--update-apply<span class="o">]</span> <span class="o">[</span>--update-check<span class="o">]</span> <span class="o">[</span>Template options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>-n|--name</code>: nome da solução/projeto/config. Padrão: nome do diretório</li>
+<li><code>-o|--output</code>: destino da solução/projeto/config. Padrão: diretório corrente.</li>
+<li><code>-f|--framework</code>: especifica a versão do framework (net5.0, netcoreapp3.1, netcoreapp3.0). Padrão: última versão instalada.</li>
+<li><code>&lt;TEMPLATE&gt;</code>: estrutura a ser criada.<ul>
+<li><code>sln</code>: solução</li>
+<li><code>console</code>: projeto simples, entrada/saída via console.</li>
+<li><code>classlib</code>: projeto que contém apenas tipos e métodos que serão chamados por outro aplicativo.</li>
+<li><code>web</code>: projeto web vazio, sem classe Controller.</li>
+<li><code>webapi</code>: projeto web com uma classe Controller RESTful.<ul>
+<li><code>--no-https</code>: desabilitar https.</li>
+</ul>
+</li>
+<li><code>mvc</code>: projeto web com a estrutura MVC.</li>
+<li><code>webapp, razor</code>: projeto web com a estrutura MVC e páginas Razor.</li>
+</ul>
+</li>
+</ul>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Criar arquivo da solução</span>
+dotnet new sln -n &lt;nome&gt; -o &lt;destino&gt;
+
+<span class="c1"># Criar projeto tipo &quot;console&quot;</span>
+dotnet new console -n &lt;nome&gt; -o &lt;destino&gt; -f &lt;framework <span class="o">{</span>net5.0<span class="p">|</span>netcoreapp3.1<span class="p">|</span>netcoreapp3.0<span class="o">}</span>&gt;
+
+<span class="c1"># Criar projeto tipo &quot;biblioteca de classes&quot;</span>
+dotnet new classlib -n &lt;nome&gt; -o &lt;destino&gt;
+
+<span class="c1"># Criar projeto tipo &quot;ASP.NET vazio&quot;</span>
+dotnet new web -n &lt;nome&gt; -o &lt;destino&gt;
+
+<span class="c1"># Criar projeto tipo &quot;ASP.NET Web API&quot; sem https</span>
+dotnet new webapi --no-https -n &lt;nome&gt; -o &lt;destino&gt;
+
+<span class="c1"># Criar projeto tipo &quot;Aplicação Web ASP.NET MVC&quot; com suporte a funcionalidade de login.</span>
+dotnet new mvc -n &lt;nome&gt; -o &lt;destino&gt; -au Individual
+
+<span class="c1"># Criar projeto com a ferramenta de teste &quot;Xunit&quot;.</span>
+dotnet new xunit -n &lt;nome&gt; -o &lt;destino&gt;
+</code></pre></div>
+</details>
+<h2 id="dotnet-nuget">dotnet nuget<a class="headerlink" href="#dotnet-nuget" title="Permanent link">&para;</a></h2>
+<h3 id="dotnet-nuget-delete">dotnet nuget delete<a class="headerlink" href="#dotnet-nuget-delete" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-delete">Link documentação</a></p>
+<p>Exclui ou retira da lista um pacote do servidor.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget delete <span class="o">[</span>&lt;PACKAGE_NAME&gt; &lt;PACKAGE_VERSION&gt;<span class="o">]</span> <span class="o">[</span>--force-english-output<span class="o">]</span>
+    <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>-k<span class="p">|</span>--api-key &lt;API_KEY&gt;<span class="o">]</span> <span class="o">[</span>--no-service-endpoint<span class="o">]</span>
+    <span class="o">[</span>--non-interactive<span class="o">]</span> <span class="o">[</span>-s<span class="p">|</span>--source &lt;SOURCE&gt;<span class="o">]</span>
+
+dotnet nuget delete -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PACKAGE_NAME</code>: Nome/ID do pacote a ser excluído.</li>
+<li><code>PACKAGE_VERSION</code>: Versão do pacote a ser excluído.</li>
+<li><code>--force-english-output</code>: Força a execução do aplicativo usando uma cultura invariável com base em inglês.</li>
+<li><code>-k|--api-key &lt;API_KEY&gt;</code>: A chave da API para o servidor.</li>
+<li><code>--no-service-endpoint</code>: Não acrescenta "api/v2/package" à URL de origem.</li>
+<li><code>--non-interactive</code>: Não solicita entrada do usuário ou confirmações.</li>
+<li><code>-s|--source &lt;SOURCE&gt;</code>: Especifica a URL do servidor.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget delete</code> exclui ou retira da lista um pacote do servidor. Caso seja <code>nuget.org</code>, a ação remove o pacote da lista.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Exclui a versão 1.0 do pacote Microsoft.AspNetCore.Mvc</span>
+dotnet nuget delete Microsoft.AspNetCore.Mvc <span class="m">1</span>.0
+
+<span class="c1"># Exclui a versão 1.0 do pacote Microsoft.AspNetCore.Mvc, não solicita ao usuário credenciais ou outra entrada</span>
+dotnet nuget delete Microsoft.AspNetCore.Mvc <span class="m">1</span>.0 --non-interactive
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-locals">dotnet nuget locals<a class="headerlink" href="#dotnet-nuget-locals" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-locals">Link documentação</a></p>
+<p>Limpa ou lista os recursos locais do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget locals &lt;CACHE_LOCATION&gt; <span class="o">[(</span>-c<span class="p">|</span>--clear<span class="o">)</span><span class="p">|</span><span class="o">(</span>-l<span class="p">|</span>--list<span class="o">)]</span> <span class="o">[</span>--force-english-output<span class="o">]</span>
+
+dotnet nuget locals -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>CACHE_LOCATION</code>: O local do cache a ser listado ou limpo. Aceita um dos seguintes valores:<ul>
+<li>all: Indica que a operação especificada aplica-se a todos os tipos cache: o cache de solicitação http, cache de pacotes globais e o cache temporário.</li>
+<li>http-cache: Indica que a operação especificada aplica-se apenas ao cache de solicitação http.</li>
+<li>global-packages: Indica que a operação especificada aplica-se apenas ao cache de pacotes globais.</li>
+<li>temp: Indica que a operação especificada aplica-se apenas ao cache temporário.</li>
+</ul>
+</li>
+<li><code>--force-english-output</code>: Força a execução do aplicativo usando uma cultura invariável com base em inglês.</li>
+<li><code>-c|--clear</code>: Executa uma operação de limpeza no tipo de cache especificado. O conteúdo dos diretórios de cache é excluído recursivamente.</li>
+<li><code>-l|--list</code>: Exibir a localização do tipo de cache especificado.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget locals</code> limpa ou lista os recursos locais do NuGet no cache de solicitação HTTP, cache temporário ou pasta de pacotes globais em todo o computador.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Exibe os caminhos de todos os diretórios de cache local (cache de http, cache de pacotes globais e cache temporário):</span>
+dotnet nuget locals all -l
+
+<span class="c1"># Exibe o caminho para o diretório local do cache de http:</span>
+dotnet nuget locals http-cache --list
+
+<span class="c1"># Limpa todos os arquivos dos diretórios de cache local </span>
+dotnet nuget locals all --clear
+
+<span class="c1"># Limpa todos os arquivos no diretório local de cache de pacotes globais:</span>
+dotnet nuget locals global-packages -c
+
+<span class="c1"># Limpa todos os arquivos no diretório local de cache temporário:</span>
+dotnet nuget locals temp -c
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-push">dotnet nuget push<a class="headerlink" href="#dotnet-nuget-push" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-push">Link documentação</a></p>
+<p>Envia um pacote ao servidor e os publica.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget push <span class="o">[</span>&lt;ROOT&gt;<span class="o">]</span> <span class="o">[</span>-d<span class="p">|</span>--disable-buffering<span class="o">]</span> <span class="o">[</span>--force-english-output<span class="o">]</span>
+    <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>-k<span class="p">|</span>--api-key &lt;API_KEY&gt;<span class="o">]</span> <span class="o">[</span>-n<span class="p">|</span>--no-symbols<span class="o">]</span>
+    <span class="o">[</span>--no-service-endpoint<span class="o">]</span> <span class="o">[</span>-s<span class="p">|</span>--source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--skip-duplicate<span class="o">]</span>
+    <span class="o">[</span>-sk<span class="p">|</span>--symbol-api-key &lt;API_KEY&gt;<span class="o">]</span> <span class="o">[</span>-ss<span class="p">|</span>--symbol-source &lt;SOURCE&gt;<span class="o">]</span>
+    <span class="o">[</span>-t<span class="p">|</span>--timeout &lt;TIMEOUT&gt;<span class="o">]</span>
+
+dotnet nuget push -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>ROOT</code>: Especifica o caminho do arquivo para o pacote a ser enviado por push.</li>
+<li><code>-d|--disable-buffering</code>: Desabilita o buffer durante o push para um servidor HTTP(S) a fim de reduzir o uso de memória.</li>
+<li><code>--force-english-output</code>: Força a execução do aplicativo usando uma cultura invariável com base em inglês.</li>
+<li><code>-k|--api-key &lt;API_KEY&gt;</code>: A chave da API para o servidor.</li>
+<li><code>-n|--no-symbols</code>: Não envia símbolos por push (mesmo se estiver presente).</li>
+<li><code>--no-service-endpoint</code>: Não acrescenta "api/v2/package" à URL de origem.</li>
+<li><code>-s|--source &lt;SOURCE&gt;</code>: O NuGet identifica uma fonte UNC ou de pasta local e simplesmente copia o arquivo lá em vez de enviá-lo usando HTTP.</li>
+<li><code>--skip-duplicate</code>: Ao enviar vários pacotes para um servidor HTTP (S), trata qualquer resposta "409 Conflict" como um aviso para que o envio possa continuar.</li>
+<li><code>-sk|--symbol-api-key &lt;API_KEY&gt;</code>: A chave da API para o servidor de símbolos.</li>
+<li><code>-ss|--symbol-source &lt;SOURCE&gt;</code>: Especifica a URL do servidor de símbolos.</li>
+<li><code>-t|--timeout &lt;TIMEOUT&gt;</code>: Especifica o tempo limite em segundos para enviar para um servidor. O padrão é 300 segundos.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget push</code> envia um pacote ao servidor e os publica. O comando push usa o servidor e detalhes de credencial encontradas no(s) arquivo(s) de configuração do sistema NuGet. A configuração padrão do NuGet é obtida ao carregar <code>%AppData%\NuGet\NuGet.config</code> (Windows) ou <code>$HOME/.local/share</code> (Linux/macOS) e, em seguida, carrega qualquer <code>nuget.config</code> ou <code>.nuget\nuget.config</code> iniciando pela raiz da unidade até o diretório atual.</p>
+<p>O comando envia um pacote existente. Ele não cria um pacote. Para criar um pacote, use <code>dotnet pack</code>.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1">#  Envie foo.nupkg para a fonte padrão especificada no arquivo de configuração do NuGet usando uma chave de API</span>
+dotnet nuget push foo.nupkg -k 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a
+
+<span class="c1"># Envie o foo.nupkg para o servidor do NuGet oficial, especificando uma chave de API</span>
+dotnet nuget push foo.nupkg -k 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a -s https://api.nuget.org/v3/index.json
+
+<span class="c1"># Envia foo.nupkg à https://customsource, especificando uma chave de API</span>
+dotnet nuget push foo.nupkg -k 4003d786-cc37-4004-bfdf-c4f3e8ef9b3a -s https://customsource/
+
+<span class="c1"># Envie foo.nupkg para a fonte padrão especificada no arquivo de configuração do NuGet:</span>
+dotnet nuget push foo.nupkg
+
+<span class="c1"># Envie foo.Symbols.nupkg para a fonte de símbolos padrão:</span>
+dotnet nuget push foo.symbols.nupkg
+
+<span class="c1"># Envie todos os arquivos .nupkg no diretório atual para a fonte padrão especificada no arquivo de configuração do NuGet</span>
+dotnet nuget push <span class="s2">&quot;*.nupkg&quot;</span>
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-add-source">dotnet nuget add source<a class="headerlink" href="#dotnet-nuget-add-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-add-source">Link documentação</a></p>
+<p>Adicionar uma origem do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget add <span class="nb">source</span> &lt;PACKAGE_SOURCE_PATH&gt; <span class="o">[</span>--name &lt;SOURCE_NAME&gt;<span class="o">]</span> <span class="o">[</span>--username &lt;USER&gt;<span class="o">]</span>
+    <span class="o">[</span>--password &lt;PASSWORD&gt;<span class="o">]</span> <span class="o">[</span>--store-password-in-clear-text<span class="o">]</span>
+    <span class="o">[</span>--valid-authentication-types &lt;TYPES&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget add <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PACKAGE_SOURCE_PATH</code>: Caminho para a origem do pacote.</li>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.</li>
+<li><code>-n|--name &lt;SOURCE_NAME&gt;</code>: Nome da origem.</li>
+<li><code>-p|--password &lt;PASSWORD&gt;</code>: Senha a ser usada ao conectar-se a uma fonte autenticada.</li>
+<li><code>--store-password-in-clear-text</code>: Habilita o armazenamento de credenciais de origem do pacote portátil desabilitando a criptografia de senha.</li>
+<li><code>-u|--username &lt;USER&gt;</code>: Nome de usuário a ser usado ao conectar a uma fonte autenticada.</li>
+<li><code>--valid-authentication-types &lt;TYPES&gt;</code>: Lista separada por vírgulas de tipos de autenticação válidos para esta fonte.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget add source</code> adiciona uma nova fonte de pacote aos arquivos de configuração NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Adicionar nuget.org como uma fonte</span>
+dotnet nuget add <span class="nb">source</span> https://api.nuget.org/v3/index.json -n nuget.org
+
+<span class="c1"># Adicionar c:\packages como uma fonte local</span>
+dotnet nuget add <span class="nb">source</span> c:<span class="se">\p</span>ackages
+
+<span class="c1"># Adicione uma fonte que precisa de autenticação</span>
+dotnet nuget add <span class="nb">source</span> https://someServer/myTeam -n myTeam -u myUsername -p myPassword --store-password-in-clear-text
+
+<span class="c1"># Adicione uma fonte que precisa de autenticação (em seguida, instale o provedor de credenciais)</span>
+dotnet nuget add <span class="nb">source</span> https://azureartifacts.microsoft.com/myTeam -n myTeam
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-disable-source">dotnet nuget disable source<a class="headerlink" href="#dotnet-nuget-disable-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-disable-source">Link documentação</a></p>
+<p>Desabilita uma origem do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget disable <span class="nb">source</span> &lt;NAME&gt; <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget disable <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>NAME</code>: Nome da origem.</li>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget disable source</code> desabilita uma fonte existente em seus arquivos de configuração do NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Desabilita uma fonte com o nome de &quot;mySource&quot;</span>
+dotnet nuget disable <span class="nb">source</span> mySource
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-enable-source">dotnet nuget enable source<a class="headerlink" href="#dotnet-nuget-enable-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-enable-source">Link documentação</a></p>
+<p>Habilita uma origem do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget <span class="nb">enable</span> <span class="nb">source</span> &lt;NAME&gt; <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget <span class="nb">enable</span> <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>NAME</code>: Nome da origem.</li>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget enable source</code> habilita uma fonte existente em seus arquivos de configuração do NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Habilita uma fonte com o nome de &quot;mySource&quot;</span>
+dotnet nuget <span class="nb">enable</span> <span class="nb">source</span> mySource
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-list-source">dotnet nuget list source<a class="headerlink" href="#dotnet-nuget-list-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-list-source">Link documentação</a></p>
+<p>Lista todas as fontes do NuGet configuradas.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget list <span class="nb">source</span> <span class="o">[</span>--format <span class="o">[</span>Detailed<span class="p">|</span>Short<span class="o">]]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget list <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.</li>
+<li><code>--format [Detailed|Short]</code>: O formato da saída: Detailed (o padrão) e Short.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget list source</code> lista todas as fontes existentes dos arquivos de configuração do NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Listar fontes configuradas do diretório atual</span>
+dotnet nuget list <span class="nb">source</span>
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-remove-source">dotnet nuget remove source<a class="headerlink" href="#dotnet-nuget-remove-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-remove-source">Link documentação</a></p>
+<p>Remover uma origem do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget remove <span class="nb">source</span> &lt;NAME&gt; <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget remove <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>NAME</code>: Nome da origem.</li>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget remove source</code> remove uma fonte existente dos arquivos de configuração do NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Remova uma fonte com o nome de &quot;mySource&quot;</span>
+dotnet nuget remove <span class="nb">source</span> mySource
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-update-source">dotnet nuget update source<a class="headerlink" href="#dotnet-nuget-update-source" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-update-source">Link documentação</a></p>
+<p>Atualizar uma origem do NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget update <span class="nb">source</span> &lt;NAME&gt; <span class="o">[</span>--source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--username &lt;USER&gt;<span class="o">]</span>
+    <span class="o">[</span>--password &lt;PASSWORD&gt;<span class="o">]</span> <span class="o">[</span>--store-password-in-clear-text<span class="o">]</span>
+    <span class="o">[</span>--valid-authentication-types &lt;TYPES&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+
+dotnet nuget update <span class="nb">source</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary></details>
+<p>NAME: Nome da origem.</p>
+<div class="highlight"><pre><span></span><code>- `--configfile &lt;FILE&gt;`: O arquivo de configuração do NuGet. Se especificado, somente as configurações desse arquivo serão usadas. Se não for especificado, a hierarquia de arquivos de configuração do diretório atual será usada.
+- `-p|--password &lt;PASSWORD&gt;`: Senha a ser usada ao conectar-se a uma fonte autenticada.
+- `-s|--source &lt;SOURCE&gt;`: Caminho para a origem do pacote.
+- `--store-password-in-clear-text`: Habilita o armazenamento de credenciais de origem do pacote portátil desabilitando a criptografia de senha.
+- `-u|--username &lt;USER&gt;`: Nome de usuário a ser usado ao conectar a uma fonte autenticada.
+- `--valid-authentication-types &lt;TYPES&gt;`: Lista separada por vírgulas de tipos de autenticação válidos para esta fonte.
+</code></pre></div>
+<p>O comando <code>dotnet nuget update source</code> atualiza uma origem existente nos arquivos de configuração do NuGet.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Atualize uma fonte com o nome de &quot;mySource&quot;</span>
+dotnet nuget update <span class="nb">source</span> mySource --source c:<span class="se">\p</span>ackages
+</code></pre></div>
+</details>
+<h3 id="dotnet-nuget-verify">dotnet nuget verify<a class="headerlink" href="#dotnet-nuget-verify" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-nuget-verify">Link documentação</a></p>
+<p>Verifica um pacote NuGet assinado.</p>
+<div class="highlight"><pre><span></span><code>dotnet nuget verify <span class="o">[</span>&lt;package-path<span class="o">(</span>s<span class="o">)</span>&gt;<span class="o">]</span>
+    <span class="o">[</span>--all<span class="o">]</span>
+    <span class="o">[</span>--certificate-fingerprint &lt;FINGERPRINT&gt;<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+
+dotnet nuget verify -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>package-path(s)</code>: Especifica o caminho de arquivo para os pacotes a serem verificados. </li>
+<li><code>--all</code>: Especifica que todas as verificações possíveis devem ser executadas nos pacotes. Por padrão, somente assinaturas são verificadas.</li>
+<li><code>--certificate-fingerprint &lt;FINGERPRINT&gt;</code>: Verifique se o certificado de signatário corresponde a uma das impressões digitais SHA256 especificadas.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhamento do MSBuild. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O padrão é normal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet nuget verify</code> verifica um pacote NuGet assinado.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Verifique foo.nupkg:</span>
+dotnet nuget verify foo.nupkg
+
+<span class="c1"># Verifique vários pacotes NuGet-foo.nupkg e todos os arquivos .nupkg no diretório especificado</span>
+dotnet nuget verify foo.nupkg c:<span class="se">\m</span>ydir<span class="se">\*</span>.nupkg
+
+<span class="c1"># Verifique se a assinatura foo.nupkg corresponde a uma das impressões digitais do certificado especificado</span>
+dotnet nuget verify foo.nupkg --certificate-fingerprint CE40881FF5F0AD3E58965DA20A9F571EF1651A56933748E1BF1C99E537C4E039 --certificate-fingerprint EC10992GG5F0AD3E58965DA20A9F571EF1651A56933748E1BF1C99E537C4E027
+</code></pre></div>
+</details>
+<h2 id="dotnet-pack">dotnet pack<a class="headerlink" href="#dotnet-pack" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-pack">Link documentação</a></p>
+<p>Empacota o código em um pacote NuGet.</p>
+<div class="highlight"><pre><span></span><code> dotnet pack <span class="o">[</span>&lt;PROJECT&gt;<span class="p">|</span>&lt;SOLUTION&gt;<span class="o">]</span> <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span>
+    <span class="o">[</span>--force<span class="o">]</span> <span class="o">[</span>--include-source<span class="o">]</span> <span class="o">[</span>--include-symbols<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>--no-build<span class="o">]</span> <span class="o">[</span>--no-dependencies<span class="o">]</span> <span class="o">[</span>--no-restore<span class="o">]</span> <span class="o">[</span>--nologo<span class="o">]</span>
+    <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span> <span class="o">[</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span>
+    <span class="o">[</span>-s<span class="p">|</span>--serviceable<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--version-suffix &lt;VERSION_SUFFIX&gt;<span class="o">]</span>
+
+dotnet pack -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT|SOLUTION</code>: O caminho do projeto ou solução a ser publicada. Se o diretório não for especificado, o padrão será o diretório atual.</li>
+<li><code>-c|--configuration &lt;CONFIGURATION&gt;</code>: Define a configuração da compilação. O padrão é <em>Debug</em>.</li>
+<li><code>--force</code>: Forçará todas as dependências a serem resolvidas mesmo se última restauração tiver sido bem-sucedida (o mesmo que a exclusão do arquivo <code>project.assets.json</code>).</li>
+<li><code>--include-source</code>: Inclui os pacotes de depuração do NuGet, além dos pacotes NuGet regulares no diretório de saída. Os arquivos de origem são incluídos no diretório <code>src</code> dentro do pacote de símbolos.</li>
+<li><code>--include-symbols</code>: Inclui os pacotes de depuração do NuGet, além dos pacotes NuGet regulares no diretório de saída.</li>
+<li><code>--no-build</code>: Não compila o projeto antes da publicação. Também define o sinalizador <code>--no-restore</code> implicitamente.</li>
+<li><code>--no-dependencies</code>: Ignora as referências projeto a projeto e só restaura o projeto raiz.</li>
+<li><code>--no-restore</code>: Não executa uma restauração implícita ao executar o comando.</li>
+<li><code>-o|--output &lt;OUTPUT_DIRECTORY&gt;</code>: Coloca os pacotes compilados no diretório especificado.</li>
+<li><code>-r|--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: Restaurar os pacotes o aplicativo para um determinado runtime.</li>
+<li><code>-s|--serviceable</code>: Define o sinalizador operacional no pacote. <a href="https://aka.ms/nupkgservicing">Veja mais aqui</a>.</li>
+<li><code>--version-suffix &lt;VERSION_SUFFIX&gt;</code>: Define o valor da propriedade do MSBuild <code>$(VersionSuffix)</code> no projeto.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet pack</code> compila o projeto e cria pacotes NuGet. O resultado desse comando é um pacote NuGet (ou seja, um arquivo <code>.nupkg</code>).</p>
+<p>Se você quiser gerar um pacote que contém os símbolos de depuração, terá duas opções disponíveis:</p>
+<ul>
+<li><code>--include-symbols</code>: Cria o pacote de símbolos.</li>
+<li><code>--include-source</code>: Cria o pacote de símbolos em um diretório <code>src</code> contendo os arquivos de origem.</li>
+</ul>
+<p>As dependências do NuGet do projeto empacotado são adicionadas ao arquivo <code>.nuspec</code> para que possam ser resolvidas apropriadamente quando o pacote for instalado. As referências projeto para projeto não são empacotadas dentro do projeto. Você precisa ter um pacote por projeto.</p>
+<p>Por padrão, <code>dotnet pack</code> compila primeiro o projeto. Se você quiser evitar esse comportamento, passe a opção <code>--no-build</code>. Com frequência, essa opção é útil em cenários de build de CI (integração contínua) nos quais você sabe que o código foi compilado anteriormente.</p>
+<div class="admonition note">
+<p>Em alguns casos, a compilação implícita não pode ser executada. Isso pode ocorrer quando <code>GeneratePackageOnBuild</code> é definido, para evitar uma dependência cíclica entre destinos de compilação e de pacote. A compilação também pode falhar se houver um arquivo bloqueado ou outro problema.</p>
+</div>
+<p>Você pode fornecer as propriedades de MSBuild para o comando <code>dotnet pack</code> para o processo de empacotamento. <a href="https://docs.microsoft.com/pt-br/nuget/reference/msbuild-targets#pack-target">Veja mais aqui</a>.</p>
+<p>Projetos Web não são empacotáveis por padrão. Para substituir o comportamento padrão, adicione a seguinte propriedade ao seu arquivo <code>.csproj</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;PropertyGroup&gt;</span>
+   <span class="nt">&lt;IsPackable&gt;</span>true<span class="nt">&lt;/IsPackable&gt;</span>
+<span class="nt">&lt;/PropertyGroup&gt;</span>
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Empacota o projeto no diretório atual e coloque os pacotes resultantes no diretório &quot;nupkgs&quot;</span>
+dotnet pack --output nupkgs
+
+<span class="c1"># Empacote o projeto app1</span>
+dotnet pack ~/projects/app1/project.csproj
+
+<span class="c1"># Com o sufixo da versão do projeto configurado como &quot;&lt;VersionSuffix&gt;$(VersionSuffix)&lt;/VersionSuffix&gt;&quot;</span>
+<span class="c1"># no arquivo .csproj, empacote o projeto atual e atualize a versão do pacote resultante com o sufixo especificado</span>
+dotnet pack --version-suffix <span class="s2">&quot;ci-1234&quot;</span>
+
+<span class="c1"># Defina a versão do pacote como 2.1.0 com a propriedade MSBuild PackageVersion</span>
+dotnet pack -p:PackageVersion<span class="o">=</span><span class="m">2</span>.1.0
+
+<span class="c1"># Empacote o projeto para um determinado framework</span>
+dotnet pack -p:TargetFrameworks<span class="o">=</span>net45
+
+<span class="c1"># Empacotar o projeto e usar um runtime específico (Windows 10) para a operação de restauração</span>
+dotnet pack --runtime win10-x64
+
+<span class="c1"># Empacotar o projeto usando um arquivo &quot;.nuspec&quot;</span>
+dotnet pack ~/projects/app1/project.csproj -p:NuspecFile<span class="o">=</span>~/projects/app1/project.nuspec -p:NuspecBasePath<span class="o">=</span>~/projects/app1/nuget
+</code></pre></div>
+</details>
+<h2 id="dotnet-publish">dotnet publish<a class="headerlink" href="#dotnet-publish" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-publish">Link documentação</a></p>
+<p>Publica o aplicativo e suas dependências em um diretório para implantação em um sistema de hospedagem.</p>
+<div class="highlight"><pre><span></span><code>dotnet publish <span class="o">[</span>&lt;PROJECT&gt;<span class="p">|</span>&lt;SOLUTION&gt;<span class="o">]</span> <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span>
+    <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>--force<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>--manifest &lt;PATH_TO_MANIFEST_FILE&gt;<span class="o">]</span> <span class="o">[</span>--no-build<span class="o">]</span> <span class="o">[</span>--no-dependencies<span class="o">]</span>
+    <span class="o">[</span>--no-restore<span class="o">]</span> <span class="o">[</span>--nologo<span class="o">]</span> <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-p:PublishReadyToRun<span class="o">=</span>true<span class="o">]</span> <span class="o">[</span>-p:PublishSingleFile<span class="o">=</span>true<span class="o">]</span> <span class="o">[</span>-p:PublishTrimmed<span class="o">=</span>true<span class="o">]</span>
+    <span class="o">[</span>-r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span> <span class="o">[</span>--self-contained <span class="o">[</span>true<span class="p">|</span>false<span class="o">]]</span>
+    <span class="o">[</span>--no-self-contained<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--version-suffix &lt;VERSION_SUFFIX&gt;<span class="o">]</span>
+
+dotnet publish -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT|SOLUTION</code>: O caminho do projeto ou solução a ser publicada. Se o diretório não for especificado, o padrão será o diretório atual.</li>
+<li><code>-c|--configuration &lt;CONFIGURATION&gt;</code>: Define a configuração da compilação. O padrão é <em>Debug</em>.</li>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Especifica a versão do framework (net5.0, netcoreapp3.1, netcoreapp3.0). Padrão: última versão instalada.</li>
+<li><code>--force</code>: Forçará todas as dependências a serem resolvidas mesmo se última restauração tiver sido bem-sucedida (o mesmo que a exclusão do arquivo <code>project.assets.json</code>).</li>
+<li><code>--no-build</code>: Não compila o projeto antes da publicação. Também define o sinalizador <code>--no-restore</code> implicitamente.</li>
+<li><code>--no-dependencies</code>: Ignora as referências projeto a projeto e só restaura o projeto raiz.</li>
+<li><code>--no-restore</code>: Não executa uma restauração implícita ao executar o comando.</li>
+<li><code>-o|--output &lt;OUTPUT_DIRECTORY&gt;</code>: Especifica o caminho para o diretório de saída. Se você especificar um caminho relativo ao publicar um projeto, o diretório de saída gerado será relativo ao diretório de trabalho atual. Para fazer com que a saída de publicação vá para diretórios separados para cada projeto, especifique um caminho relativo usando a propriedade <code>PublishDir</code> do MSBuild em vez da opção <code>--output</code>.</li>
+<li><code>-p:PublishSingleFile=true</code>: Empacota o aplicativo em um executável de arquivo único específico da plataforma.</li>
+<li><code>-p:PublishTrimmed=true</code>: Remove as bibliotecas não usadas para reduzir o tamanho da implantação de um aplicativo ao publicar um executável independente.</li>
+<li><code>-p:EnvironmentName</code>: Nome do ambiente do qual será usado as configurações.</li>
+<li><code>--self-contained [true|false]</code>: Publica o <em>runtime</em> do .NET com seu aplicativo para que o <em>runtime</em> não precise ser instalado no computador de destino. O padrão é true. </li>
+<li><code>--no-self-contained</code>: Equivalente a <code>--self-contained false</code></li>
+<li><code>-r|--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: Publica o aplicativo para um determinado runtime.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet publish</code> compila o aplicativo, lê suas dependências especificadas no arquivo de projeto e publica o conjunto de arquivos resultantes em um diretório. A saída inclui os seguintes ativos:</p>
+<ul>
+<li>Código IL (Linguagem Intermediária) em um assembly com uma extensão dll.</li>
+<li>Um arquivo <code>.deps.json</code> que inclui todas as dependências do projeto.</li>
+<li>Um arquivo <code>.runtimeconfig.json</code>, que especifica o <em>runtime</em> compartilhado e sua versão para um aplicativo, bem como outras opções de configuração para o <em>runtime</em> (por exemplo, tipo de <code>garbage collection</code>).</li>
+<li>As dependências do aplicativo, que são copiadas do cache NuGet para o diretório de saída.</li>
+</ul>
+<p>A saída do comando <code>dotnet publish</code> está pronta para implantação em um sistema de hospedagem para execução. É a única maneira com suporte oficial de preparar o aplicativo para implantação. Dependendo do tipo de implantação que o projeto especifica, o sistema de hospedagem pode ou não ter o <em>runtime</em> compartilhado do .NET instalado nele.</p>
+<h3> MSBuild </h3>
+
+<p>O comando <code>dotnet publish</code> chama MSBuild, que invoca o destino <code>Publish</code>. Quaisquer parâmetros passados para <code>dotnet publish</code> são passados para o MSBuild. Os parâmetros <code>-c</code> e <code>-o</code> mapeiam as propriedades <code>Configuration</code> e <code>PublishDir</code> do MSBuild, respectivamente.
+O comando <code>dotnet publish</code> aceita opções do MSBuild, como <code>-p</code> para configurar propriedades e <code>-l</code> para definir um <em>logger</em>. Por exemplo, você pode definir uma propriedade do MSBuild usando o formato: <code>-p:&lt;NAME&gt;=&lt;VALUE&gt;</code>.
+Você também pode definir propriedades relacionadas à publicação fazendo referência a um arquivo .pubxml. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code>dotnet publish -p:PublishProfile<span class="o">=</span>FolderProfile
+</code></pre></div>
+<p>O exemplo anterior usa o arquivo <code>FolderProfile.pubxml</code> que é encontrado no diretório <code>&lt;project_folder&gt;/Properties/PublishProfiles</code>. Se você especificar um caminho e uma extensão de arquivo ao definir a propriedade <code>PublishProfile</code>, eles serão ignorados. Por padrão, o MSBuild procura no diretório <code>Properties/PublishProfiles</code> e assume a extensão de arquivo <code>pubxml</code>. Para especificar o caminho e o nome de arquivo, incluindo a extensão, defina a propriedade <code>PublishProfileFullPath</code> em vez da propriedade <code>PublishProfile</code>.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Publicar um projeto para o framework Core 2.2 para o runtime ubuntu.18.04-x64 usando as configurações do ambiente &quot;Producao&quot;</span>
+dotnet publish -f netcoreapp2.2 -o ~/DeployProducao --self-contained <span class="nb">true</span> -r ubuntu.18.04-x64 p:EnvironmentName<span class="o">=</span>Producao
+</code></pre></div>
+</details>
+<h2 id="dotnet-restore">dotnet restore<a class="headerlink" href="#dotnet-restore" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-restore">Link documentação</a></p>
+<p>Restaura as dependências e as ferramentas de um projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet restore <span class="o">[</span>&lt;ROOT&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span> <span class="o">[</span>--disable-parallel<span class="o">]</span>
+    <span class="o">[</span>-f<span class="p">|</span>--force<span class="o">]</span> <span class="o">[</span>--force-evaluate<span class="o">]</span> <span class="o">[</span>--ignore-failed-sources<span class="o">]</span>
+    <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--lock-file-path &lt;LOCK_FILE_PATH&gt;<span class="o">]</span> <span class="o">[</span>--locked-mode<span class="o">]</span>
+    <span class="o">[</span>--no-cache<span class="o">]</span> <span class="o">[</span>--no-dependencies<span class="o">]</span> <span class="o">[</span>--packages &lt;PACKAGES_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span> <span class="o">[</span>-s<span class="p">|</span>--source &lt;SOURCE&gt;<span class="o">]</span>
+    <span class="o">[</span>--use-lock-file<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+
+dotnet restore -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração NuGet (<code>nuget.config</code>) a ser usado para a operação de restauração.</li>
+<li><code>--disable-parallel</code>: Desabilita a restauração de vários projetos paralelamente.</li>
+<li><code>--force</code>: Forçará todas as dependências a serem resolvidas mesmo se última restauração tiver sido bem-sucedida (o mesmo que a exclusão do arquivo <code>project.assets.json</code>).</li>
+<li><code>--force-evaluate</code>: Força a restauração a reavaliar todas as dependências mesmo se um arquivo <em>lock</em> já existir.</li>
+<li><code>--ignore-failed-sources</code>: Avise somente sobre fontes com falha se houver pacotes que atendem ao requisito de versão.</li>
+<li><code>--locked-mode</code>: Não permitir atualização do arquivo de bloqueio do projeto.</li>
+<li><code>--no-cache</code>: Especifica para não armazenar em cache solicitações HTTP.</li>
+<li><code>--no-dependencies</code>: Ignora as referências projeto a projeto e só restaura o projeto raiz.</li>
+<li><code>--packages &lt;PACKAGES_DIRECTORY&gt;</code>: Especifica o diretório para os pacotes restaurados.</li>
+<li><code>-r|--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: Restaura os pacotes para um determinado runtime.</li>
+<li><code>-s|--source &lt;SOURCE&gt;</code>: Especifica o URI da origem do pacote NuGet a ser usado durante a operação de restauração. Essa configuração substitui todas as fontes especificadas nos arquivos n<code>uget.config</code>.</li>
+<li><code>--use-lock-file</code>: Habilita o arquivo de bloqueio do projeto a ser gerado e usado com a restauração.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet restore</code> usa o NuGet para restaurar as dependências e ferramentas específicas do projeto especificadas no arquivo do projeto. Na maioria dos casos, você não precisa usar o comando <code>dotnet restore</code> explicitamente, uma vez que uma restauração do NuGet é executada implicitamente, se necessário, quando você executa os seguintes comandos:</p>
+<div class="highlight"><pre><span></span><code>dotnet new
+dotnet build
+dotnet build-server
+dotnet run
+dotnet <span class="nb">test</span>
+dotnet publish
+dotnet pack
+</code></pre></div>
+<p>Às vezes, pode ser inconveniente executar a restauração implícita do NuGet com estes comandos. Por exemplo, alguns sistemas automatizados, como os sistemas de compilação (e.g. integração contínua), precisam chamar o <code>dotnet restore</code> explicitamente para controlar o momento em que a restauração ocorre para que possam controlar o uso de rede. Para evitar a restauração implícita do NuGet, você pode usar o sinalizador <code>--no-restore</code> com qualquer um desses comandos para desabilitar a restauração implícita.</p>
+<h3> Especificar feeds </h3>
+
+<p>Para restaurar as dependências, o NuGet precisa dos feeds nos quais os pacotes estão localizados. Os feeds são geralmente fornecidos por meio do arquivo de configuração <code>nuget.config</code>. Um arquivo de configuração padrão é fornecido quando o SDK do .NET é instalado. Para especificar Feeds adicionais, siga um destes procedimentos:</p>
+<ul>
+<li>Crie seu próprio arquivo de <code>nuget.config</code> no diretório do projeto.</li>
+<li>Use comandos <code>dotnet nuget</code> como <code>dotnet nuget add source</code>.</li>
+</ul>
+<p>Você pode substituir os feeds <code>nuget.config</code> com a -s opção.</p>
+<h3> Diretório de pacotes globais </h3>
+
+<p>Para as dependências, você pode especificar onde os pacotes restaurados são colocados durante a operação de restauração usando o argumento <code>--packages</code>. Se não for especificado, o cache do pacote NuGet padrão é usado, o qual pode ser encontrado no diretório <code>.nuget/packages</code> do diretório base do usuário em todos os sistemas operacionais. Por exemplo, <code>/home/&lt;usuario&gt;/.nuget/packages</code> no Linux ou <code>C:\Users\&lt;usuario&gt;\.nuget\packages</code> no Windows.</p>
+<h3> Ferramentas específicas do projeto </h3>
+
+<p>Para ferramentas específicas do projeto, o <code>dotnet restore</code> primeiro restaura o pacote no qual a ferramenta foi empacotada e prossegue com a restauração das dependências da ferramenta conforme especificado no seu arquivo de projeto.</p>
+<h3> Diferenças do nuget.config </h3>
+
+<p>O comportamento do comando <code>dotnet restore</code> será afetado pelas configurações no arquivo <code>nuget.config</code>, se estiver presente. Por exemplo, a definição de <code>globalPackagesFolder</code> em <code>nuget.config</code> coloca os pacotes NuGet restaurados no diretório especificada. Essa é uma alternativa para especificar a opção <code>--packages</code> no comando <code>dotnet restore</code>.</p>
+<p>Há três configurações específicas que são ignoradas por <code>dotnet restore</code>:</p>
+<ul>
+<li>
+<p><code>bindingRedirects</code>: Os redirecionamentos de associação não funcionam com elementos <code>&lt;PackageReference&gt;</code> e o .NET só dá suporte a elementos <code>&lt;PackageReference&gt;</code> para pacotes NuGet.</p>
+</li>
+<li>
+<p><code>solution</code>:  Essa configuração é específica do Visual Studio e não se aplica ao .NET. O .NET não usa um arquivo <code>packages.config</code> e, em vez disso, usa elementos <code>&lt;PackageReference&gt;</code> para pacotes NuGet.</p>
+</li>
+<li>
+<p><code>trustedSigners</code>: O suporte para verificação de assinatura de pacotes multiplataformas foi adicionado no SDK do .NET 5.0.</p>
+</li>
+</ul>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Restaure as dependências e as ferramentas para o projeto no diretório atual</span>
+dotnet restore
+
+<span class="c1"># Restaure as dependências e as ferramentas para o projeto &quot;app1&quot; encontrado no caminho fornecido</span>
+dotnet restore ./projects/app1/app1.csproj
+
+<span class="c1"># Restaure as dependências e as ferramentas para o projeto no diretório atual usando os dois caminhos de arquivo fornecidos como fontes:</span>
+dotnet restore -s c:<span class="se">\p</span>ackages<span class="se">\m</span>ypackages -s c:<span class="se">\p</span>ackages<span class="se">\m</span>yotherpackages
+</code></pre></div>
+</details>
+<h2 id="dotnet-run">dotnet run<a class="headerlink" href="#dotnet-run" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-run">Link documentação</a></p>
+<p>Executa o código-fonte sem qualquer comando de compilação ou inicialização explícito.</p>
+<div class="highlight"><pre><span></span><code>dotnet run <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span> <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+    <span class="o">[</span>--force<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--launch-profile &lt;NAME&gt;<span class="o">]</span> <span class="o">[</span>--no-build<span class="o">]</span>
+    <span class="o">[</span>--no-dependencies<span class="o">]</span> <span class="o">[</span>--no-launch-profile<span class="o">]</span> <span class="o">[</span>--no-restore<span class="o">]</span>
+    <span class="o">[</span>-p<span class="p">|</span>--project &lt;PATH&gt;<span class="o">]</span> <span class="o">[</span>-r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[[</span>--<span class="o">]</span> <span class="o">[</span>application arguments<span class="o">]]</span>
+
+dotnet run -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>--</code>: Delimita os argumentos do <code>dotnet run</code> dos argumentos para o aplicativo que está sendo executado. Todos os argumentos após esse delimitador são passados para o aplicativo que está sendo executado.</li>
+<li><code>-c|--configuration &lt;CONFIGURATION&gt;</code>: Define a configuração da compilação. O padrão é Debug.</li>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Compila e executa o aplicativo usando o <em>framework</em> especificado. Padrão: última versão instalada.</li>
+<li><code>--force</code>: Forçará todas as dependências a serem resolvidas mesmo se última restauração tiver sido bem-sucedida (o mesmo que a exclusão do arquivo <code>project.assets.json</code>).</li>
+<li><code>--launch-profile &lt;NAME&gt;</code>: Nome do perfil de inicialização (se houver) a ser usado ao iniciar o aplicativo. Os perfis de inicialização são definidos no arquivo <code>launchSettings.json</code> e são normalmente chamados <em>Development</em>, <em>Staging</em> e <em>Production</em>.</li>
+<li><code>--no-build</code>: Não compila o projeto antes da publicação. Também define o sinalizador <code>--no-restore</code> implicitamente.</li>
+<li><code>--no-dependencies</code>: Ignora as referências projeto a projeto e só restaura o projeto raiz.</li>
+<li><code>--no-launch-profile</code>: Tenta não usar <code>launchSettings.json</code> para configurar o aplicativo.</li>
+<li><code>--no-restore</code>: Não executa uma restauração implícita ao executar o comando.</li>
+<li><code>-p|--project &lt;PATH&gt;</code>: Especifica o caminho do arquivo de projeto a ser executado (nome do diretório ou caminho completo). Padrão: diretório atual.</li>
+<li><code>-r|--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: Restaura os pacotes para um determinado runtime.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet run</code> fornece uma opção conveniente para executar o aplicativo a partir do código-fonte com um comando. Ele é útil para o desenvolvimento iterativo rápido a partir da linha de comando. O comando depende do comando <code>dotnet build</code> para criar o código.</p>
+<p>Os arquivos de saída são gravados no local padrão, que é <code>bin/&lt;configuration&gt;/&lt;target&gt;</code>. Por exemplo, se você tiver um aplicativo <code>netcoreapp2.1</code> e executar <code>dotnet run</code>, a saída será colocada em <code>bin/Debug/netcoreapp2.1</code>. Os arquivos são substituídos conforme necessário. Os arquivos temporários são colocados no diretório <code>obj</code>.</p>
+<p>Se o projeto especificar várias <em>frameworks</em>, a execução de <code>dotnet run</code> resultará em um erro, a menos que a opção <code>-f|--framework &lt;FRAMEWORK&gt;</code> seja usada para especificar a estrutura.</p>
+<p>O comando <code>dotnet run</code> é usado no contexto de projetos, não assemblies compilados. Se você estiver tentando executar uma DLL de aplicação dependente de <em>framework</em>, use <code>dotnet</code> sem um comando. Por exemplo, para executar myapp.dll, use:</p>
+<div class="highlight"><pre><span></span><code>dotnet myapp.dll
+</code></pre></div>
+<p>Para executar o aplicativo, o comando <code>dotnet run</code> resolve as dependências do aplicativo que estão fora do runtime compartilhado por meio do cache NuGet. Como ele usa as dependências em cache, não recomendamos usar <code>dotnet run</code> para executar aplicativos em produção. Em vez disso, crie uma implantação usando o comando dotnet publish e implante a saída publicada.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Execute o projeto no diretório atual</span>
+dotnet run
+
+<span class="c1"># Execute o projeto especificado</span>
+dotnet run --project ./projects/proj1/proj1.csproj
+
+<span class="c1"># Execute o projeto no diretório atual com o argumento --help passado para o &quot;aplicativo&quot; (usado --)</span>
+dotnet run --configuration Release -- --help
+
+<span class="c1"># Restaure as dependências e as ferramentas mostrando apenas a saída mínima</span>
+dotnet run --verbosity m
+</code></pre></div>
+</details>
+<h2 id="dotnet-sln">dotnet sln<a class="headerlink" href="#dotnet-sln" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-sln">Link documentação</a></p>
+<p>Lista ou modifica os projetos em um arquivo de solução .NET.</p>
+<div class="highlight"><pre><span></span><code>dotnet sln <span class="o">[</span>&lt;SOLUTION_FILE&gt;<span class="o">]</span> <span class="o">[</span>command<span class="o">]</span> -h<span class="p">|</span>--help
+
+dotnet sln <span class="o">[</span>command<span class="o">]</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>SOLUTION_FILE</code>: O arquivo de solução a ser usado. Se esse argumento for omitido, o comando pesquisará no diretório atual.</li>
+</ul>
+</details>
+<h3 id="dotnet-sln-list">dotnet sln list<a class="headerlink" href="#dotnet-sln-list" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-sln#list">Link documentação</a></p>
+<p>Lista todos os projetos em um arquivo de solução.</p>
+<div class="highlight"><pre><span></span><code>dotnet sln list <span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
+</code></pre></div>
+<h3 id="dotnet-sln-add">dotnet sln add<a class="headerlink" href="#dotnet-sln-add" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-sln#add">Link documentação</a></p>
+<p>Adiciona um ou mais projetos ao arquivo de solução.</p>
+<div class="highlight"><pre><span></span><code>dotnet sln <span class="o">[</span>&lt;SOLUTION_FILE&gt;<span class="o">]</span> add <span class="o">[</span>--in-root<span class="o">]</span> <span class="o">[</span>-s<span class="p">|</span>--solution-folder &lt;PATH&gt;<span class="o">]</span> &lt;PROJECT_PATH&gt; <span class="o">[</span>&lt;PROJECT_PATH&gt;...<span class="o">]</span>
+
+dotnet sln add <span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>SOLUTION_FILE</code>: O arquivo de solução a ser usado. Se esse argumento for omitido, o comando pesquisará no diretório atual.</li>
+<li><code>PROJECT_PATH</code>: O caminho para o projeto ou projetos a serem adicionados à solução. Funciona o padrão globbing do shell Unix/Linux.</li>
+<li><code>--in-root</code>: Coloca os projetos na raiz da solução, em vez de criar um diretório para a solução.</li>
+<li><code>-s|--solution-folder &lt;PATH&gt;</code>: O caminho do diretório <strong>virtual</strong> da solução no qual será adicionado o projeto. Esta é um diretório virtual que pode ser usada para agrupar projetos em uma solução.</li>
+</ul>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Adicionar o projeto à solução no diretório virtual da solução &quot;Services/Catalogo&quot;</span>
+dotnet sln add -s Services/Catalogo src/Projeto.Catalogo.Domain/Projeto.Catalogo.Domain.csproj
+</code></pre></div>
+</details>
+<h3 id="dotnet-sln-remove">dotnet sln remove<a class="headerlink" href="#dotnet-sln-remove" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-sln#remove">Link documentação</a></p>
+<p>Remova um projeto ou vários projetos do arquivo da solução.</p>
+<div class="highlight"><pre><span></span><code>dotnet sln <span class="o">[</span>&lt;SOLUTION_FILE&gt;<span class="o">]</span> remove &lt;PROJECT_PATH&gt; <span class="o">[</span>&lt;PROJECT_PATH&gt;...<span class="o">]</span>
+
+dotnet sln <span class="o">[</span>&lt;SOLUTION_FILE&gt;<span class="o">]</span> remove <span class="o">[</span>-h<span class="p">|</span>--help<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>SOLUTION_FILE</code>: O arquivo de solução a ser usado. Se esse argumento for omitido, o comando pesquisará no diretório atual.</li>
+<li><code>PROJECT_PATH</code>: O caminho para o projeto ou projetos a serem adicionados à solução. Funciona o padrão globbing do shell Unix/Linux.</li>
+</ul>
+</details>
+<h2 id="dotnet-store">dotnet store<a class="headerlink" href="#dotnet-store" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-store">Link documentação</a></p>
+<p>Armazena os assemblies especificados no repositório de pacotes de runtime.</p>
+<div class="highlight"><pre><span></span><code>dotnet store -m<span class="p">|</span>--manifest &lt;PATH_TO_MANIFEST_FILE&gt;
+    -f<span class="p">|</span>--framework &lt;FRAMEWORK_VERSION&gt; -r<span class="p">|</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;
+    <span class="o">[</span>--framework-version &lt;FRAMEWORK_VERSION&gt;<span class="o">]</span> <span class="o">[</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>--skip-optimization<span class="o">]</span> <span class="o">[</span>--skip-symbols<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--working-dir &lt;WORKING_DIRECTORY&gt;<span class="o">]</span>
+
+dotnet store -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Especifica a estrutura de destino. A estrutura de destino deve ser especificada no arquivo de projeto.</li>
+<li><code>-m|--manifest &lt;PATH_TO_MANIFEST_FILE&gt;</code>: O arquivo de manifesto do repositório de pacotes é um arquivo XML que contém a lista de pacotes a serem armazenados.</li>
+<li><code>-r|--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: O identificador do runtime a ser usado.</li>
+<li><code>--framework-version &lt;FRAMEWORK_VERSION&gt;</code>: Especifica a versão do SDK do .NET. Essa opção permite que você selecione uma versão da estrutura específica, além da estrutura especificada pela opção <code>-f|--framework</code>.</li>
+<li><code>-o|--output &lt;OUTPUT_DIRECTORY&gt;</code>: Especifica o caminho para o repositório de pacotes de runtime. Se não for especificado, o padrão será o subdiretório <code>store</code> do diretório de instalação do .NET do perfil do usuário.</li>
+<li><code>--skip-optimization</code>: Ignora a fase de otimização.</li>
+<li>-<code>-skip-symbols</code>: Ignora a geração de símbolos.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic].</li>
+<li><code>-w|--working-dir &lt;WORKING_DIRECTORY&gt;</code>: O diretório de trabalho usado pelo comando. Se não for especificado, ele usará o subdiretório <code>obj</code> do diretório atual.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet store</code> armazena os assemblies especificados no repositório de pacotes de runtime. Por padrão, os assemblies são otimizados para a estrutura e o runtime de destino.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Armazene os pacotes especificados no arquivo de projeto packages.csproj</span>
+dotnet store --manifest packages.csproj --framework-version <span class="m">2</span>.0.0
+
+<span class="c1"># Armazene os pacotes especificados no packages.csproj sem otimização</span>
+dotnet store --manifest packages.csproj --skip-optimization
+</code></pre></div>
+</details>
+<h2 id="dotnet-test">dotnet test<a class="headerlink" href="#dotnet-test" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-test">Link documentação</a></p>
+<p>Driver de teste do .NET usado para executar testes de unidade.</p>
+<div class="highlight"><pre><span></span><code>dotnet <span class="nb">test</span> <span class="o">[</span>&lt;PROJECT&gt; <span class="p">|</span> &lt;SOLUTION&gt; <span class="p">|</span> &lt;DIRECTORY&gt; <span class="p">|</span> &lt;DLL&gt;<span class="o">]</span>
+    <span class="o">[</span>-a<span class="p">|</span>--test-adapter-path &lt;ADAPTER_PATH&gt;<span class="o">]</span> <span class="o">[</span>--blame<span class="o">]</span> <span class="o">[</span>--blame-crash<span class="o">]</span>
+    <span class="o">[</span>--blame-crash-dump-type &lt;DUMP_TYPE&gt;<span class="o">]</span> <span class="o">[</span>--blame-crash-collect-always<span class="o">]</span>
+    <span class="o">[</span>--blame-hang<span class="o">]</span> <span class="o">[</span>--blame-hang-dump-type &lt;DUMP_TYPE&gt;<span class="o">]</span>
+    <span class="o">[</span>--blame-hang-timeout &lt;TIMESPAN&gt;<span class="o">]</span>
+    <span class="o">[</span>-c<span class="p">|</span>--configuration &lt;CONFIGURATION&gt;<span class="o">]</span>
+    <span class="o">[</span>--collect &lt;DATA_COLLECTOR_NAME&gt;<span class="o">]</span>
+    <span class="o">[</span>-d<span class="p">|</span>--diag &lt;LOG_FILE&gt;<span class="o">]</span> <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+    <span class="o">[</span>--filter &lt;EXPRESSION&gt;<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>-l<span class="p">|</span>--logger &lt;LOGGER&gt;<span class="o">]</span> <span class="o">[</span>--no-build<span class="o">]</span>
+    <span class="o">[</span>--nologo<span class="o">]</span> <span class="o">[</span>--no-restore<span class="o">]</span> <span class="o">[</span>-o<span class="p">|</span>--output &lt;OUTPUT_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>-r<span class="p">|</span>--results-directory &lt;RESULTS_DIR&gt;<span class="o">]</span> <span class="o">[</span>--runtime &lt;RUNTIME_IDENTIFIER&gt;<span class="o">]</span>
+    <span class="o">[</span>-s<span class="p">|</span>--settings &lt;SETTINGS_FILE&gt;<span class="o">]</span> <span class="o">[</span>-t<span class="p">|</span>--list-tests<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[[</span>--<span class="o">]</span> &lt;RunSettings arguments&gt;<span class="o">]</span>
+
+dotnet <span class="nb">test</span> -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT|SOLUTION|DIRECTORY|DLL</code>: Caminho de um projeto de teste, solução, um diretório (que contém um projeto ou uma solução) ou um arquivo <code>.dll</code> do projeto de teste. Padrão: pesquisa um projeto ou uma solução no diretório atual.</li>
+<li><code>--blame</code>: Executa os testes no modo <em>blame</em>. Essa opção é útil para isolar testes problemáticos que causam falha no host de teste. Quando uma falha é detectada, ela cria um arquivo de sequência no <code>TestResults/&lt;Guid&gt;/&lt;Guid&gt;_Sequence.xml</code> que captura a ordem dos testes que foram executados antes da falha.</li>
+<li><code>--blame-crash</code>:  Executa os testes no modo <em>blame</em> e coleta o despejo de memória (<em>crash dump</em>) quando o host de teste sai inesperadamente.</li>
+<li><code>--blame-crash-dump-type &lt;DUMP_TYPE&gt;</code>: O tipo de despejo de memória a ser coletado. Implica <code>--blame-crash</code>.</li>
+<li><code>--blame-crash-collect-always</code> Coleta um despejo de memória na saída e inesperada do host de teste.</li>
+<li><code>--blame-hang</code>: Execute os testes no modo <em>blame</em> e coleta um despejo de travamento quando um teste excede o tempo limite especificado.</li>
+<li><code>--blame-hang-dump-type &lt;DUMP_TYPE&gt;</code>: O tipo de despejo de memória a ser coletado. Deve ser full, mini ou none. Quando none é especificado, o host de teste é encerrado no tempo limite, mas nenhum despejo é coletado. Implica <code>--blame-hang</code>.</li>
+<li><code>--blame-hang-timeout &lt;TIMESPAN&gt;</code>: Tempo limite por teste, após o qual um despejo de travamento é disparado e o processo de host de teste e todos os seus processos filho são despejados e encerrados.</li>
+<li><code>-c|--configuration &lt;CONFIGURATION&gt;</code>:  Define a configuração da compilação. O valor padrão é Debug.</li>
+<li><code>--collect &lt;DATA_COLLECTOR_NAME&gt;</code>: Habilita o coletor de dados para a execução de teste. <a href="https://aka.ms/vstest-collect">Veja mais em</a>.</li>
+<li><code>-d|--diag &lt;LOG_FILE&gt;</code>: Habilita o modo de diagnóstico para a plataforma de teste e grava mensagens de diagnóstico no arquivo especificado. O processo que está registrando as mensagens determina quais arquivos são criados, como <code>*.host_&lt;date&gt;.txt</code> para o log do host de teste e <code>*.datacollector_&lt;date&gt;.txt</code> para o log do coletor de dados.</li>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Força o uso do host de teste de um determinado framework para os binários de teste. A versão real do Framework a ser usada é determinada pelo <code>runtimeconfig.json</code> do projeto de teste. Quando não especificado, o atributo de assembly <code>TargetFramework</code> é usado para determinar o tipo de host.</li>
+<li><code>--filter &lt;EXPRESSION&gt;</code>: Filtra os testes no projeto atual usando a expressão especificada.</li>
+<li><code>-l|--logger &lt;LOGGER&gt;</code>: Especifica um <em>logger</em> para os resultados do teste. Ao contrário do MSBuild, o <code>teste dotnet</code> não aceita abreviações: em vez de <code>-l "console;v=d"</code> usar -<code>l "console;verbosity=detailed"</code>.</li>
+<li><code>--no-build</code>: Não compila o projeto de teste antes de sua execução. Ele também define implicitamente a flag <code>--no-restore</code>.</li>
+<li><code>--no-restore</code>: Não executa uma restauração implícita ao executar o comando.</li>
+<li><code>-o|--output &lt;OUTPUT_DIRECTORY&gt;</code>: Diretório no qual os binários compilados são colocados. Se não for especificado, o caminho padrão será <code>./bin/&lt;configuration&gt;/&lt;framework&gt;/</code>. Para projetos com várias estruturas de destino (por meio da propriedade <code>TargetFrameworks</code>), também é necessário definir <code>--framework</code> quando você especifica essa opção.</li>
+<li><code>-r|--results-directory &lt;RESULTS_DIR&gt;</code>: O diretório em que os resultados de teste serão colocados. Se o diretório especificado não existir, ele será criado. O padrão é o diretório <code>TestResults</code> que contém o arquivo de projeto.</li>
+<li><code>--runtime &lt;RUNTIME_IDENTIFIER&gt;</code>: O <code>runtime</code> de destino para o qual testar.</li>
+<li><code>-s|--settings &lt;SETTINGS_FILE&gt;</code>: O arquivo <code>.runsettings</code> a ser usado para executar os testes.</li>
+<li><code>-t|--list-tests</code>: Liste os testes encontrados em vez de executá-los.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+<li><code>RunSettings arguments</code>: São passados como os últimos argumentos na linha de comando após "--". São especificados como pares [name]=[value]. Exemplo: <code>dotnet test -- MSTest.DeploymentEnabled=false MSTest.MapInconclusiveToFailed=Tru</code>.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet test</code> é usado para executar testes de unidade em uma determinada solução. O comando <code>dotnet test</code> cria a solução e executa um aplicativo de host de teste para cada projeto de teste na solução. O host de teste executa testes no projeto usando uma estrutura de teste, por exemplo: <strong>MSTest</strong>, <strong>NUnit</strong> ou <strong>xUnit</strong>, e relata o êxito ou a falha de cada teste. Se todos os testes forem bem-sucedidos, o executor de testes retornará <code>0</code> como um código de saída; caso contrário, se algum teste falhar, retornará <code>1</code>.</p>
+<p>Para projetos de vários destinos, os testes são executados para cada estrutura de destino. O host de teste e a estrutura de teste de unidade são empacotados como pacotes NuGet e restaurados como dependências comuns para o projeto.</p>
+<p>Os projetos de teste especificam o executor de teste usando um elemento comum <code>&lt;PackageReference&gt;</code>, conforme mostrado no exemplo de arquivo de projeto a seguir:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Project</span> <span class="na">Sdk=</span><span class="s">&quot;Microsoft.NET.Sdk&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;PropertyGroup&gt;</span>
+    <span class="nt">&lt;TargetFramework&gt;</span>netcoreapp3.1<span class="nt">&lt;/TargetFramework&gt;</span>
+  <span class="nt">&lt;/PropertyGroup&gt;</span>
+
+  <span class="nt">&lt;ItemGroup&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;Microsoft.NET.Test.Sdk&quot;</span> <span class="na">Version=</span><span class="s">&quot;16.9.1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;xunit&quot;</span> <span class="na">Version=</span><span class="s">&quot;2.4.1&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;xunit.runner.visualstudio&quot;</span> <span class="na">Version=</span><span class="s">&quot;2.4.3&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/ItemGroup&gt;</span>
+
+<span class="nt">&lt;/Project&gt;</span>
+</code></pre></div>
+<p>Onde <code>Microsoft.NET.Test.Sdk</code> é o host de teste, <code>xunit</code> é a estrutura de teste. E <code>xunit.runner.visualstudio</code> é um adaptador de teste, que permite que a estrutura <code>xUnit</code> funcione com o host de teste.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Execute os testes no projeto no diretório atual</span>
+dotnet <span class="nb">test</span>
+
+<span class="c1"># Execute os testes no projeto &quot;test1&quot;</span>
+dotnet <span class="nb">test</span> ~/projects/test1/test1.csproj
+
+<span class="c1"># Execute os testes no projeto no diretório atual e gere um arquivo de resultados de teste no formato TRX</span>
+dotnet <span class="nb">test</span> --logger trx
+
+<span class="c1"># Execute os testes no projeto no diretório atual e gere um arquivo de cobertura de código </span>
+<span class="c1"># depois de instalar a integração de coletores coverlet,</span>
+dotnet <span class="nb">test</span> --collect:<span class="s2">&quot;XPlat Code Coverage&quot;</span>
+
+<span class="c1"># Execute os testes no projeto no diretório atual e faça log com detalhes no console</span>
+dotnet <span class="nb">test</span> --logger <span class="s2">&quot;console;verbosity=detailed&quot;</span>
+
+<span class="c1"># Execute os testes no projeto no diretório atual e relate os testes que estavam em andamento quando o host de teste falhou</span>
+dotnet <span class="nb">test</span> --blame
+</code></pre></div>
+</details>
+<h2 id="dotnet-list-reference">dotnet list reference<a class="headerlink" href="#dotnet-list-reference" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-list-reference">Link documentação</a></p>
+<p>Lista as referências projeto a projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet list <span class="o">[</span>&lt;PROJECT&gt;<span class="o">]</span> reference
+
+dotnet list -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Listar as referências de projeto do projeto especificado</span>
+dotnet list app/app.csproj reference
+
+<span class="c1"># Listar as referências de projeto do projeto no diretório atual</span>
+dotnet list reference
+</code></pre></div>
+</details>
+<h2 id="dotnet-add-reference">dotnet add reference<a class="headerlink" href="#dotnet-add-reference" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-add-reference">Link documentação</a></p>
+<p>Adiciona as referências P2P (projeto para projeto).</p>
+<div class="highlight"><pre><span></span><code>dotnet add <span class="o">[</span>&lt;PROJECT&gt;<span class="o">]</span> reference <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+     <span class="o">[</span>--interactive<span class="o">]</span> &lt;PROJECT_REFERENCES&gt;
+
+dotnet add reference -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT</code>: Especifica o arquivo do projeto. Se não for especificado, o comando pesquisará um no diretório atual.</li>
+<li><code>PROJECT_REFERENCES</code>: Referências P2P (projeto para projeto) a serem adicionadas. Funciona o padrão globbing do shell Unix/Linux.</li>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Adiciona uma referência de projeto somente quando se trata de um framework específico como destino.</li>
+</ul>
+</details>
+<p>Este comando fornece uma opção conveniente para adicionar referências de projeto a outro projeto. Depois de executar o comando, os elementos <code>&lt;ProjectReference&gt;</code> são adicionados ao arquivo de projeto.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ItemGroup&gt;</span>
+  <span class="nt">&lt;ProjectReference</span> <span class="na">Include=</span><span class="s">&quot;app.csproj&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;ProjectReference</span> <span class="na">Include=</span><span class="s">&quot;..\lib2\lib2.csproj&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;ProjectReference</span> <span class="na">Include=</span><span class="s">&quot;..\lib1\lib1.csproj&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/ItemGroup&gt;</span>
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># No projeto &quot;app/app.csproj&quot; é adicionado referencia ao projeto &quot;lib/lib.csproj&quot;</span>
+dotnet add app/app.csproj reference lib/lib.csproj
+
+<span class="c1"># Adicionar várias referências de outros projetos ao projeto no diretório atual.</span>
+dotnet add reference lib1/lib1.csproj lib2/lib2.csproj
+</code></pre></div>
+</details>
+<h2 id="dotnet-remove-reference">dotnet remove reference<a class="headerlink" href="#dotnet-remove-reference" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-remove-reference">Link documentação</a></p>
+<p>Remove as referências P2P (projeto para projeto).</p>
+<div class="highlight"><pre><span></span><code>dotnet remove <span class="o">[</span>&lt;PROJECT&gt;<span class="o">]</span> reference <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+     &lt;PROJECT_REFERENCES&gt;
+
+dotnet remove reference -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT</code>: Especifica o arquivo do projeto. Se não for especificado, o comando pesquisará um no diretório atual.</li>
+<li><code>PROJECT_REFERENCES</code>: Referências P2P (projeto para projeto) a serem adicionadas. Funciona o padrão globbing do shell Unix/Linux.</li>
+</ul>
+</details>
+<p>Este comando fornece uma opção conveniente para remover referências de um projeto a outro projeto. Depois de executar o comando, os elementos <code>&lt;ProjectReference&gt;</code> são removidos ao arquivo de projeto.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># No projeto &quot;app/app.csproj&quot; é removida a referencia ao projeto &quot;lib/lib.csproj&quot;</span>
+dotnet remove app/app.csproj reference lib/lib.csproj
+
+<span class="c1"># Remove várias referências de outros projetos ao projeto no diretório atual.</span>
+dotnet remove reference lib1/lib1.csproj lib2/lib2.csproj
+</code></pre></div>
+</details>
+<h2 id="dotnet-list-package">dotnet list package<a class="headerlink" href="#dotnet-list-package" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-list-package">Link documentação</a></p>
+<p>Lista as referências de pacote para um projeto ou solução.</p>
+<div class="highlight"><pre><span></span><code>dotnet list <span class="o">[</span>&lt;PROJECT&gt;<span class="p">|</span>&lt;SOLUTION&gt;<span class="o">]</span> package <span class="o">[</span>--config &lt;SOURCE&gt;<span class="o">]</span>
+    <span class="o">[</span>--deprecated<span class="o">]</span>
+    <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>--highest-minor<span class="o">]</span> <span class="o">[</span>--highest-patch<span class="o">]</span>
+    <span class="o">[</span>--include-prerelease<span class="o">]</span> <span class="o">[</span>--include-transitive<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>--outdated<span class="o">]</span> <span class="o">[</span>--source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+
+dotnet list package -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT|SOLUTION</code>: Especifica o arquivo do projeto ou solução. Se não for especificado, o comando pesquisará um no diretório atual.</li>
+<li><code>--config &lt;SOURCE&gt;</code>: A fontes do NuGet a serem usadas ao procurar pacotes mais novos. Requer a opção <code>--outdated</code>.</li>
+<li><code>--deprecated</code>: Exibe os pacotes que foram depreciados.</li>
+<li><code>--framework &lt;FRAMEWORK&gt;</code>: Exibe apenas os pacotes aplicáveis para p framework especificado.</li>
+<li><code>--highest-minor</code>: Ao procurar pacotes mais novos, considerar apenas os pacotes com um número de versão principal correspondente. Requer a opção <code>--outdated</code> ou <code>--deprecated</code>.</li>
+<li><code>--highest-patch</code>: Ao procurar pacotes mais novos, considerar apenas os pacotes com números de versão principais e secundários correspondentes. Requer a opção <code>--outdated</code> ou <code>--deprecated</code>.</li>
+<li><code>--include-transitive</code>: Lista pacotes transitivos, além dos pacotes de nível superior. Ao especificar essa opção, você obtém uma lista de pacotes dos quais os pacotes de nível superior dependem.</li>
+<li><code>--outdated</code>: Lista os pacotes que têm as versões mais recentes disponíveis.</li>
+<li><code>-s|--source &lt;SOURCE&gt;</code>: As fontes do NuGet a serem usadas ao procurar pacotes mais novos. Requer a opção <code>--outdated</code> ou <code>--deprecated</code>.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic]. O valor padrão é minimal.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet list package</code> fornece uma opção conveniente para listar todas as referências de pacotes do NuGet para um projeto específico ou uma solução.</p>
+<p>O exemplo a seguir mostra a saída do comando dotnet list package para o projeto "SentimentAnalysis":</p>
+<div class="highlight"><pre><span></span><code>Project <span class="s1">&#39;SentimentAnalysis&#39;</span> has the following package references
+   <span class="o">[</span>netcoreapp2.1<span class="o">]</span>:
+   Top-level Package               Requested   Resolved
+   &gt; Microsoft.ML                  <span class="m">1</span>.4.0       <span class="m">1</span>.4.0
+   &gt; Microsoft.NETCore.App   <span class="o">(</span>A<span class="o">)</span>   <span class="o">[</span><span class="m">2</span>.1.0, <span class="o">)</span>   <span class="m">2</span>.1.0
+
+<span class="o">(</span>A<span class="o">)</span> : Auto-referenced package.
+</code></pre></div>
+<p>A coluna <code>Requested</code> refere-se à versão do pacote especificada no arquivo de projeto e pode ser um intervalo. A coluna <code>Resolved</code> lista a versão que o projeto está usando atualmente e é sempre um valor único. Os pacotes que exibem um <code>(A)</code> direito ao lado de seus nomes representam referências de pacote implícitas que são inferidas de suas configurações de projeto (tipo Sdk, ou ropriedade <code>&lt;TargetFramework&gt;</code> ou <code>&lt;TargetFrameworks&gt;</code>).</p>
+<p>Use a opção <code>--outdated</code> para descobrir se existem versões mais recentes dos pacotes que você está usando em seus projetos. Por padrão, <code>--outdated</code> lista os pacotes estáveis mais recentes, a menos que a versão resolvida também seja uma versão de pré-lançamento. Para incluir versões de pré-lançamento ao listar versões mais recentes, especifique também a opção <code>--include-prerelease</code>. Os exemplos a seguir mostram a saída do comando dotnet list package --outdated --include-prerelease para o mesmo projeto do exemplo anterior:</p>
+<div class="highlight"><pre><span></span><code>The following sources were used:
+   https://api.nuget.org/v3/index.json
+   C:<span class="se">\P</span>rogram Files <span class="o">(</span>x86<span class="o">)</span><span class="se">\M</span>icrosoft SDKs<span class="se">\N</span>uGetPackages<span class="se">\</span>
+
+Project <span class="sb">`</span>SentimentAnalysis<span class="sb">`</span> has the following updates to its packages
+   <span class="o">[</span>netcoreapp2.1<span class="o">]</span>:
+   Top-level Package      Requested   Resolved   Latest
+   &gt; Microsoft.ML         <span class="m">1</span>.4.0       <span class="m">1</span>.4.0      <span class="m">1</span>.5.0-preview
+</code></pre></div>
+<p>Se você precisa descobrir se seu projeto tem dependências transitivas, use a opção <code>--include-transitive</code>. Dependências transitivas ocorrem quando você adiciona um pacote ao seu projeto que, por sua vez, depende de outro pacote. O exemplo a seguir mostra a saída da execução do comando <code>dotnet list package --include-transitive</code> para o projeto HelloPlugin, que exibe os pacotes de nível superior e os pacotes dos quais eles dependem:</p>
+<div class="highlight"><pre><span></span><code>Project <span class="s1">&#39;HelloPlugin&#39;</span> has the following package references
+   <span class="o">[</span>netcoreapp3.0<span class="o">]</span>:
+   Transitive Package      Resolved
+   &gt; PluginBase            <span class="m">1</span>.0.0
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Listar referências de pacote de um projeto específico</span>
+dotnet list SentimentAnalysis.csproj package
+
+<span class="c1"># Listar referências de pacote com versões mais recentes disponíveis, incluindo versões de pré-lançamento</span>
+dotnet list package --outdated --include-prerelease
+
+<span class="c1"># Listar referências de pacotes para um framework específico</span>
+dotnet list package --framework netcoreapp3.0
+</code></pre></div>
+</details>
+<h2 id="dotnet-add-package">dotnet add package<a class="headerlink" href="#dotnet-add-package" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-add-package">Link documentação</a></p>
+<p>Adiciona uma referência de pacote a um arquivo de projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet add <span class="o">[</span>&lt;PROJECT&gt;<span class="o">]</span> package &lt;PACKAGE_NAME&gt;
+    <span class="o">[</span>-f<span class="p">|</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>-n<span class="p">|</span>--no-restore<span class="o">]</span> <span class="o">[</span>--package-directory &lt;PACKAGE_DIRECTORY&gt;<span class="o">]</span>
+    <span class="o">[</span>--prerelease<span class="o">]</span> <span class="o">[</span>-s<span class="p">|</span>--source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--version &lt;VERSION&gt;<span class="o">]</span>
+
+dotnet add package -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT</code>: Especifica o arquivo do projeto. Se não for especificado, o comando pesquisará um no diretório atual.</li>
+<li><code>PACKAGE_NAME</code>: A referência de pacote a ser adicionada.</li>
+<li><code>-f|--framework &lt;FRAMEWORK&gt;</code>: Adiciona uma referência de pacote somente quando se trata de um framework específico como destino.</li>
+<li><code>-n|--no-restore</code>: Adiciona uma referência de pacote sem executar a visualização de restauração e a verificação de compatibilidade.</li>
+<li><code>--package-directory &lt;PACKAGE_DIRECTORY&gt;</code>: O diretório no qual restaurar os pacotes. O local de restauração de pacote padrão é <code>%userprofile%\.nuget\packages</code> no Windows e <code>~/.nuget/packages</code> no macOS e Linux.</li>
+<li><code>--prerelease</code>: Permite que pacotes de pré-lançamento sejam instalados.</li>
+<li><code>-s|--source &lt;SOURCE&gt;</code>: O URI da origem do pacote NuGet a ser usado durante a operação de restauração.</li>
+<li><code>-v|--version &lt;VERSION&gt;</code>: Versão do pacote.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet add package</code> fornece uma opção conveniente para adicionar uma referência de pacote a um arquivo de projeto. Um elemento <code>&lt;PackageReference&gt;</code> será adicionado ao arquivo de projeto e<code>dotnet restore</code> será executada.</p>
+<p>O arquivo de configuração do projeto irá conter um elemento <code>&lt;PackageReference&gt;</code> para o pacote referenciado.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&quot;Newtonsoft.Json&quot;</span> <span class="na">Version=</span><span class="s">&quot;12.0.1&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Adicionar um pacote NuGet Newtonsoft.Json a um projeto</span>
+dotnet add package Newtonsoft.Json
+
+<span class="c1"># Adicionar uma versão específica de um pacote a um projeto</span>
+dotnet add ToDo.csproj package Microsoft.Azure.DocumentDB.Core -v <span class="m">1</span>.0.0
+
+<span class="c1"># Adicionar um pacote usando uma fonte específica do NuGet</span>
+dotnet add package Microsoft.AspNetCore.StaticFiles -s https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
+</code></pre></div>
+</details>
+<h2 id="dotnet-remove-package">dotnet remove package<a class="headerlink" href="#dotnet-remove-package" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-remove-package">Link documentação</a></p>
+<p>Remove a referência de pacote de um arquivo de projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet remove <span class="o">[</span>&lt;PROJECT&gt;<span class="o">]</span> package &lt;PACKAGE_NAME&gt;
+
+dotnet remove package -h<span class="p">|</span>--help
+</code></pre></div>
+<p>O comando <code>dotnet remove package</code> fornece uma opção conveniente para remover uma referência de pacote NuGet de um projeto.</p>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PROJECT</code>: Especifica o arquivo do projeto. Se não for especificado, o comando pesquisará um no diretório atual.</li>
+<li><code>PACKAGE_NAME</code>: A referência de pacote a ser removida..</li>
+</ul>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Remova o pacote NuGet Newtonsoft.Json de um projeto no diretório atual:</span>
+dotnet remove app/app.csproj reference lib/lib.csproj
+</code></pre></div>
+</details>
+<h2 id="dotnet-tool">dotnet tool<a class="headerlink" href="#dotnet-tool" title="Permanent link">&para;</a></h2>
+<h3 id="dotnet-tool-install">dotnet tool install<a class="headerlink" href="#dotnet-tool-install" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-install">Link documentação</a></p>
+<p>Instala a ferramenta .NET especificada em seu computador.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool install &lt;PACKAGE_NAME&gt; -g<span class="p">|</span>--global
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--version &lt;VERSION_NUMBER&gt;<span class="o">]</span>
+
+dotnet tool install &lt;PACKAGE_NAME&gt; --tool-path &lt;PATH&gt;
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--version &lt;VERSION_NUMBER&gt;<span class="o">]</span>
+
+dotnet tool install &lt;PACKAGE_NAME&gt;
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span> <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+    <span class="o">[</span>--version &lt;VERSION_NUMBER&gt;<span class="o">]</span>
+
+dotnet tool install -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PACKAGE_NAME</code>: Nome/ID do pacote NuGet que contém a ferramenta .NET a ser instalada.</li>
+<li><code>--add-source &lt;SOURCE&gt;</code>: Adiciona outra origem do pacote NuGet a ser usada durante a instalação. Os feeds são acessados em paralelo, não sequencialmente em alguma ordem de precedência. Se o mesmo pacote e versão estiver em vários feeds, o feed mais rápido vence. </li>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet (<code>nuget.config</code>) a ser usado.</li>
+<li><code>--framework &lt;FRAMEWORK&gt;</code>: Especifica o <em>framework</em> para a qual instalar a ferramenta. Por padrão tenta escolher a estrutura de destino mais apropriada.</li>
+<li><code>-g|--global</code>: Especifica que a instalação é a nível de usuário e não apenas diretório local. Não pode ser combinada com a opção <code>--tool-path</code>. Padrão: usuário local.</li>
+<li><code>--tool-path &lt;PATH&gt;</code>: Especifica o local do qual a Ferramenta Global será instalada. PATH pode ser absoluto ou relativo. Se PATH não existir, o comando tentará criá-lo.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic].</li>
+<li><code>--version &lt;VERSION_NUMBER&gt;</code>: A versão da ferramenta a ser instalada. Por padrão, a última versão estável do pacote é instalada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool install</code> fornece uma maneira de instalar as ferramentas do .NET em seu computador. Para usar o comando, especifique uma das seguintes opções de instalação:</p>
+<ul>
+<li>Para instalar uma ferramenta global no local padrão, use a opção <code>--global</code>.</li>
+<li>Para instalar uma ferramenta global em um local personalizado, use a opção <code>--tool-path</code>.</li>
+<li>Para instalar uma ferramenta local, omita as Opções <code>--global</code> e <code>--tool-path</code>.</li>
+</ul>
+<p>As ferramentas globais são instaladas nos diretórios <code>$HOME/.dotnet/tools</code> em Linux/macOS e <code>%USERPROFILE%\.dotnet\tools</code> em windows:</p>
+<p>As ferramentas locais são adicionadas a um arquivo <code>dotnet-tools.json</code> em um diretório <code>.config</code> no diretório atual. Se um arquivo <em>manifest</em> ainda não existir, crie-o executando o seguinte comando:</p>
+<div class="highlight"><pre><span></span><code>dotnet new tool-manifest
+</code></pre></div>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Instala o dotnetsay como uma ferramenta global no local padrão.</span>
+dotnet tool install -g dotnetsay
+
+<span class="c1"># Instala o dotnetsay como uma ferramenta global em um diretório específico do linux/MacOS.</span>
+dotnet tool install dotnetsay --tool-path ~/bin
+
+<span class="c1"># Instala a versão 2.0.0 do dotnetsay como uma ferramenta global.</span>
+dotnet tool install -g dotnetsay --version <span class="m">2</span>.0.0
+
+<span class="c1"># Instala o dotnetsay como uma ferramenta local para o diretório atual.</span>
+dotnet tool install dotnetsay
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-list">dotnet tool list<a class="headerlink" href="#dotnet-tool-list" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-list">Link documentação</a></p>
+<p>Lista todas as ferramentas .NET do tipo especificado atualmente instalado em seu computador.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool list -g<span class="p">|</span>--global
+
+dotnet tool list --tool-path &lt;PATH&gt;
+
+dotnet tool list --local
+
+dotnet tool list
+
+dotnet tool list -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>-g|--global</code>: Lista as ferramentas globais. Não pode ser combinada com a opção <code>--tool-path</code>. Omitir <code>--global</code> e <code>--tool-path</code> lista as ferramentas locais.</li>
+<li><code>--local</code>: Lista as ferramentas locais para o diretório atual. Não pode ser combinado com as opções <code>--global</code> ou <code>--tool-path</code>. Omitir <code>--global</code> e <code>--tool-path</code> lista as ferramentas locais, mesmo se <code>--local</code> não for especificado.</li>
+<li><code>--tool-path &lt;PATH&gt;</code>: Especifica um local personalizado onde encontrar ferramentas globais. <code>PATH</code> pode ser absoluto ou relativo. Não pode ser combinada com a opção <code>--global</code>. Omitir <code>--global</code> e <code>--tool-path</code> lista as ferramentas locais.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool list</code> fornece uma maneira de listar todas as ferramentas globais, ferramentas de um PATH ou ferramentas locais instaladas em seu computador. O comando lista o nome do pacote, a versão instalada e o comando da ferramenta. Para usar o comando, especifique um dos seguintes:</p>
+<ul>
+<li>Para listar as ferramentas globais instaladas no local padrão, use a opção <code>--global</code>.</li>
+<li>Para listar as ferramentas globais instaladas em um local personalizado, use a opção <code>--tool-path</code>.</li>
+<li>Para listar as ferramentas locais, use a opção <code>--local</code> ou omita as opções <code>--global</code>, <code>--tool-path</code> e <code>--local</code>.</li>
+</ul>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Lista todas as ferramentas globais instaladas por todo o usuário em seu computador (perfil de usuário atual).</span>
+dotnet tool list -g
+
+<span class="c1"># Lista as ferramentas globais de um diretório específico do Linux/macOS.</span>
+dotnet tool list --tool-path ~/bin
+
+<span class="c1"># Lista todas as ferramentas locais disponíveis no diretório atual.</span>
+dotnet tool list
+<span class="c1"># Ou</span>
+dotnet tool list --local
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-restore">dotnet tool restore<a class="headerlink" href="#dotnet-tool-restore" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-restore">Link documentação</a></p>
+<p>Instala as ferramentas locais do .NET que estão no escopo do diretório atual.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool restore
+    <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span> <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span>
+    <span class="o">[</span>--tool-manifest &lt;PATH_TO_MANIFEST_FILE&gt;<span class="o">]</span> <span class="o">[</span>--disable-parallel<span class="o">]</span>
+    <span class="o">[</span>--ignore-failed-sources<span class="o">]</span> <span class="o">[</span>--no-cache<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span>
+
+dotnet tool restore -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>--configfile &lt;FILE&gt;</code>: O arquivo de configuração do NuGet (<code>nuget.config</code>) a ser usado.</li>
+<li><code>--add-source &lt;SOURCE&gt;</code>: Adiciona outra origem do pacote NuGet a ser usada durante a instalação.</li>
+<li><code>--tool-manifest &lt;PATH&gt;</code>: Caminho para o arquivo de manifesto.</li>
+<li><code>--disable-parallel</code>: Impedir a restauração de vários projetos em paralelo.</li>
+<li><code>--ignore-failed-sources</code>: Tratar falhas de origem do pacote como avisos.</li>
+<li><code>--no-cache</code>: Não armazene em cache pacotes e solicitações HTTP.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic].</li>
+</ul>
+</details>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>COMMAND_NAME</code>: O nome do comando da ferramenta a ser executada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool restore</code> localiza o arquivo de manifesto da ferramenta que está no escopo do diretório atual e instala as ferramentas listadas nele.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Restaura as ferramentas locais para o diretório atual.</span>
+dotnet tool restore
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-run">dotnet tool run<a class="headerlink" href="#dotnet-tool-run" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-run">Link documentação</a></p>
+<p>Invoca uma ferramenta local.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool run &lt;COMMAND NAME&gt;
+
+dotnet tool run -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>COMMAND_NAME</code>: O nome do comando da ferramenta a ser executada.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool run</code> pesquisa os arquivos de manifesto da ferramenta que estão no escopo do diretório atual. Quando ele encontra uma referência à ferramenta especificada, ele executa a ferramenta.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Executa a ferramenta local dotnetsay</span>
+dotnet tool run dotnetsay
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-search">dotnet tool search<a class="headerlink" href="#dotnet-tool-search" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-search">Link documentação</a></p>
+<p>Pesquisa todas as ferramentas .NET que são publicadas no NuGet.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool search <span class="o">[</span>--detail<span class="o">]</span>  <span class="o">[</span>--prerelease<span class="o">]</span>
+    <span class="o">[</span>--skip &lt;NUMBER&gt;<span class="o">]</span> <span class="o">[</span>--take &lt;NUMBER&gt;<span class="o">]</span> &lt;SEARCH TERM&gt;
+
+dotnet tool search -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>--detail</code>: Mostra resultados detalhados da consulta.</li>
+<li><code>--prerelease</code>: Inclui pacotes de pré-lançamento.</li>
+<li><code>--skip &lt;NUMBER&gt;</code>: Especifica o número de resultados da consulta a serem ignorados. Usado para paginação.</li>
+<li><code>--take &lt;NUMBER&gt;</code>: Especifica o número de resultados da consulta a serem mostrados. Usado para paginação.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool search</code> fornece uma maneira de pesquisar no NuGet ferramentas que podem ser usadas como .NET global, ferramentas do PATH ou ferramentas locais. O comando pesquisa os nomes de ferramentas e os metadados, como títulos, descrições e marcas.
+O comando usa a API de pesquisa do NuGet. Ele filtra <code>packageType=dotnettool</code> para selecionar apenas pacotes de ferramentas .NET.</p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Pesquisa no NuGet.org ferramentas .NET que tenham &quot;Format&quot; em seu nome de pacote ou descrição:</span>
+dotnet tool run dotnetsay
+
+<span class="c1"># Pesquisa no NuGet.org ferramentas .NET que tenham &quot;format&quot; em seu nome de pacote ou metadados, mostre apenas o primeiro resultado e mostre uma exibição detalhada.</span>
+dotnet tool search format --take <span class="m">1</span> --detail
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-uninstall">dotnet tool uninstall<a class="headerlink" href="#dotnet-tool-uninstall" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-uninstall">Link documentação</a></p>
+<p>Desinstala a ferramenta .NET especificada do seu computador.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool uninstall &lt;PACKAGE_NAME&gt; -g<span class="p">|</span>--global
+
+dotnet tool uninstall &lt;PACKAGE_NAME&gt; --tool-path &lt;PATH&gt;
+
+dotnet tool uninstall &lt;PACKAGE_NAME&gt;
+
+dotnet tool uninstall -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PACKAGE_NAME</code>: Nome/ID do pacote NuGet que contém a ferramenta .NET a ser desinstalada.</li>
+<li><code>-g|--global</code>: Especifica que a ferramenta a ser removida pertence a uma instalação global. Não pode ser combinada com a opção <code>--tool-path</code>. Omitir ambos <code>--global</code> e <code>--tool-path</code> especifica que a ferramenta a ser removida é uma ferramenta local.</li>
+<li><code>--tool-path &lt;PATH&gt;</code>: Especifica o local onde a ferramenta será desinstalada. PATH pode ser absoluto ou relativo. Não pode ser combinada com a opção <code>--global</code>. Omitir ambos <code>--global</code> e <code>--tool-path</code> especifica que a ferramenta a ser removida é uma ferramenta local.</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool uninstall</code> fornece uma maneira de desinstalar as ferramentas .NET do seu computador. Para usar o comando, especifique uma das seguintes opções:</p>
+<ul>
+<li>Para desinstalar uma ferramenta global que foi instalada no local padrão, use a opção <code>--global</code>.</li>
+<li>Para desinstalar uma ferramenta global que foi instalada em um local personalizado, use a opção <code>--tool-path</code>.</li>
+<li>Para desinstalar uma ferramenta local, omita as opções <code>--global</code> e <code>--tool-path</code>.</li>
+</ul>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Desinstala a ferramenta global dotnetsay</span>
+dotnet tool uninstall -g dotnetsay
+
+<span class="c1"># Desinstala a ferramenta global dotnetsay de um diretório específico do linux/MacOS</span>
+dotnet tool uninstall dotnetsay --tool-path ~/bin
+
+<span class="c1"># Desinstala a ferramenta local dotnetsay do diretório atual</span>
+dotnet tool uninstall dotnetsay
+</code></pre></div>
+</details>
+<h3 id="dotnet-tool-update">dotnet tool update<a class="headerlink" href="#dotnet-tool-update" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/dotnet-tool-update">Link documentação</a></p>
+<p>Atualiza a ferramenta .net especificada em seu computador.</p>
+<div class="highlight"><pre><span></span><code>dotnet tool update &lt;PACKAGE_ID&gt; -g<span class="p">|</span>--global
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--disable-parallel<span class="o">]</span> <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+    <span class="o">[</span>--ignore-failed-sources<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--no-cache<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[</span>--version &lt;VERSION&gt;<span class="o">]</span>
+
+dotnet tool update &lt;PACKAGE_ID&gt; --tool-path &lt;PATH&gt;
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--disable-parallel<span class="o">]</span> <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+    <span class="o">[</span>--ignore-failed-sources<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--no-cache<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[</span>--version &lt;VERSION&gt;<span class="o">]</span>
+
+dotnet tool update &lt;PACKAGE_ID&gt; --local
+    <span class="o">[</span>--add-source &lt;SOURCE&gt;<span class="o">]</span> <span class="o">[</span>--configfile &lt;FILE&gt;<span class="o">]</span>
+    <span class="o">[</span>--disable-parallel<span class="o">]</span> <span class="o">[</span>--framework &lt;FRAMEWORK&gt;<span class="o">]</span>
+    <span class="o">[</span>--ignore-failed-sources<span class="o">]</span> <span class="o">[</span>--interactive<span class="o">]</span> <span class="o">[</span>--no-cache<span class="o">]</span>
+    <span class="o">[</span>--tool-manifest &lt;PATH&gt;<span class="o">]</span>
+    <span class="o">[</span>-v<span class="p">|</span>--verbosity &lt;LEVEL&gt;<span class="o">]</span> <span class="o">[</span>--version &lt;VERSION&gt;<span class="o">]</span>
+
+dotnet tool update -h<span class="p">|</span>--help
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><ul>
+<li><code>PACKAGE_ID</code>: Nome/ID do pacote NuGet que contém a ferramenta global .NET a ser atualizada. Encontre o nome do pacote usando o comando <code>dotnet tool list</code>.</li>
+<li><code>--add-source &lt;SOURCE&gt;</code>: Adiciona outra origem do pacote NuGet a ser usada durante a instalação.</li>
+<li>--configfile <FILE>: O arquivo de configuração do NuGet (<code>nuget.config</code>) a ser usado.</li>
+<li><code>--disable-parallel</code>: Impedir a restauração de vários projetos em paralelo.</li>
+<li><code>--framework &lt;FRAMEWORK&gt;</code>: Especifica o framework para a qual atualizar a ferramenta.</li>
+<li><code>--ignore-failed-sources</code>: Tratar falhas de origem do pacote apenas com avisos.</li>
+<li><code>--local</code>: Atualize a ferramenta e o manifesto da ferramenta local. Não pode ser combinado com a opção <code>--global</code> ou <code>--tool-path</code>.</li>
+<li><code>--no-cache</code>: Não armazene em cache pacotes e solicitações HTTP.</li>
+<li><code>--tool-manifest &lt;PATH&gt;</code>: Caminho para o arquivo de manifesto.</li>
+<li><code>--tool-path &lt;PATH&gt;</code>: Especifica o local onde a ferramenta global está instalada. PATH pode ser absoluto ou relativo. Não pode ser combinada com a opção <code>--global</code>. Omitir ambos <code>--global</code> e <code>--tool-path</code> especifica que a ferramenta a ser atualizada é uma ferramenta local.</li>
+<li><code>--version &lt;VERSION&gt;</code>: O intervalo de versão do pacote de ferramentas para o qual atualizar. Isso não pode ser usado para fazer <em>downgrade</em> de versões. primeiro, você deve desinstalar as versões mais recentes.</li>
+<li><code>-g|--global</code>: Especifica que a atualização destina-se a uma ferramenta de escopo de usuário (global). Não pode ser combinada com a opção <code>--tool-path</code>. Omitir ambos <code>--global</code> e <code>--tool-path</code> especifica que a ferramenta a ser atualizada é uma ferramenta local.</li>
+<li><code>-v|--verbosity &lt;LEVEL&gt;</code>: Define o nível de detalhes do comando. Os valores permitidos são q[uiet], m[inimal], n[ormal], d[etailed] e diag[nostic].</li>
+</ul>
+</details>
+<p>O comando <code>dotnet tool update</code> fornece uma maneira de atualizar as ferramentas do .NET em seu computador para a versão estável mais recente do pacote. O comando desinstala e reinstala uma ferramenta, atualizando-a efetivamente. Para usar o comando, especifique uma das seguintes opções:</p>
+<ul>
+<li>Para atualizar uma ferramenta global que foi instalada no local padrão, use a opção <code>--global</code>.</li>
+<li>Para atualizar uma ferramenta global que foi instalada em um local personalizado, use a opção <code>--tool-path</code>.</li>
+<li>Para atualizar uma ferramenta local, use a opção <code>--local</code>.</li>
+</ul>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Atualiza a ferramenta global dotnetsay</span>
+dotnet tool update -g dotnetsay
+
+<span class="c1"># Atualiza a ferramenta global dotnetsay localizada em um diretório específico do linux/MacOS</span>
+dotnet tool update dotnetsay --tool-path ~/bin
+
+<span class="c1"># Atualiza a ferramenta local dotnetsay instalada para o diretório atual.</span>
+dotnet tool update dotnetsay
+
+<span class="c1"># Atualiza a ferramenta global dotnetsay para a versão mais recente do patch, com uma versão principal do 2 e uma versão secundária do 0.</span>
+dotnet tool update -g dotnetsay --version <span class="m">2</span>.0.*
+
+<span class="c1"># Atualiza a ferramenta global dotnetsay para a versão mais baixa dentro do intervalo especificado (&gt; 2.0.0 &amp;&amp; &lt; 2.1.4) , a versão 2.1.0 deve ser instalada.</span>
+dotnet tool update -g dotnetsay --version <span class="o">(</span><span class="m">2</span>.0.*,2.1.4<span class="o">)</span>
+</code></pre></div>
+</details>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.microsoft.com/pt-br/dotnet/core/tools/">https://docs.microsoft.com/pt-br/dotnet/core/tools/</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../instalacao-e-configuracao/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Instalação e configuração
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../entity-framework/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Entity Framework
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>

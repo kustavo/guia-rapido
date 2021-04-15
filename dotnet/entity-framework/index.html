@@ -1,0 +1,2453 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/dotnet/entity-framework/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Entity Framework - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#entity-framework" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entity Framework
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introducao/" class="md-tabs__link md-tabs__link--active">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../javascript/introducao/" class="md-tabs__link">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programas/docker/" class="md-tabs__link">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacao-e-configuracao/" class="md-nav__link">
+        Instalação e configuração
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-linha-comando/" class="md-nav__link">
+        Interface de linha de comando
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Entity Framework
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Entity Framework
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao" class="md-nav__link">
+    Instalação
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atualizacao" class="md-nav__link">
+    Atualização
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-pacotes" class="md-nav__link">
+    Configuração de pacotes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrations" class="md-nav__link">
+    Migrations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-de-linha-de-comando" class="md-nav__link">
+    Interface de linha de comando
+  </a>
+  
+    <nav class="md-nav" aria-label="Interface de linha de comando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-list" class="md-nav__link">
+    dotnet ef migrations list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-add" class="md-nav__link">
+    dotnet ef migrations add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-remove" class="md-nav__link">
+    dotnet ef migrations remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-script" class="md-nav__link">
+    dotnet ef migrations script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-database-drop" class="md-nav__link">
+    dotnet ef database drop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-database-update" class="md-nav__link">
+    dotnet ef database update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-info" class="md-nav__link">
+    dotnet ef dbcontext info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-list" class="md-nav__link">
+    dotnet ef dbcontext list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-scaffold" class="md-nav__link">
+    dotnet ef dbcontext scaffold
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-script" class="md-nav__link">
+    dotnet ef dbcontext script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lazy-loading-e-eager-loading" class="md-nav__link">
+    Lazy Loading e Eager Loading
+  </a>
+  
+    <nav class="md-nav" aria-label="Lazy Loading e Eager Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    Lazy Loading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eager-loading" class="md-nav__link">
+    Eager Loading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbcontext" class="md-nav__link">
+    DbContext
+  </a>
+  
+    <nav class="md-nav" aria-label="DbContext">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-vida" class="md-nav__link">
+    Tempo de vida
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbcontext-em-injecao-de-dependencia" class="md-nav__link">
+    DbContext em injeção de dependência
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrizes-e-colecoes/" class="md-nav__link">
+        Coleções
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/assincronismo/" class="md-nav__link">
+        Javascript assíncrono
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao" class="md-nav__link">
+    Instalação
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atualizacao" class="md-nav__link">
+    Atualização
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-pacotes" class="md-nav__link">
+    Configuração de pacotes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrations" class="md-nav__link">
+    Migrations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interface-de-linha-de-comando" class="md-nav__link">
+    Interface de linha de comando
+  </a>
+  
+    <nav class="md-nav" aria-label="Interface de linha de comando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-list" class="md-nav__link">
+    dotnet ef migrations list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-add" class="md-nav__link">
+    dotnet ef migrations add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-remove" class="md-nav__link">
+    dotnet ef migrations remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-migrations-script" class="md-nav__link">
+    dotnet ef migrations script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-database-drop" class="md-nav__link">
+    dotnet ef database drop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-database-update" class="md-nav__link">
+    dotnet ef database update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-info" class="md-nav__link">
+    dotnet ef dbcontext info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-list" class="md-nav__link">
+    dotnet ef dbcontext list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-scaffold" class="md-nav__link">
+    dotnet ef dbcontext scaffold
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet-ef-dbcontext-script" class="md-nav__link">
+    dotnet ef dbcontext script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lazy-loading-e-eager-loading" class="md-nav__link">
+    Lazy Loading e Eager Loading
+  </a>
+  
+    <nav class="md-nav" aria-label="Lazy Loading e Eager Loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    Lazy Loading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eager-loading" class="md-nav__link">
+    Eager Loading
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbcontext" class="md-nav__link">
+    DbContext
+  </a>
+  
+    <nav class="md-nav" aria-label="DbContext">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-vida" class="md-nav__link">
+    Tempo de vida
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbcontext-em-injecao-de-dependencia" class="md-nav__link">
+    DbContext em injeção de dependência
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/dotnet/entity-framework.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="entity-framework">Entity Framework<a class="headerlink" href="#entity-framework" title="Permanent link">&para;</a></h1>
+<p>Entity Framework (EF) é uma estrutura de mapeamento objeto-relacional (ORM) de código aberto para ADO.NET, parte do Framework .NET. É um conjunto de tecnologias em ADO.NET que oferece suporte ao desenvolvimento de aplicativos de software orientados a dados. Arquitetos e desenvolvedores de aplicativos orientados a dados normalmente lutam com a necessidade de atingir dois objetivos muito diferentes. O Entity Framework permite que os desenvolvedores trabalhem com dados na forma de objetos e propriedades específicos de domínio, sem ter que se preocupar com as tabelas e colunas do banco de dados subjacentes onde esses dados são armazenados. Com o Entity Framework, os desenvolvedores podem trabalhar em um nível mais alto de abstração ao lidar com dados e podem criar e manter aplicativos orientados a dados com menos código do que os aplicativos tradicionais.</p>
+<p>ADO.NET é uma tecnologia de acesso a dados do Framework .NET que fornece comunicação entre sistemas relacionais e não relacionais por meio de um conjunto comum de componentes. ADO.NET é um conjunto de componentes de software de computador que os programadores podem usar para acessar dados e serviços de dados de um banco de dados. É uma parte da <em>Base Class Library</em> incluída no Framework .NET. É comumente usado por programadores para acessar e modificar dados armazenados em sistemas de banco de dados relacionais, embora também possa acessar dados em fontes de dados não relacionais.</p>
+<p>ADO.NET é conceitualmente dividido em consumidores e provedores de dados. Os consumidores são os aplicativos que precisam de acesso aos dados, e os provedores são os componentes de software que implementam a interface e, portanto, fornecem os dados ao consumidor.</p>
+<p>Um provedor é um componente de software que interage com uma fonte de dados. Os provedores de dados ADO.NET são análogos aos <em>drivers ODBC</em>, <em>drivers JDBC</em> e <em>provedores OLE DB</em>.</p>
+<p>Os provedores ADO.NET podem ser criados para acessar armazenamentos de dados simples como um arquivo de texto e planilha, por meio de bancos de dados complexos como banco de dados <em>Oracle</em>, <em>Microsoft SQL Server</em>, <em>MySQL</em>, <em>PostgreSQL</em>, <em>SQLite</em>, <em>IBM DB2</em>, <em>Sybase ASE</em> e muitos outros. Eles também podem fornecer acesso a armazenamentos de dados hierárquicos, como sistemas de e-mail.</p>
+<p>No entanto, como diferentes tecnologias de armazenamento de dados podem ter recursos diferentes, cada provedor ADO.NET pode não implementar todas as interfaces possíveis disponíveis no padrão ADO.NET. A Microsoft descreve a disponibilidade de uma interface como "específica do provedor", pois pode não ser aplicável dependendo da tecnologia de armazenamento de dados envolvida. Os provedores podem aumentar as capacidades de um armazenamento de dados; esses recursos são conhecidos como "serviços" na linguagem da Microsoft.</p>
+<h2 id="instalacao">Instalação<a class="headerlink" href="#instalacao" title="Permanent link">&para;</a></h2>
+<p>Instalação global (a nível de usuário)</p>
+<div class="highlight"><pre><span></span><code>dotnet tool install --global dotnet-ef
+</code></pre></div>
+<h2 id="atualizacao">Atualização<a class="headerlink" href="#atualizacao" title="Permanent link">&para;</a></h2>
+<p>Atualização global</p>
+<div class="highlight"><pre><span></span><code>dotnet tool update --global dotnet-ef
+</code></pre></div>
+<h2 id="configuracao-de-pacotes">Configuração de pacotes<a class="headerlink" href="#configuracao-de-pacotes" title="Permanent link">&para;</a></h2>
+<p>Adicionar os pacotes ao projeto.</p>
+<div class="highlight"><pre><span></span><code>dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+</code></pre></div>
+<p>Adicionar o pacote do provedor do banco de dados</p>
+<div class="highlight"><pre><span></span><code>dotnet add &lt;projeto&gt; package &lt;pacote-provedor-banco&gt;
+</code></pre></div>
+<p><a href="https://docs.microsoft.com/pt-br/ef/core/providers/index?tabs=dotnet-core-cli">Veja mais lista de provedores de bancos de dados</a></p>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Adicionar o pacote do provedor do banco PostgreSQL</span>
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+
+<span class="c1"># Adicionar o pacote do provedor do banco MySQL</span>
+dotnet add package MySql.EntityFrameworkCore
+</code></pre></div>
+<p>Exemplo configuração do arquivo Startup.cs</p>
+<div class="highlight"><pre><span></span><code>public class MeuContexto : DbContext {
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // Configuração para o PostgreSQL
+        optionsBuilder.UseNpgsql(&quot;Host=localhost;Port=5432;Database=&lt;banco&gt;;Username=&lt;usuario&gt;;Password=&lt;senha&gt;&quot;);
+
+        // Configuração para o MySQL
+        optionsBuilder.UseMySQL(&quot;server=localhost; port=3306; database=&lt;banco&gt;; Uid=&lt;usuario&gt;; Pwd=&lt;senha&gt;;&quot;));
+    }
+}
+</code></pre></div>
+</details>
+<h2 id="migrations">Migrations<a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h2>
+<p>Usando o recurso Migrations do Entity Framework podemos realizar alterações em nosso modelo de entidades e ter a atualização automática do banco de dados refletindo essas mudanças.</p>
+<p>Podemos usar o Migrations de forma totalmente automática onde todo o processo de atualização do banco de dados é feita de forma transparente pelo Migrations.</p>
+<p>Podemos também definir manualmente pontos de migração aplicando as últimas modificações ou regredindo para uma modificação que foi executada anteriormente.</p>
+<h2 id="interface-de-linha-de-comando">Interface de linha de comando<a class="headerlink" href="#interface-de-linha-de-comando" title="Permanent link">&para;</a></h2>
+<p>Para especificar o ambiente para projetos ASP.NET, defina a variável de ambiente <code>ASPNETCORE_ENVIRONMENT</code> antes de executar os comandos.</p>
+<p>A partir do EF Core 5,0, argumentos adicionais também podem ser passados para <code>Program.CreateHostBuilder</code>, permitindo que você especifique o ambiente na linha de comando:</p>
+<div class="highlight"><pre><span></span><code>dotnet ef database update -- --environment Production
+</code></pre></div>
+<div class="admonition info"></div>
+<p>O token <code>--</code> direciona <code>dotnet ef</code> para tratar tudo o que segue como um argumento e não tentar analisá-los como opções. Quaisquer argumentos extras não usados pelo <code>dotnet ef</code> são encaminhados para o aplicativo.</p>
+<h3 id="dotnet-ef-migrations-list">dotnet ef migrations list<a class="headerlink" href="#dotnet-ef-migrations-list" title="Permanent link">&para;</a></h3>
+<p>Listar todos pontos de migração.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef migrations list <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><div class="highlight"><pre><span></span><code>Options:
+--connection &lt;CONNECTION&gt;              The connection string to the database. Defaults to the one specified in AddDbContext or OnConfiguring.
+--no-connect                           Don&#39;t connect to the database.
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-migrations-add">dotnet ef migrations add<a class="headerlink" href="#dotnet-ef-migrations-add" title="Permanent link">&para;</a></h3>
+<p>Adiciona um ponto de migração.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef migrations add <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><div class="highlight"><pre><span></span><code>Arguments:
+&lt;NAME&gt;  The name of the migration.
+
+Options:
+-o|--output-dir &lt;PATH&gt;                 The directory to put files in. Paths are relative to the project directory. Defaults to &quot;Migrations&quot;.
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-n|--namespace &lt;NAMESPACE&gt;             The namespace to use. Matches the directory by default.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Criar uma migration chamada v89.00 no projeto Projeto.Data.EF.csproj onde o projeto principal é Projeto.Api.csproj usando o </span>
+<span class="c1"># contexto ProjetoContext e framework netcoreapp2.2</span>
+dotnet ef migrations add v89.00 -p Projeto.Data.EF.csproj -s ../../Projeto.Api.csproj -c ProjetoContext --framework netcoreapp2.2
+</code></pre></div>
+</details>
+<div class="admonition info">
+<p>Para que o banco seja atualizado é necessário executar o comando: <code>dotnet ef database update</code></p>
+</div>
+<h3 id="dotnet-ef-migrations-remove">dotnet ef migrations remove<a class="headerlink" href="#dotnet-ef-migrations-remove" title="Permanent link">&para;</a></h3>
+<p>Remove um ponto de migração.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef migrations remove <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><div class="highlight"><pre><span></span><code>Options:
+-f|--force                             Revert the migration if it has been applied to the database.
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Remove a última migration</span>
+dotnet ef migrations remove
+</code></pre></div>
+</details>
+<div class="admonition info">
+<p>Para que o banco seja atualizado é necessário executar o comando: <code>dotnet ef database update</code></p>
+</div>
+<h3 id="dotnet-ef-migrations-script">dotnet ef migrations script<a class="headerlink" href="#dotnet-ef-migrations-script" title="Permanent link">&para;</a></h3>
+<p>Gera o script SQL da migração que será aplicada.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef migrations script <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><div class="highlight"><pre><span></span><code>Arguments:
+&lt;FROM&gt;  The starting migration. Defaults to &#39;0&#39; (the initial database).
+&lt;TO&gt;    The target migration. Defaults to the last migration.
+
+Options:
+-o|--output &lt;FILE&gt;                     The file to write the result to.
+-i|--idempotent                        Generate a script that can be used on a database at any migration.
+--no-transactions                      Don&#39;t generate SQL transaction statements.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-database-drop">dotnet ef database drop<a class="headerlink" href="#dotnet-ef-database-drop" title="Permanent link">&para;</a></h3>
+<p>Remove o banco de dados.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef database drop <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetros</summary><div class="highlight"><pre><span></span><code>Options:
+-f|--force                             Don&#39;t confirm.
+--dry-run                              Show which database would be dropped, but don&#39;t drop it.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-database-update">dotnet ef database update<a class="headerlink" href="#dotnet-ef-database-update" title="Permanent link">&para;</a></h3>
+<p>Atualiza o banco de dados para um determinado ponto de migração.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef database update <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetro</summary><div class="highlight"><pre><span></span><code>Arguments:
+&lt;MIGRATION&gt;  The target migration. If &#39;0&#39;, all migrations will be reverted. Defaults to the last migration.
+
+Options:
+--connection &lt;CONNECTION&gt;              The connection string to the database. Defaults to the one specified in AddDbContext or OnConfiguring.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Atualiza até a último ponto de migração.</span>
+<span class="c1"># Se o banco não existir também será criado.</span>
+dotnet ef database update
+
+<span class="c1"># Reverte todos pontos de migração.</span>
+dotnet ef database update <span class="m">0</span>
+
+<span class="c1"># Informando o ambiente</span>
+dotnet ef database update -- --environment Production
+
+<span class="c1"># Reverter até o ponto de migração chamado &quot;20180904195021_InitialCreate&quot;.</span>
+dotnet ef database update 20180904195021_InitialCreate
+</code></pre></div>
+<p>Atualizar o banco de dados ao iniciar o aplicativo.</p>
+<div class="highlight"><pre><span></span><code>class Program
+<span class="o">{</span>
+    static void Main<span class="o">(</span>string<span class="o">[]</span> args<span class="o">)</span>
+    <span class="o">{</span>
+        using var <span class="nv">context</span> <span class="o">=</span> new BloggingContext<span class="o">()</span><span class="p">;</span>
+        context.Database.Migrate<span class="o">()</span><span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-dbcontext-info">dotnet ef dbcontext info<a class="headerlink" href="#dotnet-ef-dbcontext-info" title="Permanent link">&para;</a></h3>
+<p>Obtém informação sobre um tipo de <code>DbContext</code>.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef dbcontext info <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetro</summary><div class="highlight"><pre><span></span><code>Options:
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-dbcontext-list">dotnet ef dbcontext list<a class="headerlink" href="#dotnet-ef-dbcontext-list" title="Permanent link">&para;</a></h3>
+<p>Lista os tipos de <code>DbContext</code> disponíveis.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef dbcontext list <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetro</summary><div class="highlight"><pre><span></span><code>Options:
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-dbcontext-scaffold">dotnet ef dbcontext scaffold<a class="headerlink" href="#dotnet-ef-dbcontext-scaffold" title="Permanent link">&para;</a></h3>
+<p>Gera os códigos de um <code>DbContext</code> e tipos de entidade a partir de um banco de dados. Processo conhecido como <em>scaffolds</em>. Para que esse comando gere um tipo de entidade, a tabela do banco de dados deve ter uma chave primária.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef dbcontext scaffold <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetro</summary><div class="highlight"><pre><span></span><code>Arguments:
+&lt;CONNECTION&gt;  The connection string to the database.
+&lt;PROVIDER&gt;    The provider to use. (E.g. Microsoft.EntityFrameworkCore.SqlServer)
+
+Options:
+-d|--data-annotations                  Use attributes to configure the model (where possible). If omitted, only the fluent API is used.
+-c|--context &lt;NAME&gt;                    The name of the DbContext. Defaults to the database name.
+--context-dir &lt;PATH&gt;                   The directory to put the DbContext file in. Paths are relative to the project directory.
+-f|--force                             Overwrite existing files.
+-o|--output-dir &lt;PATH&gt;                 The directory to put files in. Paths are relative to the project directory.
+--schema &lt;SCHEMA_NAME&gt;...              The schemas of tables to generate entity types for.
+-t|--table &lt;TABLE_NAME&gt;...             The tables to generate entity types for.
+--use-database-names                   Use table and column names directly from the database.
+--json                                 Show JSON output. Use with --prefix-output to parse programatically.
+-n|--namespace &lt;NAMESPACE&gt;             The namespace to use. Matches the directory by default.
+--context-namespace &lt;NAMESPACE&gt;        The namespace of the DbContext class. Matches the directory by default.
+--no-onconfiguring                     Don&#39;t generate DbContext.OnConfiguring.
+--no-pluralize                         Don&#39;t use the pluralizer.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<details class="example"><summary>Exemplos</summary><div class="highlight"><pre><span></span><code><span class="c1"># Aplica scaffold a todos os esquemas e tabelas e coloca os novos arquivos na pasta modelos.</span>
+dotnet ef dbcontext scaffold <span class="s2">&quot;Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;&quot;</span> Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+<span class="c1"># Aplica scaffold apenas a tabelas selecionadas e cria o contexto em uma pasta separada com um nome e namespace especificados.</span>
+dotnet ef dbcontext scaffold <span class="s2">&quot;Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;&quot;</span> Microsoft.EntityFrameworkCore.SqlServer -o Models -t Blog -t Post --context-dir Context -c BlogContext --context-namespace New.Namespace
+
+<span class="c1"># Lê a cadeia de conexão do conjunto de configurações do projeto usando a ferramenta &quot;Secret Manager tool&quot;.</span>
+dotnet user-secrets <span class="nb">set</span> ConnectionStrings:Blogging <span class="s2">&quot;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Blogging&quot;</span>
+dotnet ef dbcontext scaffold <span class="nv">Name</span><span class="o">=</span>ConnectionStrings:Blogging Microsoft.EntityFrameworkCore.SqlServer
+</code></pre></div>
+</details>
+<h3 id="dotnet-ef-dbcontext-script">dotnet ef dbcontext script<a class="headerlink" href="#dotnet-ef-dbcontext-script" title="Permanent link">&para;</a></h3>
+<p>Gera um script SQL a partir do DbContext. Ignora qualquer migração.</p>
+<div class="highlight"><pre><span></span><code>dotnet ef dbcontext script <span class="o">[</span>options<span class="o">]</span>
+</code></pre></div>
+<details class="info"><summary>Principais parâmetro</summary><div class="highlight"><pre><span></span><code>Options:
+-o|--output &lt;FILE&gt;                     The file to write the result to.
+-c|--context &lt;DBCONTEXT&gt;               The DbContext to use.
+-p|--project &lt;PROJECT&gt;                 The project to use. Defaults to the current working directory.
+-s|--startup-project &lt;PROJECT&gt;         The startup project to use. Defaults to the current working directory.
+--framework &lt;FRAMEWORK&gt;                The target framework. Defaults to the first one in the project.
+--configuration &lt;CONFIGURATION&gt;        The configuration to use.
+--runtime &lt;RUNTIME_IDENTIFIER&gt;         The runtime to use.
+--msbuildprojectextensionspath &lt;PATH&gt;  The MSBuild project extensions path. Defaults to &quot;obj&quot;.
+--no-build                             Don&#39;t build the project. Intended to be used when the build is up-to-date.
+-h|--help                              Show help information
+-v|--verbose                           Show verbose output.
+--no-color                             Don&#39;t colorize output.
+--prefix-output                        Prefix output with level.
+</code></pre></div>
+</details>
+<h2 id="lazy-loading-e-eager-loading">Lazy Loading e Eager Loading<a class="headerlink" href="#lazy-loading-e-eager-loading" title="Permanent link">&para;</a></h2>
+<h3 id="lazy-loading">Lazy Loading<a class="headerlink" href="#lazy-loading" title="Permanent link">&para;</a></h3>
+<p><em>Lazy Loading</em> é o mecanismo utilizado pelos frameworks de persistência para carregar informações sobre demanda. Esse mecanismo torna as entidades mais leves, pois suas associações são carregadas apenas no momento em que o método que disponibiliza o dado associativo é chamado. Assim quando objetos são retornados por uma consulta, os objetos relacionados não são carregados ao mesmo tempo, ao invés, eles são carregados automaticamente quando a propriedade de navegação for acessada.</p>
+<p>O modificador <code>virtual</code> é utilizado pelo EF para fazer o <em>Lazy Loading</em>, que precisa criar instâncias de proxy que serão substituídas nessas propriedades virtuais.</p>
+<p>Por isso tem-se a impressão de que esse objeto está sempre carregado. Mas de fato ele não está. Uma propriedade virtual só é carregado via <em>lazy loading</em> no momento em que há a primeira referência a essa propriedade. Nesse momento o EF executa uma nova consulta na base de dados solicitando apenas os dados abaixo da hierarquia do objeto dessa propriedade.</p>
+<p>O uso de <em>Lazy Loading</em> pode sim trazer problemas de performance. No seu exemplo, se fizer uma consulta que retorna, digamos, 100 Pedidos, sem carregar os clientes explicitamente (<em>Eager Loading</em>), ao referenciar qualquer informação de Cliente, pra cada cliente diferente, será feita uma nova consulta na base de dados. Portanto nesse caso você poderia ter 100 novas consultas ao banco de dados.</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="n">Classe</span> <span class="n">Pedidos</span>
+<span class="k">public</span> <span class="k">virtual</span> <span class="n">Cliente</span> <span class="n">Cliente</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+
+<span class="err">#</span> <span class="p">...</span>
+
+<span class="kt">var</span> <span class="n">pedidos</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Pedidos</span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span> <span class="c1">// não traz nenhuma informação de cliente</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pedido</span> <span class="k">in</span> <span class="n">pedidos</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">nome</span> <span class="p">=</span> <span class="n">pedido</span><span class="p">.</span><span class="n">Cliente</span><span class="p">.</span><span class="n">Nome</span><span class="p">;</span> <span class="c1">// aqui é feita a carga por Lazy Loading</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p>O EF cria uma classe derivada da classe persistente denominada proxy para trabalhar internamente. Este é um padrão chamado <em>dynamic proxy</em>. O principal intuito dessa classe derivada é a criação de gatilhos para os <em>getters</em> e <em>setters</em> da classe persistente, assim o ORM pode controlar, quanto, como e se um atributo/propriedade da classe persistente foi alterada, para então poder tomar as devidas ações em relação a isso.</p>
+<p>Assim se um atributo/propriedade não é virtual, você está explicitamente dizendo que o mesmo não pode ser sobrescrito (<em>override</em>) em uma classe derivada a classe persistente, sendo assim o ORM não conseguira implementar um proxy para este atributo/propriedade, não podendo consequentemente implementar estes gatilhos, no qual são necessários para fazer o <em>Lazy Loading</em> e o <em>tracking</em> das entidades.</p>
+</div>
+<h3 id="eager-loading">Eager Loading<a class="headerlink" href="#eager-loading" title="Permanent link">&para;</a></h3>
+<p>Pra evitar esse efeito do <em>Lazy Loading</em> é possível informar que você deseja que o EF faça <em>Eager Loading</em> dos clientes usando uma cláusula <code>Include</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="n">Classe</span> <span class="n">Pedidos</span>
+<span class="k">public</span> <span class="k">virtual</span> <span class="n">Cliente</span> <span class="n">Cliente</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+
+<span class="err">#</span> <span class="p">...</span>
+
+<span class="kt">var</span> <span class="n">pedidos</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Pedidos</span><span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Cliente</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span> <span class="c1">// inclui cliente na query</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">pedido</span> <span class="k">in</span> <span class="n">pedidos</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">nome</span> <span class="p">=</span> <span class="n">pedido</span><span class="p">.</span><span class="n">Cliente</span><span class="p">.</span><span class="n">Nome</span><span class="p">;</span> <span class="c1">// os dados de cliente já estão carregados</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Dessa forma a query SQL irá incluir os clientes na consulta.</p>
+<p>Nos casos em que não usamos o modificador <code>virtual</code> só poderemos acessar o Cliente por <em>Eager Loading</em>.</p>
+<div class="admonition note">
+<p>O EF usa <em>Lazy Loading</em> por default em propriedades marcadas com o modificador virtual, caso contrário ele é desligado e por isso a referência ao objeto é <code>null</code> (exceto quando usamos eager loading através de <code>Include</code>).</p>
+</div>
+<p>É possível configurar o EF pra que não trabalhe com <em>Lazy Loading</em> mesmo quando temos propriedades virtuais.</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MeuContexto</span> <span class="p">:</span> <span class="n">DbContext</span> 
+<span class="p">{</span> 
+    <span class="k">public</span> <span class="nf">MeuContexto</span> <span class="p">()</span> 
+    <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">LazyLoadingEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span> 
+    <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="dbcontext">DbContext<a class="headerlink" href="#dbcontext" title="Permanent link">&para;</a></h2>
+<p>A principal classe responsável pela interação com os objetos de dados é a classe <code>System.Data.Entity.DbContext</code> (muitas vezes referida como o contexto).</p>
+<p>Essa classe de contexto administra os objetos entidades durante o tempo de execução, o que inclui preencher objetos com dados de um banco de dados, controlar alterações, e persistir dados para o banco de dados.</p>
+<h3 id="tempo-de-vida">Tempo de vida<a class="headerlink" href="#tempo-de-vida" title="Permanent link">&para;</a></h3>
+<p>O tempo de vida de um <code>DbContext</code> começa quando a instância é criada e termina quando a instância é ‎‎eliminada‎‎. Uma instância <code>DbContext</code> é projetada para ser usada para uma única unidade de trabalho (em inglês, <em>unit-of-work</em>).</p>
+<p>Uma unidade de trabalho mantém o controle de tudo que você faz durante uma transação de negócio‎ que pode afetar o banco de dados. Quando terminar, ela descobre tudo o que precisa ser feito para alterar o banco de dados como resultado do seu trabalho.</p>
+<p>Uma unidade de trabalho típica ao usar <em>Entity Framework Core</em> envolve:</p>
+<ol>
+<li>Criação de uma instância <code>DbContext</code>.</li>
+<li>Rastreamento de instâncias de entidade pelo contexto. As entidades são rastreadas por:<ul>
+<li>Serem retornadas de uma consulta.</li>
+<li>Serem adicionadas ou anexadas ao contexto.</li>
+</ul>
+</li>
+<li>As alterações são feitas nas entidades rastreadas conforme necessário para implementar a regra de negócio.</li>
+<li><code>SaveChanges</code> ou <code>SaveChangesAsync</code> é chamada. EF Core detecta as alterações feitas e as grava no banco de dados. </li>
+<li>A instância <code>DbContext</code> é descartada.</li>
+</ol>
+<div class="admonition info">
+<ul>
+<li>
+<p>Cada instância <code>DbContext</code> deve ser configurada para usar um e apenas um provedor de banco de dados.</p>
+</li>
+<li>
+<p>É muito importante realizar o <em>dispose</em> do <code>DbContext</code> após o uso. Isso garante que todos os recursos não gerenciados sejam liberados e que quaisquer eventos ou outros <em>hooks</em> sejam cancelados para evitar vazamentos de memória caso a instância permaneça referenciada.</p>
+</li>
+<li>
+<p><code>DbContext</code> não é seguro para threads. Não compartilhe contextos entre threads. Certifique-se de aguardar todas as chamadas assíncronas antes de continuar a usar a instância de contexto.</p>
+</li>
+</ul>
+<p>Uma <code>InvalidOperationException</code> lançada pelo código EF pode colocar o contexto em um estado irrecuperável. Essas exceções indicam um erro do programa e não foram projetadas para serem recuperadas.</p>
+</div>
+<h3 id="dbcontext-em-injecao-de-dependencia">DbContext em injeção de dependência<a class="headerlink" href="#dbcontext-em-injecao-de-dependencia" title="Permanent link">&para;</a></h3>
+<p>Em muitos aplicativos da web, cada solicitação HTTP corresponde a uma única unidade de trabalho. Isso torna a vinculação do tempo de vida do contexto ao da solicitação um bom padrão para aplicativos da web.</p>
+<p>Os aplicativos ASP.NET são configurados usando injeção de dependência. EF pode ser adicionado a esta configuração usando <code>AddDbContext</code> no método <code>ConfigureServices</code> de em <code>Startup.cs</code>. Por exedmplo:</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span> <span class="n">Startup</span><span class="p">.</span><span class="n">cs</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">services</span><span class="p">.</span><span class="n">AddControllers</span><span class="p">();</span>
+
+    <span class="n">services</span><span class="p">.</span><span class="n">AddDbContext</span><span class="p">&lt;</span><span class="n">ApplicationDbContext</span><span class="p">&gt;(</span>
+        <span class="n">options</span> <span class="p">=&gt;</span> <span class="n">options</span><span class="p">.</span><span class="n">UseSqlServer</span><span class="p">(</span><span class="s">&quot;name=ConnectionStrings:DefaultConnection&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Este exemplo registra uma subclasse <code>DbContext</code> chamada <code>ApplicationDbContext</code> como um serviço com escopo no provedor de serviços de aplicativo ASP.NET (também conhecido como o contêiner de injeção de dependência). Neste exemplo o contexto é configurado para usar o provedor de banco de dados SQL Server e lerá a <em>string</em> de conexão da configuração do ASP.NET.</p>
+<p>A classe <code>ApplicationDbContext</code> deve expor um construtor público com um parâmetro <code>DbContextOptions&lt;ApplicationDbContext&gt;</code>. É assim que a configuração de contexto do <code>AddDbContext</code> é passada para o <code>DbContext</code>. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">ApplicationDbContext</span> <span class="p">:</span> <span class="n">DbContext</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">ApplicationDbContext</span><span class="p">(</span><span class="n">DbContextOptions</span><span class="p">&lt;</span><span class="n">ApplicationDbContext</span><span class="p">&gt;</span> <span class="n">options</span><span class="p">)</span>
+        <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>ApplicationDbContext</code> pode ser usado em controladores ASP.NET ou outros serviços por meio de injeção de construtor. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">class</span> <span class="nc">MyController</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">ApplicationDbContext</span> <span class="n">_context</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">MyController</span><span class="p">(</span><span class="n">ApplicationDbContext</span> <span class="n">context</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_context</span> <span class="p">=</span> <span class="n">context</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>O resultado final é uma instância <code>ApplicationDbContext</code> criada para cada solicitação e passada ao controlador para realizar uma unidade de trabalho antes de ser <em>disposed</em> quando a solicitação termina.</p>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.microsoft.com/pt-br/ef/core/cli/dotnet">https://docs.microsoft.com/pt-br/ef/core/cli/dotnet</a></li>
+<li><a href="https://pt.wikipedia.org/wiki/Entity_Framework">https://pt.wikipedia.org/wiki/Entity_Framework</a></li>
+<li><a href="http://www.macoratti.net/12/09/ef4_mig1.htm">http://www.macoratti.net/12/09/ef4_mig1.htm</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/ef/core/dbcontext-configuration">https://docs.microsoft.com/pt-br/ef/core/dbcontext-configuration</a></li>
+<li><a href="https://pt.stackoverflow.com/questions/52908/qual-a-diferen%C3%A7a-entre-usar-propriedade-virtual-ou-n%C3%A3o-no-ef">https://pt.stackoverflow.com/questions/52908/qual-a-diferen%C3%A7a-entre-usar-propriedade-virtual-ou-n%C3%A3o-no-ef</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../interface-linha-comando/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Interface de linha de comando
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../erros-e-solucoes/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Erros e soluções
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>

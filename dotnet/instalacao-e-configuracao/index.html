@@ -1,0 +1,1916 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/dotnet/instalacao-e-configuracao/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Instalação e configuração - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#instalacao-e-configuracao" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalação e configuração
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introducao/" class="md-tabs__link md-tabs__link--active">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../javascript/introducao/" class="md-tabs__link">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programas/docker/" class="md-tabs__link">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Instalação e configuração
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Instalação e configuração
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-do-net-sdk" class="md-nav__link">
+    Instalação do .NET SDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locais-da-instalacao" class="md-nav__link">
+    Locais da instalação
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurar-visual-studio-code" class="md-nav__link">
+    Configurar Visual Studio Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desinstalacao" class="md-nav__link">
+    Desinstalação
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-linha-comando/" class="md-nav__link">
+        Interface de linha de comando
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entity-framework/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrizes-e-colecoes/" class="md-nav__link">
+        Coleções
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/assincronismo/" class="md-nav__link">
+        Javascript assíncrono
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-do-net-sdk" class="md-nav__link">
+    Instalação do .NET SDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locais-da-instalacao" class="md-nav__link">
+    Locais da instalação
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurar-visual-studio-code" class="md-nav__link">
+    Configurar Visual Studio Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desinstalacao" class="md-nav__link">
+    Desinstalação
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/dotnet/instalacao-e-configuracao.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="instalacao-e-configuracao">Instalação e configuração<a class="headerlink" href="#instalacao-e-configuracao" title="Permanent link">&para;</a></h1>
+<h2 id="instalacao-do-net-sdk">Instalação do .NET SDK<a class="headerlink" href="#instalacao-do-net-sdk" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">debian/ubuntu</label><div class="tabbed-content">
+<p>Página de download: <a href="https://dotnet.microsoft.com/download">https://dotnet.microsoft.com/download</a></p>
+<p>Adicionar repositório e instalação.</p>
+<div class="highlight"><pre><span></span><code>wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+
+sudo apt-get update<span class="p">;</span> <span class="se">\</span>
+  sudo apt-get install -y apt-transport-https <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  sudo apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
+  sudo apt-get install -y dotnet-sdk-5.0
+</code></pre></div>
+</div>
+</div>
+<h2 id="locais-da-instalacao">Locais da instalação<a class="headerlink" href="#locais-da-instalacao" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># onde estão instalados os sdks</span>
+dotnet --list-sdks
+
+<span class="c1"># onde estão instalados os runtimes</span>
+dotnet --list-runtimes
+</code></pre></div>
+<h2 id="configurar-visual-studio-code">Configurar Visual Studio Code<a class="headerlink" href="#configurar-visual-studio-code" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">launch.json</label><div class="tabbed-content">
+<p>O arquivo <code>launch.json</code> é usando pelo <code>Visual Studio Code</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;configurations&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="err">//</span> <span class="err">Nome</span> <span class="err">da</span> <span class="err">co</span><span class="kc">nf</span><span class="err">iguração</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;.NET Core Launch (web)&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Tipo</span> <span class="err">da</span> <span class="err">co</span><span class="kc">nf</span><span class="err">iguração</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;coreclr&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Tipo</span> <span class="err">de</span> <span class="err">solici</span><span class="kc">ta</span><span class="err">ção</span>
+      <span class="nt">&quot;request&quot;</span><span class="p">:</span> <span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Tare</span><span class="kc">fa</span> <span class="err">execu</span><span class="kc">ta</span><span class="err">da</span> <span class="err">a</span><span class="kc">ntes</span> <span class="err">de</span> <span class="err">i</span><span class="kc">n</span><span class="err">iciar</span>
+      <span class="nt">&quot;preLaunchTask&quot;</span><span class="p">:</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Cami</span><span class="kc">n</span><span class="err">ho</span> <span class="err">para</span> <span class="err">o</span> <span class="err">aplica</span><span class="kc">t</span><span class="err">ivo</span> <span class="err">(.dll</span> <span class="err">ou</span> <span class="err">execu</span><span class="kc">t</span><span class="err">ável)</span>
+      <span class="nt">&quot;program&quot;</span><span class="p">:</span> <span class="s2">&quot;${workspaceFolder}/bin/Debug/net5.0/&lt;EXECUTAVEL-PROJETO&gt;&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Argume</span><span class="kc">nt</span><span class="err">os</span> <span class="err">da</span> <span class="err">li</span><span class="kc">n</span><span class="err">ha</span> <span class="err">de</span> <span class="err">coma</span><span class="kc">n</span><span class="err">do</span>
+      <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="err">//</span> <span class="err">Cami</span><span class="kc">n</span><span class="err">ho</span> <span class="err">raiz</span> <span class="err">do</span> <span class="err">proje</span><span class="kc">t</span><span class="err">o</span>
+      <span class="nt">&quot;cwd&quot;</span><span class="p">:</span> <span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Para</span> <span class="err">o</span> <span class="err">debugger</span> <span class="kc">n</span><span class="err">o</span> <span class="err">po</span><span class="kc">nt</span><span class="err">o</span> <span class="err">de</span> <span class="err">e</span><span class="kc">ntra</span><span class="err">da</span> <span class="err">(mé</span><span class="kc">t</span><span class="err">odo</span> <span class="err">Mai</span><span class="kc">n</span><span class="err">)</span>
+      <span class="nt">&quot;stopAtEntry&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="err">//</span> <span class="err">Co</span><span class="kc">nf</span><span class="err">igurações</span> <span class="err">do</span> <span class="kc">na</span><span class="err">vegador</span>
+      <span class="nt">&quot;launchBrowser&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">Abre</span> <span class="err">o</span> <span class="kc">na</span><span class="err">vegador</span> <span class="err">ao</span> <span class="err">i</span><span class="kc">n</span><span class="err">iciar</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;windows&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">//</span> <span class="err">I</span><span class="kc">n</span><span class="err">icia</span> <span class="err">o</span> <span class="kc">na</span><span class="err">vegador</span> <span class="kc">n</span><span class="err">o</span> <span class="err">wi</span><span class="kc">n</span><span class="err">dows</span> <span class="kc">na</span> <span class="err">URI</span> <span class="err">do</span> <span class="err">swagger</span>
+          <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;cmd.exe&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="s2">&quot;/C start ${auto-detect-url}/swagger&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;osx&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">//</span> <span class="err">I</span><span class="kc">n</span><span class="err">icia</span> <span class="err">o</span> <span class="kc">na</span><span class="err">vegador</span> <span class="kc">n</span><span class="err">o</span> <span class="err">MAC</span>
+          <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;linux&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="err">//</span> <span class="err">I</span><span class="kc">n</span><span class="err">icia</span> <span class="err">o</span> <span class="kc">na</span><span class="err">vegador</span> <span class="kc">n</span><span class="err">o</span> <span class="err">wi</span><span class="kc">n</span><span class="err">dows</span> <span class="kc">na</span> <span class="err">URI</span> <span class="err">do</span> <span class="err">swagger</span>
+          <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;xdg-open&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="s2">&quot;${auto-detect-url}/swagger&quot;</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="err">//</span> <span class="err">Variáveis</span> <span class="err">de</span> <span class="err">ambie</span><span class="kc">nte</span>
+      <span class="nt">&quot;env&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">//</span> <span class="err">Ambie</span><span class="kc">nte</span> <span class="err">do</span> <span class="err">qual</span> <span class="err">será</span> <span class="err">lido</span> <span class="err">o</span> <span class="err">arquivo</span> <span class="err">de</span> <span class="err">co</span><span class="kc">nf</span><span class="err">iguração</span>
+        <span class="nt">&quot;ASPNETCORE_ENVIRONMENT&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+        <span class="err">//</span> <span class="err">Por</span><span class="kc">tas</span>
+        <span class="nt">&quot;ASPNETCORE_URLS&quot;</span><span class="p">:</span> <span class="s2">&quot;https://localhost:5001;http://localhost:5000&quot;</span>
+      <span class="p">},</span>
+      <span class="err">//</span> <span class="err">Mapeame</span><span class="kc">nt</span><span class="err">o</span> <span class="err">de</span> <span class="err">arquivos</span> <span class="kc">f</span><span class="err">o</span><span class="kc">ntes</span> <span class="err">opcio</span><span class="kc">na</span><span class="err">is</span> <span class="err">passados</span> <span class="err">para</span> <span class="err">o</span> <span class="err">debug</span>
+      <span class="nt">&quot;sourceFileMap&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;/Views&quot;</span><span class="p">:</span> <span class="s2">&quot;${workspaceFolder}/Views&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Outra forma de abrir o navegador automaticamente além do <code>launchBrowse</code> é usar a configuração:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;serverReadyAction&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">Ação</span> <span class="err">a</span> <span class="err">ser</span> <span class="err">execu</span><span class="kc">ta</span><span class="err">da</span>
+    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;openExternally&quot;</span><span class="p">,</span>
+    <span class="err">//</span> <span class="err">Padrão</span> <span class="err">que</span> <span class="err">deve</span> <span class="err">ser</span> <span class="err">e</span><span class="kc">n</span><span class="err">co</span><span class="kc">ntra</span><span class="err">do</span> <span class="kc">na</span> <span class="err">saída</span> <span class="err">(vis</span><span class="kc">t</span><span class="err">o</span> <span class="kc">n</span><span class="err">o</span> <span class="err">co</span><span class="kc">ns</span><span class="err">ole</span> <span class="err">de</span> <span class="err">debug)</span>
+    <span class="nt">&quot;pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;\\bNow listening on:\\s+(https?://\\S+)&quot;</span><span class="p">,</span>
+    <span class="err">//</span> <span class="err">URI</span> <span class="err">que</span> <span class="err">será</span> <span class="err">aber</span><span class="kc">ta</span>
+    <span class="nt">&quot;uriFormat&quot;</span><span class="p">:</span> <span class="s2">&quot;%s/swagger&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">task.json</label><div class="tabbed-content">
+<p>O arquivo <code>tasks.json</code> é usando pelo <code>Visual Studio Code</code>. Define as tarefas que serão chamas em <code>launch.json</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;tasks&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;dotnet&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;build&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;${workspaceFolder}/&lt;PROJETO&gt;.csproj&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/property:GenerateFullPaths=true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/consoleloggerparameters:NoSummary&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span> <span class="s2">&quot;$msCompile&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;publish&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;dotnet&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;publish&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;${workspaceFolder}/&lt;PROJETO&gt;.csproj&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/property:GenerateFullPaths=true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/consoleloggerparameters:NoSummary&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span> <span class="s2">&quot;$msCompile&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;watch&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;dotnet&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;watch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;run&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;${workspaceFolder}/&lt;PROJETO&gt;.csproj&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/property:GenerateFullPaths=true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/consoleloggerparameters:NoSummary&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span> <span class="s2">&quot;$msCompile&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">launchSettings.json</label><div class="tabbed-content">
+<p>O arquivo <code>launchSettings.json</code> é usado apenas pelo <code>Visual Studio</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json.schemastore.org/launchsettings.json&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;iisSettings&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;windowsAuthentication&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;anonymousAuthentication&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;iisExpress&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;applicationUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:20125&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;sslPort&quot;</span><span class="p">:</span> <span class="mi">44383</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;profiles&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;IIS Express&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;commandName&quot;</span><span class="p">:</span> <span class="s2">&quot;IISExpress&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;launchBrowser&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;launchUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;swagger&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environmentVariables&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ASPNETCORE_ENVIRONMENT&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;ExemploDbContext&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;commandName&quot;</span><span class="p">:</span> <span class="s2">&quot;Project&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;dotnetRunMessages&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;launchBrowser&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;launchUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;swagger&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;applicationUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://localhost:5001;http://localhost:5000&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environmentVariables&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ASPNETCORE_ENVIRONMENT&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><label for="__tabbed_2_4">appsettings.json</label><div class="tabbed-content">
+<p>O arquivo <code>appsettings.json</code> define as configurações da aplicação e pode ser definida específica para um ambiente. Basta criar um arquivo <code>appsettings.&lt;environment&gt;.json</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;Logging&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;LogLevel&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Default&quot;</span><span class="p">:</span> <span class="s2">&quot;Information&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Microsoft&quot;</span><span class="p">:</span> <span class="s2">&quot;Warning&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Microsoft.Hosting.Lifetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Information&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;AllowedHosts&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><label for="__tabbed_2_5">web.config</label><div class="tabbed-content">
+<p>O arquivo <code>web.config</code> é usado apenas pelo IIS (Windows).</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;location</span> <span class="na">path=</span><span class="s">&quot;.&quot;</span> <span class="na">inheritInChildApplications=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;system.webServer&gt;</span>
+        <span class="nt">&lt;handlers&gt;</span>
+        <span class="nt">&lt;add</span> <span class="na">name=</span><span class="s">&quot;aspNetCore&quot;</span> <span class="na">path=</span><span class="s">&quot;*&quot;</span> <span class="na">verb=</span><span class="s">&quot;*&quot;</span> <span class="na">modules=</span><span class="s">&quot;AspNetCoreModuleV2&quot;</span> <span class="na">resourceType=</span><span class="s">&quot;Unspecified&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/handlers&gt;</span>
+        <span class="nt">&lt;aspNetCore</span> <span class="na">processPath=</span><span class="s">&quot;.\MeuConsultorio.Api&quot;</span> <span class="na">stdoutLogEnabled=</span><span class="s">&quot;true&quot;</span> <span class="na">stdoutLogFile=</span><span class="s">&quot;.\logs\stdout&quot;</span> <span class="na">hostingModel=</span><span class="s">&quot;OutOfProcess&quot;</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;environmentVariables&gt;</span>
+            <span class="nt">&lt;environmentVariable</span> <span class="na">name=</span><span class="s">&quot;ASPNETCORE_ENVIRONMENT&quot;</span> <span class="na">value=</span><span class="s">&quot;Development&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/environmentVariables&gt;</span>
+        <span class="nt">&lt;/aspNetCore&gt;</span>
+    <span class="nt">&lt;/system.webServer&gt;</span>
+    <span class="nt">&lt;/location&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></div>
+</div>
+</div>
+<h2 id="desinstalacao">Desinstalação<a class="headerlink" href="#desinstalacao" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Windows e Mac</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>dotnet-core-uninstall
+</code></pre></div>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../introducao/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Introdução
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../interface-linha-comando/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Interface de linha de comando
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>

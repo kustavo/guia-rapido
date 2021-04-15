@@ -1,0 +1,2562 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/dotnet/matrizes-e-colecoes/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Coleções - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#colecoes" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coleções
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introducao/" class="md-tabs__link md-tabs__link--active">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../javascript/introducao/" class="md-tabs__link">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programas/docker/" class="md-tabs__link">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacao-e-configuracao/" class="md-nav__link">
+        Instalação e configuração
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-linha-comando/" class="md-nav__link">
+        Interface de linha de comando
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../entity-framework/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Coleções
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Coleções
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-comuns-de-uma-colecao" class="md-nav__link">
+    Recursos comuns de uma coleção
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-associativas" class="md-nav__link">
+    Coleções associativas
+  </a>
+  
+    <nav class="md-nav" aria-label="Coleções associativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionarytkeytvale" class="md-nav__link">
+    Dictionary&lt;TKey,TVale&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorteddictionarytkeytvalue" class="md-nav__link">
+    SortedDictionary&lt;TKey,TValue&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortedlisttkeytvalue" class="md-nav__link">
+    SortedList&lt;TKey,TValue&gt;
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-nao-associativas" class="md-nav__link">
+    Coleções não associativas
+  </a>
+  
+    <nav class="md-nav" aria-label="Coleções não associativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listt" class="md-nav__link">
+    List&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedlistt" class="md-nav__link">
+    LinkedList&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hashsett" class="md-nav__link">
+    HashSet&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortedsett" class="md-nav__link">
+    SortedSet&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stackt-queuet" class="md-nav__link">
+    Stack&lt;T&gt;, Queue&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-unidimensionais" class="md-nav__link">
+    Matrizes unidimensionais
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-multidimensionais" class="md-nav__link">
+    Matrizes multidimensionais
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-irregulares" class="md-nav__link">
+    Matrizes irregulares
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propriedades" class="md-nav__link">
+    Propriedades
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos" class="md-nav__link">
+    Métodos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-nao-genericas" class="md-nav__link">
+    Coleções não genéricas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-concorrentes" class="md-nav__link">
+    Coleções concorrentes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativo-dos-tipos-de-colecoes" class="md-nav__link">
+    Comparativo dos tipos de coleções
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/assincronismo/" class="md-nav__link">
+        Javascript assíncrono
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-comuns-de-uma-colecao" class="md-nav__link">
+    Recursos comuns de uma coleção
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-associativas" class="md-nav__link">
+    Coleções associativas
+  </a>
+  
+    <nav class="md-nav" aria-label="Coleções associativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionarytkeytvale" class="md-nav__link">
+    Dictionary&lt;TKey,TVale&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorteddictionarytkeytvalue" class="md-nav__link">
+    SortedDictionary&lt;TKey,TValue&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortedlisttkeytvalue" class="md-nav__link">
+    SortedList&lt;TKey,TValue&gt;
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-nao-associativas" class="md-nav__link">
+    Coleções não associativas
+  </a>
+  
+    <nav class="md-nav" aria-label="Coleções não associativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listt" class="md-nav__link">
+    List&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linkedlistt" class="md-nav__link">
+    LinkedList&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hashsett" class="md-nav__link">
+    HashSet&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortedsett" class="md-nav__link">
+    SortedSet&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stackt-queuet" class="md-nav__link">
+    Stack&lt;T&gt;, Queue&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-unidimensionais" class="md-nav__link">
+    Matrizes unidimensionais
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-multidimensionais" class="md-nav__link">
+    Matrizes multidimensionais
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrizes-irregulares" class="md-nav__link">
+    Matrizes irregulares
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propriedades" class="md-nav__link">
+    Propriedades
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos" class="md-nav__link">
+    Métodos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-nao-genericas" class="md-nav__link">
+    Coleções não genéricas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#colecoes-concorrentes" class="md-nav__link">
+    Coleções concorrentes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparativo-dos-tipos-de-colecoes" class="md-nav__link">
+    Comparativo dos tipos de coleções
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/dotnet/matrizes-e-colecoes.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="colecoes">Coleções<a class="headerlink" href="#colecoes" title="Permanent link">&para;</a></h1>
+<p>Para muitos aplicativos, você desejará criar e gerenciar grupos de objetos relacionados.Dados semelhantes podem normalmente ser tratados com mais eficiência quando armazenados e manipulados como uma coleção. Você pode usar classes de <code>System.Array</code> ou as classes dos <em>namespaces</em>: <code>System.Collections</code>, <code>System.Collections.Generic</code>, <code>System.Collections.Concurrent</code> e <code>System.Collections.Immutable</code> para adicionar, remover e modificar elementos individuais ou um intervalo de elementos em uma coleção.</p>
+<p>Há dois tipos principais de coleções; <strong>coleções genéricas</strong> e <strong>coleções não genéricas</strong>. Coleções genéricas são fortemente tipadas em tempo de compilação. Por isso, coleções genéricas normalmente oferecem melhor desempenho. Coleções genéricas aceitam um parâmetro de tipo quando são criadas e não exigem que você converta de e para o tipo <code>Object</code> ao adicionar ou remover itens da coleção. As coleções não genéricas armazenam itens como <code>Object</code> e exigem a conversão.</p>
+<p>As coleções do <em>namespace</em> <code>System.Collections.Concurrent</code> fornecem operações eficientes de <em>thread-safe</em> para acessar itens de coleção de vários <em>threads</em>. As classes de coleção imutáveis do <em>namespace</em>  <code>System.Collections.Immutable</code> são inerentemente seguras ao <code>thread</code> porque as operações são executadas em uma cópia da coleção original e a coleção original não pode ser modificada.</p>
+<figure>
+    <a href="../_matrizes-e-colecoes/collections-generic-non-generic.jpg">
+        <img src="../_matrizes-e-colecoes/collections-generic-non-generic.jpg" title="Fonte: https://jbcedge.com/2018/03/08/c-collections/"/>
+    </a>
+    <figcaption>Coleções genéricas e não genéricas</figcaption>
+</figure>
+
+<figure>
+    <a href="../_matrizes-e-colecoes/collections-types.jpg">
+        <img src="../_matrizes-e-colecoes/collections-types.jpg" title="Fonte: https://jbcedge.com/2018/03/08/c-collections/"/>
+    </a>
+    <figcaption>Tipos de coleções</figcaption>
+</figure>
+
+<h2 id="recursos-comuns-de-uma-colecao">Recursos comuns de uma coleção<a class="headerlink" href="#recursos-comuns-de-uma-colecao" title="Permanent link">&para;</a></h2>
+<p>Todas as coleções fornecem métodos para adicionar, remover ou localizar itens na coleção. Além disso, todas as coleções que direta ou indiretamente implementam a interface <code>ICollection</code> ou a interface <code>ICollection&lt;T&gt;</code> compartilham estes recursos:</p>
+<dl>
+<dt><code>A capacidade de enumerar a coleção</code></dt>
+<dd>As coleções que implementam <code>System.Collections.IEnumerable</code> ou <code>System.Collections.Generic.IEnumerable&lt;T&gt;</code> permitem que a coleção seja iterada. Um enumerador pode ser considerado um ponteiro móvel para qualquer elemento da coleção. A instrução <code>foreach</code>, <code>in</code> e a Instrução <code>For Each...Next</code> usam o enumerador exposto pelo método <code>GetEnumerator</code> e ocultam a complexidade de manipulação do enumerador. Além disso, qualquer coleção que implementa <code>System.Collections.Generic.IEnumerable&lt;T&gt;</code> é considerada um tipo passível de consulta e pode ser consultada com LINQ. Consultas LINQ fornecem um padrão comum para o acesso de dados. Elas são geralmente mais concisas e legíveis que loops <code>foreach</code> padrão e fornecem filtragem, classificação e agrupamento de recursos. Consultas LINQ também podem melhorar o desempenho.</dd>
+<dt><code>A capacidade de copiar o conteúdo da coleção para uma matriz</code></dt>
+<dd>Todas as coleções podem ser copiadas para uma matriz usando o método <code>CopyTo</code>; no entanto, a ordem dos elementos na nova matriz se baseia na sequência na qual o enumerador os retorna. A matriz resultante é sempre unidimensional com um limite inferior de zero.</dd>
+<dt><code>Propriedades de capacidade e contagem</code></dt>
+<dd>A capacidade de uma coleção é o número de elementos que ela pode conter. A contagem de uma coleção é o número de elementos que ela realmente contém. Algumas coleções ocultam a capacidade ou a contagem ou ambas.
+A maioria das coleções se expande automaticamente em capacidade quando a capacidade atual é atingida. A memória é realocada e os elementos são copiados da coleção antiga para a nova. Isso reduz o código necessário para usar a coleção; no entanto, o desempenho da coleção pode ser afetado de forma negativa. Por exemplo, para <code>List&lt;T&gt;</code>, se <code>Count</code> for menor que <code>Capacity</code>, a adição de um item será uma operação <code>O(1)</code>. Se a capacidade precisar ser aumentada para acomodar o novo elemento, adicionar um item se tornará uma operação <code>O(n)</code>, em que <code>n</code> é <code>Count</code>. A melhor maneira de evitar um desempenho ruim causado por várias realocações é definir a capacidade inicial para que seja o tamanho estimado da coleção.
+Um <code>BitArray</code> é um caso especial; sua capacidade é a mesma que seu comprimento, que é o mesmo de sua contagem.</dd>
+<dt><code>Um limite inferior consistente</code></dt>
+<dd>O limite inferior de uma coleção é o índice do seu primeiro elemento. Todas as coleções indexadas nos <em>namespaces</em> <code>System.Collections</code> têm um limite inferior de zero, indicando que são indexados em 0. <code>Array</code> tem um limite inferior de zero por padrão, mas um limite inferior diferente pode ser definido ao criar uma instância da classe de matriz usando <code>Array.CreateInstance</code>.</dd>
+<dt><code>Sincronização para acesso de vários threads (somente classes de System.Collections)</code></dt>
+<dd>Tipos de coleção não genérica no <em>namespace</em> <code>System.Collections</code> oferecem algum acesso <em>thread-safe</em> com sincronização; geralmente exposto por meio dos membros <code>SyncRoot</code> e <code>IsSynchronized</code>. Essas coleções são não <em>thread-safe</em> por padrão. Se você precisar de acesso com <em>multithread</em> escalável e eficiente para uma coleção, use uma das classes no <em>namespace</em> <code>System.Collections.Concurrent</code> ou considere usar uma coleção imutável.</dd>
+</dl>
+<h2 id="colecoes-associativas">Coleções associativas<a class="headerlink" href="#colecoes-associativas" title="Permanent link">&para;</a></h2>
+<p>As coleções associativas armazenam um valor na coleção fornecendo uma chave que é usada para adicionar/remover/procurar o item.</p>
+<h3 id="dictionarytkeytvale">Dictionary&lt;TKey,TVale&gt;<a class="headerlink" href="#dictionarytkeytvale" title="Permanent link">&para;</a></h3>
+<p>A classe <code>Dictionary&lt;TKey,TVale&gt;</code> é provavelmente a classe associativa mais utilizada visto ser a classe mais rápida para realizar operações de pesquisa, inclusão e exclusão. Isso é devido a utilização de uma <em>hashtable</em>; como as chaves são um <em>hash</em>, o tipo da chave deve implementar <code>GetHashCode()</code> e <code>Equals()</code> ou deve fornecer um <code>IEqualityComparer</code> externo para o dicionário em construção.</p>
+<p>As operações de inclusão, exclusão e pesquisa de itens no dicionário consomem um tempo constante amortizado de <code>O(1)</code>, o que significa que não importa quão grande o dicionário fica, o tempo gasto para encontrar algo permanece relativamente constante. Isso é altamente desejável para realizar pesquisas com ótimo desempenho.</p>
+<p>A única desvantagem é que o dicionário, por usar uma <code>hashtable</code>, <strong>não é ordenado</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Adiciona elemento</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;abacaxi&quot;</span><span class="p">,</span> <span class="s">&quot;3,50&quot;</span><span class="p">);</span> 
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;uva&quot;</span><span class="p">,</span> <span class="s">&quot;8,25&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;pera&quot;</span><span class="p">,</span> <span class="s">&quot;5,70&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;banana&quot;</span><span class="p">,</span> <span class="s">&quot;2,00&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;tomate&quot;</span><span class="p">,</span> <span class="s">&quot;2,50&quot;</span><span class="p">);</span>
+
+<span class="c1">// Adiciona um elemento de forma segura.</span>
+<span class="c1">// Caso chave já exista, não gera ArgumentException.</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">TryAdd</span><span class="p">(</span><span class="s">&quot;tomate&quot;</span><span class="p">,</span> <span class="s">&quot;4,50&quot;</span><span class="p">);</span> 
+
+<span class="c1">// Verifica se a chave existe.</span>
+<span class="kt">var</span> <span class="n">possuiUva</span> <span class="p">=</span> <span class="n">dic</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="s">&quot;uva&quot;</span><span class="p">);</span>
+
+<span class="c1">// Obtêm o valor.</span>
+<span class="kt">var</span> <span class="n">valorUva</span> <span class="p">=</span> <span class="n">dic</span><span class="p">[</span><span class="s">&quot;uva&quot;</span><span class="p">];</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Possui uva = {0}, Valor = {1}&quot;</span><span class="p">,</span> <span class="n">possuiUva</span><span class="p">,</span> <span class="n">valorUva</span><span class="p">);</span>
+
+<span class="c1">// Obtêm o valor de forma segura. </span>
+<span class="c1">// Caso chave não exista, retorna o valor default do tipo, não gera KeyNotFoundException.</span>
+<span class="kt">string</span> <span class="n">valorLaranja</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">possuiLaranja</span> <span class="p">=</span> <span class="n">dic</span><span class="p">.</span><span class="n">TryGetValue</span><span class="p">(</span><span class="s">&quot;laranja&quot;</span><span class="p">,</span> <span class="k">out</span> <span class="n">valorLaranja</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Possui laranja = {0}, Valor = {1}&quot;</span><span class="p">,</span> <span class="n">possuiLaranja</span><span class="p">,</span> <span class="n">valorLaranja</span><span class="p">);</span>
+
+<span class="c1">// Define outro valor</span>
+<span class="n">dic</span><span class="p">[</span><span class="s">&quot;uva&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;9,50&quot;</span><span class="p">;</span>
+
+<span class="c1">// Verifica se existe um determinado valor</span>
+<span class="kt">var</span> <span class="n">possuiValor</span> <span class="p">=</span> <span class="n">dic</span><span class="p">.</span><span class="n">ContainsValue</span><span class="p">(</span><span class="s">&quot;2,00&quot;</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Possui Valor 2,00 = {0}&quot;</span><span class="p">,</span> <span class="n">possuiValor</span><span class="p">);</span>
+
+<span class="c1">// Remove item</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s">&quot;banana&quot;</span><span class="p">);</span>
+
+<span class="c1">// Obtêm quantidade de itens existentes</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Total = {0}&quot;</span><span class="p">,</span><span class="n">dic</span><span class="p">.</span><span class="n">Count</span><span class="p">());</span>
+
+<span class="c1">// Iteração</span>
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">dic</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Chave = {0}, Valor = {1}&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// Possui uva = True, Valor = 8,25</span>
+<span class="c1">// Possui laranja = False, Valor = </span>
+<span class="c1">// Possui Valor 2,00 = True</span>
+<span class="c1">// Total = 4</span>
+<span class="c1">// Chave = abacaxi, Valor = 3,50</span>
+<span class="c1">// Chave = pera, Valor = 5,70</span>
+<span class="c1">// Chave = tomate, Valor = 2,50</span>
+<span class="c1">// Chave = uva, Valor = 9,50</span>
+</code></pre></div>
+<h3 id="sorteddictionarytkeytvalue">SortedDictionary&lt;TKey,TValue&gt;<a class="headerlink" href="#sorteddictionarytkeytvalue" title="Permanent link">&para;</a></h3>
+<p>A classe <code>SortedDictionary&lt;TKey,TValue&gt;</code> usa uma árvore binária para manter os itens em ordem pela chave. Como consequência desta ordenação, o tipo usado para a chave deve implementar a interface <code>IComparable&lt;TKey&gt;</code> de modo que as chaves possam ser corretamente ordenadas.</p>
+<p>O dicionário ordenado gasta um pouco de tempo a mais na pesquisa devido a capacidade de manter os itens em ordem, assim as operações de inclusão, exclusão e pesquisa possuem complexidade logarítmicas <code>O(log n)</code>. <code>SortedDictionary</code> é indicado para realizar pesquisas rápidas, mas também quer ser capaz de manter a coleção em ordem pela chave.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span> <span class="n">dic</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SortedDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;();</span>
+
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;abacaxi&quot;</span><span class="p">,</span> <span class="s">&quot;3,50&quot;</span><span class="p">);</span> 
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;uva&quot;</span><span class="p">,</span> <span class="s">&quot;8,25&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;pera&quot;</span><span class="p">,</span> <span class="s">&quot;5,70&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;banana&quot;</span><span class="p">,</span> <span class="s">&quot;2,00&quot;</span><span class="p">);</span>
+<span class="n">dic</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;tomate&quot;</span><span class="p">,</span> <span class="s">&quot;2,50&quot;</span><span class="p">);</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">dic</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;{0}, {1}&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// abacaxi, 3,50</span>
+<span class="c1">// banana, 2,00</span>
+<span class="c1">// pera, 5,70</span>
+<span class="c1">// tomate, 2,50</span>
+<span class="c1">// uva, 8,25</span>
+</code></pre></div>
+<h3 id="sortedlisttkeytvalue">SortedList&lt;TKey,TValue&gt;<a class="headerlink" href="#sortedlisttkeytvalue" title="Permanent link">&para;</a></h3>
+<p>A classe <code>SortedList&lt;TKey,TValue&gt;</code> é uma classe associativa ordenada que da mesma forma que <code>SortedDictionary&lt;TKey,TValue&gt;</code>, usa uma chave para classificar os pares chave-valor.</p>
+<p>Ao contrário da classe <code>SortedDictionary</code>, no entanto, os itens em uma <code>SortedList</code> são armazenados como uma <em>array</em> ordenado de itens. Isto significa que inserções e deleções são lineares <code>O(n)</code> porque apagar ou adicionar um item pode implicar a transferência de todos os itens para cima ou para baixo na lista.</p>
+<p>O tempo de pesquisa, porém, é <code>O(log n)</code> porque a coleção <code>SortedList</code> pode usar uma busca binária para encontrar qualquer item na lista por sua chave. <code>SortedList</code> é recomendado para realizar pesquisas rápidas, e manter a coleção ordenada, mas realizar poucas operações de inclusão e remoção de itens.</p>
+<p>As classes <code>SortedDictionary</code> e <code>SortedList</code> têm modelos de objeto semelhantes, e ambos têm recuperação <code>O(log n)</code>. A diferença entre as duas classes está no uso da memória e na velocidade de inclusão e remoção de itens. Assim:</p>
+<ul>
+<li><code>SortedList</code> - usa menos memória;</li>
+<li><code>SortedDictionary</code> - é mais rápido para inclusão de dados não ordenados;</li>
+<li><code>SortedList</code> - é mais rápido para inclusão de dados já ordenados;</li>
+<li><code>SortedDictionary</code> - é mais rápido para a remoção de dados;</li>
+</ul>
+<h2 id="colecoes-nao-associativas">Coleções não associativas<a class="headerlink" href="#colecoes-nao-associativas" title="Permanent link">&para;</a></h2>
+<p>As coleções não associativas não usam chaves para manipular a coleção, mas contam com o próprio objeto a ser armazenado ou alguns outros meios (como índice) para manipular a coleção.</p>
+<h3 id="listt">List&lt;T&gt;<a class="headerlink" href="#listt" title="Permanent link">&para;</a></h3>
+<p>A classe <code>List&lt;T&gt;</code> é uma estrutura de armazenamento básico contíguo. Algumas pessoas podem chamar isso de um vetor ou matriz dinâmica. Essencialmente ela é uma série de itens que crescem uma vez que sua capacidade atual for excedida.</p>
+<p>Como os itens são armazenados de forma contígua como uma matriz, você pode acessar os itens na coleção <code>List&lt;T&gt;</code> usando um índice de forma muito rápida. No entanto inserir e remover itens que não seja no final de <code>List&lt;T&gt;</code> leva mais tempo porque você deve mudar todos os itens para cima ou para baixo quando for excluir ou inserir.</p>
+<p>No entanto, a adição e remoção no final de uma <code>List&lt;T&gt;</code> é uma operação amortizada constante <code>O(1)</code>. Normalmente uma <code>List&lt;T&gt;</code> é uma coleção padrão para uso quando você não tem quaisquer outras restrições e, normalmente, você deve dar preferência a utilização da coleção <code>List&lt;T&gt;</code> mesmo sobre matrizes, a menos quando temos a certeza que o tamanho continuará a ser absolutamente fixo.</p>
+<h3 id="linkedlistt">LinkedList&lt;T&gt;<a class="headerlink" href="#linkedlistt" title="Permanent link">&para;</a></h3>
+<p>A classe <code>LinkedList&lt;T&gt;</code> é uma implementação básica de uma lista duplamente ligada. Como não usa memória contígua, você pode adicionar ou remover itens no meio de uma lista ligada muito rapidamente sem deslocar os outros items. Entretanto você perde a capacidade de indexar itens rapidamente pela sua posição.</p>
+<p>Na maioria das vezes, tendemos a favorecer o uso da classe <code>List&lt;T&gt;</code> sobre <code>LinkedList&lt;T&gt;</code> a menos que você está fazendo um monte de inclusões e exclusões de itens na coleção, caso em que usar a classe <code>LinkedList&lt;T&gt;</code> pode fazer mais sentido.</p>
+<h3 id="hashsett">HashSet&lt;T&gt;<a class="headerlink" href="#hashsett" title="Permanent link">&para;</a></h3>
+<p>A coleção <code>HashSet&lt;T&gt;</code> é uma coleção de itens exclusivos. Isto significa que a coleção não pode ter itens duplicados e nenhuma ordem é mantida. Logicamente, isso é muito semelhante a ter um coleção <code>Dictionary&lt;TKey,TValue&gt;</code> onde o TKey e TValue referem-se ao mesmo objeto.</p>
+<p>A classe <code>HashSet&lt;T&gt;</code> baseia-se no modelo de conjuntos matemáticos e fornece operações de conjuntos de alto desempenho semelhantes a acessar as chaves das coleções <code>Dictionary&lt;TKey, TValue&gt;</code> ou <code>Hashtable</code>. Em termos simples, a classe <code>HashSet&lt;T&gt;</code> pode ser considerada como uma coleção <code>Dictionary&lt;TKey, TValue&gt;</code> sem valores.</p>
+<p>Seu uso é indicado para listas não ordenadas que devem ter valores únicos e com buscas rápidas.</p>
+<h3 id="sortedsett">SortedSet&lt;T&gt;<a class="headerlink" href="#sortedsett" title="Permanent link">&para;</a></h3>
+<p>A coleção <code>SortedSet&lt;T&gt;</code> é uma coleção de itens exclusivos que mantém uma ordem classificada quando elementos são inseridos e excluídos sem afetar o desempenho.</p>
+<p>Uma coleção <code>SortedSet&lt;T&gt;</code> utiliza árvore binária. Isto significa que as operações de inclusão, remoção e pesquisas são logarítmica <code>O(log n)</code>, mas existe um ganho na habilidade de iterar sobre os itens em ordem. Para esta coleção ser eficaz, o tipo <code>T</code> deve implementar a interface <code>IComparable&lt;T&gt;</code> ou você precisa fornecer um <code>IComparer&lt;T&gt;</code> externo.</p>
+<h3 id="stackt-queuet">Stack&lt;T&gt;, Queue&lt;T&gt;<a class="headerlink" href="#stackt-queuet" title="Permanent link">&para;</a></h3>
+<p>As coleções <code>Stack&lt;T&gt;</code> e <code>Queue&lt;T&gt;</code> são duas coleções que permitem lidar com uma coleção sequencial de objetos de forma muito específica.</p>
+<p>A coleção <code>Stack&lt;T&gt;</code> é um recipiente LIFO (<em>last in first out</em>) onde os itens são adicionados e removidos do topo da pilha. Normalmente, isso é útil em situações onde você quer empilhar ações e, em seguida, ser capaz de desfazer essas ações em ordem inversa, conforme necessário.</p>
+<p>A coleção <code>Queue&lt;T&gt;</code> por outro lado é um recipiente FIFO (<em>firs-in first-out</em>) que adiciona itens no final da fila e remove itens a partir da inicio. Isso é útil para situações onde você precisa processar os itens na ordem em que eles vieram, como um spooler de impressão ou filas de espera.</p>
+<h3 id="array">Array<a class="headerlink" href="#array" title="Permanent link">&para;</a></h3>
+<p>As matrizes são mais úteis para criar e trabalhar com um número fixo de objetos fortemente tipados. Você pode armazenar diversas variáveis do mesmo tipo em uma estrutura de dados de matriz. Você pode declarar uma matriz especificando o tipo de seus elementos. Se você quiser que a matriz armazene elementos de qualquer tipo, você pode especificar <code>object</code> como seu tipo. No sistema de tipos unificado do C#, todos os tipos, predefinidos e definidos pelo usuário, tipos de referência e tipos de valor, herdam direta ou indiretamente de <code>Object</code>.</p>
+<ul>
+<li>Uma matriz pode ser unidimensional, multidimensional ou irregulares (ou denteadas).</li>
+<li>O número de dimensões e o tamanho de cada dimensão são estabelecidos quando a instância de matriz é criada. Esses valores não podem ser alterados durante o ciclo de vida da instância.</li>
+<li>Uma matriz pode ter no máximo 32 dimensões.</li>
+<li>Os valores padrão dos elementos de matriz numérica são definidos como <code>0</code> (zero), e os elementos de referência são definidos como <code>null</code>.</li>
+<li>Uma matriz irregular é uma matriz de matrizes e, portanto, seus elementos são tipos de referência e são inicializados para <code>null</code>.</li>
+<li>As matrizes são indexadas por zero: uma matriz com elementos n é indexada de 0 para n-1.</li>
+<li>Os elementos de matriz podem ser de qualquer tipo, inclusive um tipo de matriz.</li>
+<li>Os tipos de matriz são tipos de referência derivados do tipo base abstrato <code>System.Array</code>. Como esse tipo implementa <code>IEnumerable</code> e <code>IEnumerable&lt;T&gt;</code>, você pode usar a iteração <code>foreach</code> em todas as matrizes em C#.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Array</em> é um tipo histórico que existe desde a época em que não existiam coleções genéricas em C#. A classe <code>Array</code> não faz parte dos namespaces <code>System.Collections</code>. No entanto, ainda é considerado uma coleção porque é baseado na interface <code>IList</code>.</p>
+<p>Matrizes unidimensionais <code>T[]</code> implementam as interfaces genéricas <code>System.Collections.Generic.IList&lt;T&gt;</code>, <code>System.Collections.Generic.ICollection&lt;T&gt;</code>, <code>System.Collections.Generic.IEnumerable&lt;T&gt;</code>, <code>System.Collections.Generic.IReadOnlyList&lt;T&gt;</code> e <code>System.Collections.Generic.IReadOnlyCollection&lt;T&gt;</code>. As implementações são fornecidas para <em>arrays</em> <strong>somente em tempo de execução</strong>, portanto, as interfaces genéricas não aparecem na sintaxe de declaração da classe <code>Array</code>. Alguns métodos de <code>ICollection&lt;T&gt;</code> não funcionariam para <em>arrays</em>, como o método <code>Add()</code> por exemplo.</p>
+<p>A classe <code>Array</code> é a classe base para implementações de linguagem que oferecem suporte a <em>arrays</em>. No entanto, apenas o sistema e os compiladores podem derivar explicitamente da classe <code>Array</code>. Os usuários devem empregar as construções de array fornecidas pela linguagem.</p>
+</div>
+<h3 id="matrizes-unidimensionais">Matrizes unidimensionais<a class="headerlink" href="#matrizes-unidimensionais" title="Permanent link">&para;</a></h3>
+<p>Uma matriz unidimensional pode ser declarada da seguinte forma:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">5</span><span class="p">];</span>
+</code></pre></div>
+<p>Uma matriz unidimensional pode ser declarada e instanciada na mesma instrução (mesma linha) da seguinte forma:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">9</span> <span class="p">};</span>
+<span class="c1">// Ou</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">9</span> <span class="p">};</span>
+</code></pre></div>
+<h4 id="iteracao">Iteração<a class="headerlink" href="#iteracao" title="Permanent link">&para;</a></h4>
+<p>Iterando uma matriz unidimensional:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[</span><span class="m">5</span><span class="p">];</span>
+
+<span class="c1">// Usando foreach</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+
+<span class="c1">// Usando for</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+<span class="c1">// Usando o método Array.ForEach&lt;T&gt;</span>
+<span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// Maria</span>
+<span class="c1">// João</span>
+<span class="c1">// Sara</span>
+<span class="c1">// Lucas</span>
+</code></pre></div>
+<p>Iterando uma matriz incompleta:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">5</span><span class="p">];</span>
+<span class="n">array</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="n">array</span><span class="p">[</span><span class="m">3</span><span class="p">]</span> <span class="p">=</span> <span class="m">4</span><span class="p">;</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// 1</span>
+<span class="c1">// 0</span>
+<span class="c1">// 0</span>
+<span class="c1">// 4</span>
+<span class="c1">// 0</span>
+</code></pre></div>
+<h4 id="concatenacao">Concatenação<a class="headerlink" href="#concatenacao" title="Permanent link">&para;</a></h4>
+<p>Ao contrário das classes nos namespaces <code>System.Collections</code>, <code>Array</code> tem uma capacidade fixa. Para aumentar a capacidade, você deve criar um novo objeto <code>Array</code> com a capacidade necessária, copiar os elementos do objeto <code>Array</code> antigo para o novo e excluir o <code>Array</code> antigo.</p>
+<p>Concatenando usando o método <code>Array.CopyTo</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">arrayA</span> <span class="p">=</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">};</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">arrayB</span> <span class="p">=</span> <span class="p">{</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">};</span>
+
+<span class="c1">// Criar nova matriz com o tamanho para as duas matrizes.</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">arrayAB</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">arrayA</span><span class="p">.</span><span class="n">Length</span> <span class="p">+</span> <span class="n">arrayB</span><span class="p">.</span><span class="n">Length</span><span class="p">];</span>
+
+<span class="c1">// Copia arrayA na posição 0.</span>
+<span class="n">arrayA</span><span class="p">.</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">arrayAB</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+
+<span class="c1">// Copia arrayB depois da ultima posição de arrayA.</span>
+<span class="n">arrayB</span><span class="p">.</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">arrayAB</span><span class="p">,</span> <span class="n">arrayA</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+
+<span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">arrayAB</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">);</span>
+<span class="c1">// Saída</span>
+<span class="c1">// 1</span>
+<span class="c1">// 2</span>
+<span class="c1">// 3</span>
+<span class="c1">// 4</span>
+<span class="c1">// 5</span>
+</code></pre></div>
+<p>Concatenando usando os métodos <code>Array.Resize + Array.Copy</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">arrayA</span> <span class="p">=</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">};</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">arrayB</span> <span class="p">=</span> <span class="p">{</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">};</span>
+
+<span class="c1">// Aumenta o tamanho de arrayA para conter as duas matrizes.</span>
+<span class="n">Array</span><span class="p">.</span><span class="n">Resize</span><span class="p">(</span><span class="k">ref</span> <span class="n">arrayA</span><span class="p">,</span> <span class="n">arrayA</span><span class="p">.</span><span class="n">Length</span> <span class="p">+</span> <span class="n">arrayB</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+
+<span class="c1">// Copia arrayB desde a posição 0 para arrayA na posição que casa arrayB </span>
+<span class="c1">// até o ultimo elemento de arrayB.</span>
+<span class="n">Array</span><span class="p">.</span><span class="n">Copy</span><span class="p">(</span><span class="n">arrayB</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">arrayA</span><span class="p">,</span> <span class="n">arrayA</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="n">arrayB</span><span class="p">.</span><span class="n">Length</span><span class="p">,</span> <span class="n">arrayB</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+
+<span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">arrayA</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">);</span>
+<span class="c1">// Saída</span>
+<span class="c1">// 1</span>
+<span class="c1">// 2</span>
+<span class="c1">// 3</span>
+<span class="c1">// 4</span>
+<span class="c1">// 5</span>
+</code></pre></div>
+<p>Podemos também usar o método <code>Concat</code> da classe <code>System.Linq.Enumerable</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="p">[]</span> <span class="n">arrayA</span> <span class="p">=</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">};</span>
+<span class="kt">int</span><span class="p">[]</span> <span class="n">arrayB</span> <span class="p">=</span> <span class="p">{</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">arrayAB</span> <span class="p">=</span> <span class="n">arrayA</span><span class="p">.</span><span class="n">Concat</span><span class="p">(</span><span class="n">arrayB</span><span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+
+<span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">arrayAB</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">);</span>
+<span class="c1">// Saída</span>
+<span class="c1">// 1</span>
+<span class="c1">// 2</span>
+<span class="c1">// 3</span>
+<span class="c1">// 4</span>
+<span class="c1">// 5</span>
+</code></pre></div>
+<h3 id="matrizes-multidimensionais">Matrizes multidimensionais<a class="headerlink" href="#matrizes-multidimensionais" title="Permanent link">&para;</a></h3>
+<p>Uma matriz multidimensional pode ser declarada da seguinte forma:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Declara uma matriz de duas dimensões 2 x 3</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">array2x3</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">];</span>
+
+<span class="c1">// Declara uma matriz de 3 dimensões 2 x 3 x 2</span>
+<span class="kt">int</span><span class="p">[,,]</span> <span class="n">array2x3x2</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">];</span>
+</code></pre></div>
+<p>Uma matriz multidimensional pode ser declarada e instanciada na mesma instrução da seguinte forma:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Declara e define uma matriz de duas dimensões 2 x 3</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">array2x3</span> <span class="p">=</span> <span class="p">{</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">},</span> <span class="p">{</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span> <span class="p">};</span>
+
+<span class="c1">// Declara e define uma matriz de duas dimensões 2 x 2 x 3</span>
+<span class="kt">int</span><span class="p">[,,]</span> <span class="n">array2x2x3</span> <span class="p">=</span> <span class="p">{</span> <span class="p">{</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">},</span> <span class="p">{</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span> <span class="p">},</span> <span class="p">{</span> <span class="p">{</span><span class="m">7</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">},</span> <span class="p">{</span><span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> <span class="m">12</span><span class="p">}</span> <span class="p">}</span> <span class="p">};</span>
+</code></pre></div>
+<h3 id="matrizes-irregulares">Matrizes irregulares<a class="headerlink" href="#matrizes-irregulares" title="Permanent link">&para;</a></h3>
+<p>Uma matriz irregular (ou denteada) pode ser declarada da seguinte forma:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Declara uma matriz irregular 4x?</span>
+<span class="kt">int</span><span class="p">[][]</span> <span class="n">array</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">4</span><span class="p">][];</span>
+
+<span class="c1">// Define os valores da matriz na posição 0 e 1</span>
+<span class="n">array</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">4</span><span class="p">]</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span> <span class="p">};</span>
+<span class="n">array</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">{</span> <span class="m">9</span><span class="p">,</span> <span class="m">10</span><span class="p">};</span>
+
+<span class="c1">// Iterando a matriz</span>
+<span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;---&quot;</span><span class="p">);</span>
+        <span class="n">Array</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Saída</span>
+<span class="c1">// ---</span>
+<span class="c1">// 1</span>
+<span class="c1">// 2</span>
+<span class="c1">// 3</span>
+<span class="c1">// 4</span>
+<span class="c1">// ---</span>
+<span class="c1">// 9</span>
+<span class="c1">// 10</span>
+</code></pre></div>
+<p>A classe <code>System.Array</code> fornece propriedades e métodos para criar, manipular, procurar e ordenar matrizes. Abaixo temos os mais importantes:</p>
+<h3 id="propriedades">Propriedades<a class="headerlink" href="#propriedades" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Propriedade</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IsFixedSize</td>
+<td>Retorna um valor indicando se um array possui um tamanho fixo ou não.</td>
+</tr>
+<tr>
+<td>IsReadOnly</td>
+<td>Retorna um a valor indicando se um array é somente-leitura ou não.</td>
+</tr>
+<tr>
+<td>IsSynchronized</td>
+<td>Retorna um a valor que indica se o acesso a um array é thread-safe ou não.</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>Retorna o número total de itens em todas as dimensões de um array</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>Retorna o número de dimensões de um array</td>
+</tr>
+<tr>
+<td>SyncRoot</td>
+<td>Retorna um objeto que pode ser usado para sincronizar o acesso a um array.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="metodos">Métodos<a class="headerlink" href="#metodos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métodos</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BinarySearch</td>
+<td>Procura em um array unidimensional ordenado por um valor usando o algoritmo de busca binário.</td>
+</tr>
+<tr>
+<td>Clear</td>
+<td>Remove todos os itens de um array e define um intervalo de itens no array com valor zero.</td>
+</tr>
+<tr>
+<td>Clone</td>
+<td>Cria uma cópia do Array.</td>
+</tr>
+<tr>
+<td>Copy</td>
+<td>Copia uma seção de um array para outro array e realiza a conversão de tipos e boxing requeridas.</td>
+</tr>
+<tr>
+<td>CopyTo</td>
+<td>Copia todos os elementos do array unidimensional atual para o array unidimensional especificado iniciando no índice de destino especificado do array.</td>
+</tr>
+<tr>
+<td>CreateInstance</td>
+<td>Inicializa uma nova instância da classe Array.</td>
+</tr>
+<tr>
+<td>GetEnumerator</td>
+<td>Retorna um IEnumerator para o Array.</td>
+</tr>
+<tr>
+<td>GetLength</td>
+<td>Retorna o número de itens de um Array.</td>
+</tr>
+<tr>
+<td>GetLowerBound</td>
+<td>Retorna o primeiro item de um Array.</td>
+</tr>
+<tr>
+<td>GetUpperBound</td>
+<td>Retorna o último item de um Array.</td>
+</tr>
+<tr>
+<td>GetValue</td>
+<td>Retorna o valor do item especificado no  Array.</td>
+</tr>
+<tr>
+<td>IndexOf</td>
+<td>Retorna o índice da primeira ocorrência de um valor em um array de uma dimensão ou em uma porção do Array.</td>
+</tr>
+<tr>
+<td>LastIndexOf</td>
+<td>Retorna o índice da última ocorrência de um valor em um array unidimensional ou em uma  porção do Array.</td>
+</tr>
+<tr>
+<td>Reverse</td>
+<td>Reverte a ordem de um item em um array de uma dimensão ou parte do array.</td>
+</tr>
+<tr>
+<td>SetValue</td>
+<td>Define o item especificado em um array atual para o valor definido.</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Ordena os itens de um array.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="colecoes-nao-genericas">Coleções não genéricas<a class="headerlink" href="#colecoes-nao-genericas" title="Permanent link">&para;</a></h2>
+<p>As classes de coleção não genéricas são consideradas obsoletas. Você deve sempre favorecer as coleções genéricas ou concorrentes, e apenas usar as coleções não genéricas quando você está lidando com o legado. NET.</p>
+<ul>
+<li>
+<p><code>ArrayList</code>: Uma coleção dinâmica e contígua de objetos. Preferir a coleção genérica <code>List&lt;T&gt;</code>.</p>
+</li>
+<li>
+<p><code>Hashtable</code>: Associativa, não-ordenada coleção de pares chave-valor dos objetos. Favorecer a coleção genérica <code>Dictionary&lt;TKey,TValue&gt;</code>.</p>
+</li>
+<li>
+<p><code>Queue</code>: Coleção de objetos First-in-first-out (FIFO). Preferir a coleção genérica <code>Queue&lt;T&gt;</code>.</p>
+</li>
+<li>
+<p><code>SortedList</code>: Associativa, ordenou a coleção de pares chave-valor dos objetos. Favorecer a coleção genérica <code>SortedList&lt;T&gt;</code>.</p>
+</li>
+<li>
+<p><code>Stack</code>: Coleção de objetos Last-in-first-out coleção (LIFO). Favorecer a coleção genérica <code>Stack&lt;T&gt;</code>.</p>
+</li>
+</ul>
+<h2 id="colecoes-concorrentes">Coleções concorrentes<a class="headerlink" href="#colecoes-concorrentes" title="Permanent link">&para;</a></h2>
+<p>As coleções concorrentes estão incluídas no namespace <code>System.Collections.Concurrent</code>. Essas coleções são otimizados para uso em situações onde desejamos o acesso <em>multi-threaded</em> de leituras e escritas em uma coleção.</p>
+<p>A seguir um resumo das coleções concorrentes:</p>
+<ul>
+<li>
+<p><code>ConcurrentQueue</code>: versão Thread-safe da coleção <code>Queue</code>.</p>
+</li>
+<li>
+<p><code>ConcurrentStack</code>: versão Thread-safe da coleção <code>Stack</code>.</p>
+</li>
+<li>
+<p><code>ConcurrentBag</code>: Coleção Thread-safe não ordenada de objetos - Otimizada para situações onde uma thread pode tanto ser lida como escrita.</p>
+</li>
+<li>
+<p><code>ConcurrentDictionary</code>: versão Thread-safe de um dictionary. - Otimizada para leituras múltiplas;</p>
+</li>
+<li>
+<p><code>BlockingCollection</code>: Os leitores podem bloquear até que os itens estejam disponíveis para leitura. Os escritores podem bloquear até que o espaço esteja disponível para escrever (se limitada).</p>
+</li>
+</ul>
+<p>Ao utilizar estas coleções considere que o acesso será protected o que afeta bastante o desempenho, neste caso verifique se a utilização de threads sincronizadas não o obteria um melhor desempenho.</p>
+<h2 id="comparativo-dos-tipos-de-colecoes">Comparativo dos tipos de coleções<a class="headerlink" href="#comparativo-dos-tipos-de-colecoes" title="Permanent link">&para;</a></h2>
+<p>Em geral, você deve usar coleções genéricas. A tabela a seguir descreve alguns cenários comuns de coleção e as classes de coleção que você pode usar para esses cenários.</p>
+<table>
+<thead>
+<tr>
+<th>Coleção genérica</th>
+<th>Ordenado</th>
+<th>Armaz. Contíguo</th>
+<th>Acesso Direto</th>
+<th>Pesquisa Amortizada<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></th>
+<th>Manipulação Amortizada<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></th>
+<th>Notas</th>
+<th>Coleção thread-safe ou imutável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dictionary&lt;Tkey,Tvalue&gt;</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Via Key</td>
+<td>Key: O(1)</td>
+<td>O(1)</td>
+<td>Itens como pares chave/valor (busca rápida)</td>
+<td><code>ConcurrentDictionary&lt;TKey,TValue&gt;</code> <br> <code>ReadOnlyDictionary&lt;TKey,TValue&gt;</code> <br> <code>ImmutableDictionary&lt;TKey,TValue&gt;</code></td>
+</tr>
+<tr>
+<td><code>SortedDictionary&lt;Tkey,Tvalue&gt;</code></td>
+<td>Sim</td>
+<td>Não</td>
+<td>Via Key</td>
+<td>Key:  O(log n)</td>
+<td>O(log n)</td>
+<td>Itens como pares chave/valor ordenado por árvore de pesquisa binária (comparado ao SortedList, possui busca mais lenta e manipulação mais rápida)</td>
+<td><code>ImmutableSortedDictionary&lt;TKey,TValue&gt;</code></td>
+</tr>
+<tr>
+<td><code>SortedList&lt;Tkey,Tvalue&gt;</code></td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Via Key</td>
+<td>Key: O(log n)</td>
+<td>O(n)</td>
+<td>Semelhante ao SortedDictionary, mas ordenado por matriz (comparado ao SortedDictionary, possui busca mais rápida, manipulação mais lenta)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>List&lt;T&gt;</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Via Index</td>
+<td>Index: O(1) Value: O(n)</td>
+<td>O(n)</td>
+<td>Itens de acesso por índice (Melhor para listas onde o acesso direto não é necessário e não há classificação).</td>
+<td><code>ImmutableList&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Array</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Via Index</td>
+<td>Index: O(1) Value: O(n)</td>
+<td>O(1)*</td>
+<td>Coleção de tamanho fixo com itens de acesso por índice (Melhor para listas de tamanho fixo onde o acesso direto não é necessário e não há classificação).</td>
+<td><code>ImmutableArray&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>LinkedList&lt;T&gt;</code></td>
+<td>Não</td>
+<td>Não</td>
+<td>Não</td>
+<td>Value: O(n)</td>
+<td>O(1)</td>
+<td>Acessar itens sequencialmente (Melhor para listas em que inserir / excluir no meio é comum e não é necessário acesso direto)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>HashSet&lt;T&gt;</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Via Key</td>
+<td>Key: O(1)</td>
+<td>O(1)</td>
+<td>Lista Hash sem ordenação.</td>
+<td><code>ImmutableHashSet&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>SortedSet&lt;T&gt;</code></td>
+<td>Sim</td>
+<td>Não</td>
+<td>Via Key</td>
+<td>Key: O(log n)</td>
+<td>O(log n)</td>
+<td>Lista Hash com ordenação.</td>
+<td><code>ImmutableSortedSet&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Stack&lt;T&gt;</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Only Top</td>
+<td>Top: O(1)</td>
+<td>O(1)*</td>
+<td>Semelhante a List, exceto apenas o processo como LIFO</td>
+<td><code>ConcurrentStack&lt;T&gt;</code> <br> <code>ImmutableStack&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Queue&lt;T&gt;</code></td>
+<td>Não</td>
+<td>Sim</td>
+<td>Only Front</td>
+<td>Front: O(1)</td>
+<td>O(1)</td>
+<td>Semelhante a  List, exceto apenas o processo como FIFO</td>
+<td><code>ConcurrentQueue&lt;T&gt;</code> <br> <code>ImmutableQueue&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Um <code>List&lt;T&gt;</code> pode ser enumerado com eficiência usando <code>for</code> ou <code>foreach</code>.<code>ImmutableList&lt;T&gt;</code> no entanto, tem um trabalho insatisfatório dentro de um <code>for</code> devido a complexidade O(log n) do seu indexador. A enumeração de um <code>ImmutableList&lt;T&gt;</code> usando um <code>foreach</code> é eficiente porque o <code>ImmutableList&lt;T&gt;</code> usa uma árvore binária para armazenar seus dados em vez de uma matriz simples, como o <code>List&lt;T&gt;</code> usa. Uma matriz pode ser rapidamente indexada, enquanto uma árvore binária deve ser percorrido até que o nó com o índice desejado seja encontrado.</p>
+<p>Além disso, <code>SortedSet&lt;T&gt;</code> tem a mesma complexidade que <code>ImmutableSortedSet&lt;T&gt;</code>. Isso porque ambos usam árvores binárias. É claro que a diferença significativa é que <code>ImmutableSortedSet&lt;T&gt;</code> usa uma árvore binária imutável. Como <code>ImmutableSortedSet&lt;T&gt;</code> também oferece uma classe <code>System.Collections.Immutable.ImmutableSortedSet&lt;T&gt;.Builder</code> que permite a mutação, você pode ter ambos, imutabilidade e desempenho.</p>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.microsoft.com/pt-br/dotnet/standard/collections/">https://docs.microsoft.com/pt-br/dotnet/standard/collections/</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/concepts/collections">https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/concepts/collections</a></li>
+<li><a href="https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/arrays/">https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/arrays/</a></li>
+<li><a href="http://www.macoratti.net/10/05/c_arrays.htm">http://www.macoratti.net/10/05/c_arrays.htm</a></li>
+<li><a href="https://jbcedge.com/2018/03/08/c-collections">https://jbcedge.com/2018/03/08/c-collections</a></li>
+<li><a href="http://www.macoratti.net/12/12/c_col1.htm">http://www.macoratti.net/12/12/c_col1.htm</a></li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>A complexidade em "amortizado" se refere ao pior caso e é a soma do custo da operação sobre cada item dividido peno numero total de itens.</p>
+<p>Exemplo:
+Em <code>List&lt;T&gt;.Add</code>, para adicionar n itens, a complexidade no pior caso é: (1 + 1 + 1...n) = O(n). Portanto a complexidade amortizada é (1 + 1 + 1...n) / n = O(1).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../erros-e-solucoes/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Erros e soluções
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../javascript/introducao/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Introdução
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2422 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/programas/git/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Git - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../dotnet/introducao/" class="md-tabs__link">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../javascript/introducao/" class="md-tabs__link">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../docker/" class="md-tabs__link md-tabs__link--active">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/instalacao-e-configuracao/" class="md-nav__link">
+        Instalação e configuração
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/interface-linha-comando/" class="md-nav__link">
+        Interface de linha de comando
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/entity-framework/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/matrizes-e-colecoes/" class="md-nav__link">
+        Coleções
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/assincronismo/" class="md-nav__link">
+        Javascript assíncrono
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Git
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    Introdução
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos" class="md-nav__link">
+    Comandos
+  </a>
+  
+    <nav class="md-nav" aria-label="Comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes" class="md-nav__link">
+    Configurações
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    Init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    Clone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote" class="md-nav__link">
+    Remote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    Branch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout" class="md-nav__link">
+    Checkout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    Add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    Reset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert" class="md-nav__link">
+    Revert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    Diff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blame" class="md-nav__link">
+    Blame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    Commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    Push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull" class="md-nav__link">
+    Pull
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    Fetch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stash" class="md-nav__link">
+    Stash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    Rm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    Mv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    Log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    Tag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gerenciadores-de-repositorios" class="md-nav__link">
+    Gerenciadores de repositórios
+  </a>
+  
+    <nav class="md-nav" aria-label="Gerenciadores de repositórios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-autenticacao-via-ssh-linux" class="md-nav__link">
+    Configurando a autenticação via SSH (Linux)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    GitHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    Introdução
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos" class="md-nav__link">
+    Comandos
+  </a>
+  
+    <nav class="md-nav" aria-label="Comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes" class="md-nav__link">
+    Configurações
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    Init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    Clone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote" class="md-nav__link">
+    Remote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    Branch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout" class="md-nav__link">
+    Checkout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    Add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    Reset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert" class="md-nav__link">
+    Revert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    Diff
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blame" class="md-nav__link">
+    Blame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    Commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    Push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull" class="md-nav__link">
+    Pull
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    Fetch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stash" class="md-nav__link">
+    Stash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    Rm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    Mv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    Log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tag" class="md-nav__link">
+    Tag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gerenciadores-de-repositorios" class="md-nav__link">
+    Gerenciadores de repositórios
+  </a>
+  
+    <nav class="md-nav" aria-label="Gerenciadores de repositórios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-autenticacao-via-ssh-linux" class="md-nav__link">
+    Configurando a autenticação via SSH (Linux)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    GitHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/programas/git.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Git é um sistema de controle de versões distribuído, usado principalmente no desenvolvimento de software, mas pode ser usado para registrar o histórico de edições de qualquer tipo de arquivo (Exemplo: alguns livros digitais são disponibilizados no GitHub e escrito aos poucos publicamente). O Git foi inicialmente projetado e desenvolvido por Linus Torvalds para o desenvolvimento do kernel Linux, mas foi adotado por muitos outros projetos.</p>
+<p>Cada diretório de trabalho do Git é um repositório com um histórico completo e habilidade total de acompanhamento das revisões, não dependente de acesso a uma rede ou a um servidor central.</p>
+<p>O Git é um software livre, distribuído sob os termos da versão 2 da GNU General Public License. Sua manutenção é atualmente supervisionada por Junio Hamano.</p>
+<h2 id="comandos">Comandos<a class="headerlink" href="#comandos" title="Permanent link">&para;</a></h2>
+<h3 id="configuracoes">Configurações<a class="headerlink" href="#configuracoes" title="Permanent link">&para;</a></h3>
+<p>Configurar o nome e email do usuário para que estas informações sejam armazenadas no histórico de ações do gerenciador de repositório.</p>
+<div class="highlight"><pre><span></span><code>git config --global user.name <span class="s2">&quot;&lt;nome usuario&gt;&quot;</span>
+git config --global user.email <span class="s2">&quot;&lt;email-usuario&gt;&quot;</span>
+</code></pre></div>
+<p>Configurar o editor padrão:</p>
+<div class="highlight"><pre><span></span><code>git config --global core.editor <span class="s2">&quot;&lt;editor&gt;&quot;</span>
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git config --global core.editor vim</span>
+</code></pre></div>
+<p>Configurar a ferramenta de merge padrão:</p>
+<div class="highlight"><pre><span></span><code>git config --global merge.tool <span class="s2">&quot;&lt;ferramenta&gt;&quot;</span>
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git config --global merge.tool vimdiff</span>
+</code></pre></div>
+<p>Configurar os arquivos a serem ignorados:</p>
+<div class="highlight"><pre><span></span><code>git config --global core.excludesfile ~/.gitignore
+</code></pre></div>
+<p>Ver as configurações definidas</p>
+<div class="highlight"><pre><span></span><code>git config --global --list
+</code></pre></div>
+<p>As configurações são armazenadas no arquivo <code>~/.gitconfig</code>.</p>
+<h3 id="init">Init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h3>
+<p>Transforma o diretório atual em um repositório do Git. Pode ser usado para converter um projeto existente e não versionado em um repositório do Git ou inicializar um novo repositório vazio.</p>
+<p>O comando <code>git init</code> cria um subdiretório <code>.git</code> no diretório de trabalho atual, que contém todos os metadados Git necessários para o novo repositório. Esses metadados incluem subdiretórios para objetos, referências e arquivos de template. Também é criado um arquivo HEAD que aponta para o commit em uso no momento.</p>
+<div class="highlight"><pre><span></span><code>git init
+</code></pre></div>
+<h3 id="clone">Clone<a class="headerlink" href="#clone" title="Permanent link">&para;</a></h3>
+<p>Clonagem (download) de um repositório que já existe remotamente, incluindo todos os arquivos, branches e commits.</p>
+<p>A clonagem de um repositório normalmente é feita apenas uma vez, no início de sua interação com um projeto. Uma vez que um repositório já exista em um local remoto, você clona esse repositório para que possa interagir com ele localmente.</p>
+<div class="highlight"><pre><span></span><code>git clone https://&lt;caminho&gt;.git
+<span class="c1"># ou</span>
+git clone https://&lt;caminho&gt;.git &lt;destino&gt;
+</code></pre></div>
+<h3 id="remote">Remote<a class="headerlink" href="#remote" title="Permanent link">&para;</a></h3>
+<p>Ver o endereço do repositório remoto.</p>
+<div class="highlight"><pre><span></span><code>git remote -v
+</code></pre></div>
+<p>Caso tenhamos criado o repositório localmente antes de criar no servidor, podemos adicionar o caminho com o comando set-url.</p>
+<div class="highlight"><pre><span></span><code>git remote set-url &lt;repo-remoto&gt; &lt;endereco&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git remote set-url origin git@github.com:usuario/usuario.github.io.git</span>
+</code></pre></div>
+<p>Excluir todas branchs locais que não tem mais referência remota.</p>
+<div class="highlight"><pre><span></span><code>git remote prune origin
+</code></pre></div>
+<h3 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h3>
+<p>Verifica o status dos arquivos em relação ao último checkout. O comando exibe a lista de arquivos alterados juntamente com os arquivos que ainda não foram adicionados ou confirmados.</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>Status de forma resumida:</p>
+<div class="highlight"><pre><span></span><code>git status -s
+</code></pre></div>
+<h3 id="branch">Branch<a class="headerlink" href="#branch" title="Permanent link">&para;</a></h3>
+<p>Branch são ramificações independentes dentro de um único projeto. Uma ramificação no git é um ponteiro para as alterações feitas nos arquivos do projeto. É útil em situações nas quais você deseja adicionar um novo recurso ou corrigir um erro, gerando uma nova ramificação garantindo que o código instável não seja mesclado nos arquivos do projeto principal. Depois de concluir a atualização dos códigos da ramificação, a branch pode ser mesclada com outras e eventualmente mesclada com a branch principal, geralmente chamada de master.</p>
+<p>Listar as branchs:</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<p>Ver branch atual:</p>
+<div class="highlight"><pre><span></span><code>git rev-parse --abbrev-ref HEAD
+</code></pre></div>
+<p>Criar branch:</p>
+<div class="highlight"><pre><span></span><code>git branch &lt;branch&gt;
+</code></pre></div>
+<p>Criar a branch a partir da branch corrente e já fazer o checkout:</p>
+<div class="highlight"><pre><span></span><code>git checkout -b &lt;branch&gt;
+</code></pre></div>
+<p>Criar a branch a partir de outra branch e já fazer o checkout:</p>
+<div class="highlight"><pre><span></span><code>git checkout -b &lt;branch-filha&gt; &lt;branch-pai&gt;
+</code></pre></div>
+<p>Excluir branch:</p>
+<div class="highlight"><pre><span></span><code>git branch -D &lt;branch&gt;
+</code></pre></div>
+<p>Exluir branchs locais que não existen remotamente:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
+git fetch --all -p<span class="p">;</span> git branch -vv <span class="p">|</span> grep <span class="s2">&quot;: gone]&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{ print $1 }&#39;</span> <span class="p">|</span> xargs -n <span class="m">1</span> git branch -D
+
+<span class="c1"># Windows</span>
+git checkout master<span class="p">;</span> git remote update origin --prune<span class="p">;</span> git branch -vv <span class="p">|</span> Select-String -Pattern <span class="s2">&quot;: gone]&quot;</span> <span class="p">|</span> % <span class="o">{</span> <span class="nv">$_</span>.toString<span class="o">()</span>.Trim<span class="o">()</span>.Split<span class="o">(</span><span class="s2">&quot; &quot;</span><span class="o">)[</span><span class="m">0</span><span class="o">]}</span> <span class="p">|</span> % <span class="o">{</span>git branch -d <span class="nv">$_</span><span class="o">}</span>
+</code></pre></div>
+<h3 id="checkout">Checkout<a class="headerlink" href="#checkout" title="Permanent link">&para;</a></h3>
+<p>Define qual a branch corrente, ou seja, a branch atualmente usada:</p>
+<div class="highlight"><pre><span></span><code>git checkout &lt;branch&gt;
+</code></pre></div>
+<p>Desfazendo alterações não commitadas em um arquivo para o último commit:</p>
+<div class="highlight"><pre><span></span><code>git checkout &lt;arquivo&gt;
+</code></pre></div>
+<p>Desfazendo alterações não commitadas de todos arquivos para o último commit:</p>
+<div class="highlight"><pre><span></span><code>git checkout .
+</code></pre></div>
+<p>Isso faz com que seu diretório ativo corresponda ao estado exato da confirmação do commit informado. Você pode procurar arquivos, compilar o projeto, realizar testes e até mesmo editar arquivos sem se preocupar em perder o estado atual do projeto. Nada que você faça aqui será salvo no seu repositório. Para continuar o desenvolvimento, é necessário voltar para o estado "atual" do projeto, como por exemplo, <code>git checkout &lt;branch&gt;</code>.</p>
+<div class="highlight"><pre><span></span><code>git checkout &lt;hash-commit&gt;
+</code></pre></div>
+<p>Criar uma branch a partir de um commit:</p>
+<div class="highlight"><pre><span></span><code>git checkout &lt;hash-commit&gt;
+git checkout -b &lt;branch&gt;
+</code></pre></div>
+<h3 id="merge">Merge<a class="headerlink" href="#merge" title="Permanent link">&para;</a></h3>
+<p>Mesclar uma branch com a branch corrente:</p>
+<div class="highlight"><pre><span></span><code>git merge &lt;branch&gt;
+</code></pre></div>
+<h3 id="add">Add<a class="headerlink" href="#add" title="Permanent link">&para;</a></h3>
+<p>Adiciona os arquivos modificados à área de staging, estando prontos para serem comitados. O Stage também é chamado de Index ou Staging Area (ou área temporária) no Git.</p>
+<p>Adiciona todos arquivos criados, modificados ou excluídos à área de staging, incluindo arquivos dos diretórios superiores:</p>
+<div class="highlight"><pre><span></span><code>git add -A
+</code></pre></div>
+<p>Adiciona todos arquivos criados, modificados ou excluídos à área de staging do diretório corrente:</p>
+<div class="highlight"><pre><span></span><code>git add .
+</code></pre></div>
+<p>Adiciona arquivos criados e modificados somente. Não inclui arquivos excluídos: </p>
+<div class="highlight"><pre><span></span><code>git add -u
+</code></pre></div>
+<p>Adiciona um arquivo específico à área de staging:</p>
+<div class="highlight"><pre><span></span><code>git add &lt;arquivo&gt;
+</code></pre></div>
+<h3 id="reset">Reset<a class="headerlink" href="#reset" title="Permanent link">&para;</a></h3>
+<p>Retornar para um commit anterior, porém diferente do <code>git revert</code>, ele não gera um novo commit. O comando <code>git reset</code> é uma ferramenta complexa e versátil para desfazer alterações. Ele tem três formas principais de invocação. Estas formas correspondem aos argumentos <code>--soft</code>, <code>--mixed</code>, <code>--hard</code> da linha de comandos. Cada um dos três argumentos corresponde a um mecanismo de gerenciamento do estado interno do Git: a árvore de confirmação (HEAD), o índice de staging e o diretório de trabalho.</p>
+<p>O ponteiro HEAD aponta para o último grupo de alterações(snapshot) comitado. Podemos alterar para qual commit o HEAD aponta executando os comandos commit ou reset, como veremos. A área de index, também chamada área de stage, contém o próximo snapshot a ser comitado. Alteramos a área de index quando executamos o comando add. Por fim, o diretório de trabalho contém as alterações que ainda não foram adicionadas à área de stage.</p>
+<p>O <code>git reset</code> tem comportamento semelhante ao <code>git checkout</code>. Enquanto o <code>git checkout</code> opera apenas no indicador de referência HEAD, o <code>git reset</code> move o indicador de referência HEAD e o indicador de referência da branch atual.</p>
+<h4 id="reset-soft">Reset soft<a class="headerlink" href="#reset-soft" title="Permanent link">&para;</a></h4>
+<p>Move apenas o ponteiro HEAD para algum outro commit, sem alterar a área de stage ou o diretório de trabalho. É importante notar que, de fato, a operação moverá o branch para o qual o HEAD aponta e, por consequência, moverá também o ponteiro HEAD.</p>
+<p>Essa opção é a mais segura entre as três, pois caso seja executada por engano, todo o trabalho atual ainda está acessível através da branch local.</p>
+<p>Desfazendo uma alteração, mas colocando ela em stage:</p>
+<div class="highlight"><pre><span></span><code>git reset --soft HEAD~1
+</code></pre></div>
+<h4 id="reset-mixed">Reset mixed<a class="headerlink" href="#reset-mixed" title="Permanent link">&para;</a></h4>
+<p>O opção mixed ou, por ser o tipo default, somente reset. Essa opção, além de mover o ponteiro HEAD, faz com que a área de stage contenha o mesmo snapshot do commit para o qual o ponteiro HEAD foi movido, porém não afeta o diretório de trabalho.</p>
+<p>Remove um arquivo específico da áreas de stage:</p>
+<div class="highlight"><pre><span></span><code>git reset &lt;arquivo&gt;
+</code></pre></div>
+<p>Remove todos arquivos da áreas de stage:</p>
+<div class="highlight"><pre><span></span><code>git reset HEAD .
+</code></pre></div>
+<h4 id="reset-hard">Reset hard<a class="headerlink" href="#reset-hard" title="Permanent link">&para;</a></h4>
+<p>A opção hard não apenas descarta as alterações na área de stage como também reverte todas as alterações no diretório de trabalho para o estado do commit que foi especificado no comando. Todas as alterações após o commit especificado, comitadas ou não, serão perdidas.</p>
+<p>Desfazendo para o último commit sem colocar as alterações em stage:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD~1
+</code></pre></div>
+<p>Desfazendo o último push:</p>
+<div class="highlight"><pre><span></span><code>git reset --hard HEAD~1 <span class="o">&amp;&amp;</span> git push -f origin master
+</code></pre></div>
+<h3 id="revert">Revert<a class="headerlink" href="#revert" title="Permanent link">&para;</a></h3>
+<p>Pode ser considerado um comando do tipo "desfazer", entretanto ao invés vez de remover o commit do histórico do projeto, as alterações do commit especificado são desfeitas e um novo commit é gerado. Isto evita que o Git perca o histórico, o que é importante para a integridade do histórico de revisão e para uma colaboração confiável.</p>
+<p>Desfazendo para um commit específico:</p>
+<div class="highlight"><pre><span></span><code>git revert &lt;hash-commit&gt;
+
+<span class="c1"># os primeiros números já são suficientes</span>
+</code></pre></div>
+<h3 id="diff">Diff<a class="headerlink" href="#diff" title="Permanent link">&para;</a></h3>
+<p>Ver a lista do que foi modificado em uma branch:</p>
+<div class="highlight"><pre><span></span><code>git diff
+</code></pre></div>
+<p>Ver o que foi modificado em um arquivo:</p>
+<div class="highlight"><pre><span></span><code>git diff &lt;arquivo&gt;
+</code></pre></div>
+<h3 id="blame">Blame<a class="headerlink" href="#blame" title="Permanent link">&para;</a></h3>
+<p>Examina os pontos específicos do histórico de um arquivo e obtém quem foi o último autor que modificou a linha. É usado para explorar o histórico de código específico e responder dúvidas sobre o que, como e por que o código foi adicionado ao repositório.</p>
+<p>Lista as pessoas que realizaram modificações no arquivo:</p>
+<div class="highlight"><pre><span></span><code>git blame &lt;arquivo&gt;
+</code></pre></div>
+<p>Lista as pessoas que realizaram modificações no arquivo ignorando as mudanças de espaço em branco.</p>
+<div class="highlight"><pre><span></span><code>git blame -w &lt;arquivo&gt;
+</code></pre></div>
+<p>Lista as pessoas que realizaram modificações no arquivo detectando linhas que foram movidas ou copiadas dentro do mesmo arquivo. Isto vai exibir o autor original das linhas, ao invés do último autor que moveu ou copiou as linhas.</p>
+<div class="highlight"><pre><span></span><code>git blame -M &lt;arquivo&gt;
+</code></pre></div>
+<p>Lista as pessoas que realizaram modificações no arquivo detectando linhas que foram movidas ou copiadas de outros arquivos. Isto vai exibir o autor original das linhas, ao invés do último autor que moveu ou copiou as linhas.</p>
+<div class="highlight"><pre><span></span><code>git blame -C &lt;arquivo&gt;
+</code></pre></div>
+<p>Lista as pessoas que realizaram modificações no arquivo nas linhas x até y:</p>
+<div class="highlight"><pre><span></span><code>git blame -L &lt;x&gt;,&lt;y&gt; &lt;arquivo&gt;
+
+<span class="c1"># exemplo</span>
+<span class="c1"># git blame -L 1,5 README.md</span>
+</code></pre></div>
+<h3 id="commit">Commit<a class="headerlink" href="#commit" title="Permanent link">&para;</a></h3>
+<p>Commit é um processo simples que adiciona as alterações para o histórico do repositório e atribui um nome ao commit. O commit é como um <em>snapshot</em> do repositório no momento em que é executado.</p>
+<p>Commit que irá abrir o editor de texto para informar a mensagem:</p>
+<div class="highlight"><pre><span></span><code>git commit
+</code></pre></div>
+<p>Commit já informando a mensagem de descrição:</p>
+<div class="highlight"><pre><span></span><code>git commit -m <span class="s2">&quot;&lt;mensagem&gt;&quot;</span>
+</code></pre></div>
+<p>Commit já adicionando os arquivos à área de staging (add + commit):</p>
+<div class="highlight"><pre><span></span><code>git commit -am <span class="s2">&quot;&lt;mensagem&gt;&quot;</span>
+</code></pre></div>
+<p>Commit sem informar mensagem de descrição:</p>
+<div class="highlight"><pre><span></span><code>git commit -m.
+
+<span class="c1"># add + commit</span>
+git commit -am.
+</code></pre></div>
+<p>Modificar a mensagem do último commit realizado:</p>
+<div class="highlight"><pre><span></span><code>git commit --amend -m <span class="s2">&quot;&lt;mensagem&gt;&quot;</span>
+</code></pre></div>
+<p>Ver os últimos commits</p>
+<div class="highlight"><pre><span></span><code>git log
+</code></pre></div>
+<h3 id="push">Push<a class="headerlink" href="#push" title="Permanent link">&para;</a></h3>
+<p>Envia o conteúdo do repositório local para um repositório remoto.</p>
+<p>Push da branch local corrente para a branch remota de mesmo nome:</p>
+<div class="highlight"><pre><span></span><code>git push
+</code></pre></div>
+<p>Push da branch local corrente para a branch informada:</p>
+<div class="highlight"><pre><span></span><code>git push &lt;repo-remoto&gt; &lt;branch&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git push origin master</span>
+</code></pre></div>
+<p>Push de todas novas branchs para o repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git push --all &lt;repo-remoto&gt;
+
+<span class="c1"># exemplo</span>
+<span class="c1"># git push --all origin</span>
+</code></pre></div>
+<p>Push de todas novas tags para o repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git push --tags &lt;repo-remoto&gt;
+</code></pre></div>
+<p>Remover uma branch remota:</p>
+<div class="highlight"><pre><span></span><code>git push &lt;repo-remoto&gt; :&lt;branch&gt;
+</code></pre></div>
+<h3 id="pull">Pull<a class="headerlink" href="#pull" title="Permanent link">&para;</a></h3>
+<p>Busca e baixa conteúdo de repositórios remotos e faz a atualização imediata ao repositório local para que os conteúdos sejam iguais.</p>
+<p>O comando <code>git pull</code> é a combinação de dois outros comandos, o <code>fetch</code>, seguido do <code>merge</code>. O comando <code>git pull</code> primeiro executa o <code>git fetch</code>, que baixa o conteúdo do repositório remoto especificado. Então, o <code>git merge</code> é executado e faz merge das refs e heads do conteúdo remoto para o novo commit de merge local.</p>
+<p>Pull para a branch local corrente vinda da branch remota de mesmo nome:</p>
+<div class="highlight"><pre><span></span><code>git pull
+</code></pre></div>
+<p>Pull para a branch local corrente vinda da branch informada:</p>
+<div class="highlight"><pre><span></span><code>git pull &lt;repo-remoto&gt; &lt;branch&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git pull origin master</span>
+</code></pre></div>
+<p>Pull para a branch local corrente sem realizar merge. Os commits locais novos serão aplicados após o último commit remoto.</p>
+<div class="highlight"><pre><span></span><code>git pull --rebase
+</code></pre></div>
+<h3 id="fetch">Fetch<a class="headerlink" href="#fetch" title="Permanent link">&para;</a></h3>
+<p>Baixa commits, arquivos e referências de um repositório remoto para seu repositório local. Ele vai baixar o conteúdo remoto, mas <strong>não</strong> vai atualizar a branch do repositório local, deixando a branch corrente intacta. O <code>git pull</code> é a alternativa mais agressiva: ele vai baixar o conteúdo remoto para a ramificação corrente local e vai executar o comando <code>git merge</code> imediatamente para criar um commit de merge para o novo conteúdo remoto.</p>
+<p>Busca em todas as branchs do repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git fetch &lt;repo-remoto&gt;
+</code></pre></div>
+<p>Busca na branch informada do repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git fetch &lt;repo-remoto&gt; &lt;branch&gt;
+</code></pre></div>
+<h3 id="stash">Stash<a class="headerlink" href="#stash" title="Permanent link">&para;</a></h3>
+<p>Pega as alterações sem commit e as salva para uso posterior. O stash é local, ou seja, não são transferidos para o repositório remoto ao realizar um push. Novos arquivos que não estão na área de staging (não executou o <code>git add</code>) e arquivos ignorados não são salvos ao realizar o <code>git stash</code>.</p>
+<p>Realiza o stash dos arquivos não comitados da branch corrente.</p>
+<div class="highlight"><pre><span></span><code>git stash
+</code></pre></div>
+<p>Realiza o stash com descrição:</p>
+<div class="highlight"><pre><span></span><code>git stash save -u <span class="s2">&quot;&lt;mensagem&gt;&quot;</span>
+</code></pre></div>
+<p>Lista dos stashs criados:</p>
+<div class="highlight"><pre><span></span><code>git stash list
+</code></pre></div>
+<p>Aplica o stash mais recente na branch corrente:</p>
+<div class="highlight"><pre><span></span><code>git stash apply
+</code></pre></div>
+<p>Aplica o stash de índice i:</p>
+<div class="highlight"><pre><span></span><code>git stash apply stash@<span class="o">{</span>i<span class="o">}</span>
+</code></pre></div>
+<p>Remove o stash mais recente:</p>
+<div class="highlight"><pre><span></span><code>git stash pop
+</code></pre></div>
+<p>Remove o stash de índice i:</p>
+<div class="highlight"><pre><span></span><code>git stash pop stash@<span class="o">{</span>i<span class="o">}</span>
+</code></pre></div>
+<h3 id="rm">Rm<a class="headerlink" href="#rm" title="Permanent link">&para;</a></h3>
+<p>Deletar arquivo ou diretório vazio:</p>
+<div class="highlight"><pre><span></span><code>git rm &lt;arquivo-ou-diretorio&gt;
+</code></pre></div>
+<p>Deletar diretório não vazio:</p>
+<div class="highlight"><pre><span></span><code>git rm -r &lt;diretorio&gt;
+</code></pre></div>
+<h3 id="mv">Mv<a class="headerlink" href="#mv" title="Permanent link">&para;</a></h3>
+<p>Mover ou renomear arquivos ou diretórios:</p>
+<div class="highlight"><pre><span></span><code>git mv &lt;caminho-origem&gt; &lt;caminho-destino&gt;
+</code></pre></div>
+<h3 id="log">Log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
+<p>Ver histórico de commits:</p>
+<div class="highlight"><pre><span></span><code>git log
+</code></pre></div>
+<p>Ver histórico dos últimos x commits:</p>
+<div class="highlight"><pre><span></span><code>git log -p -x
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git log -p -2</span>
+</code></pre></div>
+<p>Ver histórico de maneira resumida:</p>
+<div class="highlight"><pre><span></span><code>git log --pretty<span class="o">=</span>oneline
+</code></pre></div>
+<p>Ver histórico de forma customizada:</p>
+<div class="highlight"><pre><span></span><code>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%h = %an, %ar - %s&quot;</span>
+</code></pre></div>
+<p>Ver histórico por pessoa:</p>
+<div class="highlight"><pre><span></span><code>git log --author<span class="o">=</span>nome_da_pessoa_ou_usuario
+</code></pre></div>
+<h3 id="tag">Tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h3>
+<p>Criar tag:</p>
+<div class="highlight"><pre><span></span><code>git tag &lt;versao&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git tag 0.0.1</span>
+</code></pre></div>
+<p>Criar uma tag com mensagem (anotada):</p>
+<div class="highlight"><pre><span></span><code>git tag -a &lt;versao&gt; -m <span class="s2">&quot;&lt;mensagem&gt;&quot;</span>
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git tag -a 0.0.1 -m &quot;versão 0.0.1&quot;</span>
+</code></pre></div>
+<p>Criar uma tag a partir de um commit:</p>
+<div class="highlight"><pre><span></span><code>git tag -a &lt;versao&gt; &lt;hash-commit&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git tag -a 0.0.1 b6120</span>
+</code></pre></div>
+<p>Enviar uma tag para o repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git push &lt;repo-remoto&gt; &lt;versao&gt;
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git push origin 0.0.1</span>
+</code></pre></div>
+<p>Enviar todas tags para o repositório remoto:</p>
+<div class="highlight"><pre><span></span><code>git push &lt;repo-remoto&gt; --tags
+
+<span class="c1"># exemplo:</span>
+<span class="c1"># git push origin --tags</span>
+</code></pre></div>
+<h2 id="gerenciadores-de-repositorios">Gerenciadores de repositórios<a class="headerlink" href="#gerenciadores-de-repositorios" title="Permanent link">&para;</a></h2>
+<h3 id="configurando-a-autenticacao-via-ssh-linux">Configurando a autenticação via SSH (Linux)<a class="headerlink" href="#configurando-a-autenticacao-via-ssh-linux" title="Permanent link">&para;</a></h3>
+<p>O arquivo com a chave pública pode ser encontrado em <code>~/.ssh</code>. Geralmente possui a extensão <code>.pub</code>, como por exemplo <code>id_rsa.pub</code>.</p>
+<p>Caso o arquivo não exista, ele pode ser gerado através do comando:</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen
+</code></pre></div>
+<p>Use o conteúdo do arquivo <code>.pub</code> nas configurações de acesso SSH do gerenciador de repositórios (GitHub, GitLab, Bitbucket).</p>
+<h3 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
+<p>GitHub é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando o Git. Ele permite que programadores, utilitários ou qualquer usuário cadastrado na plataforma contribuam em projetos privados e/ou Open Source de qualquer lugar do mundo.</p>
+<h4 id="github-pages">GitHub Pages<a class="headerlink" href="#github-pages" title="Permanent link">&para;</a></h4>
+<p>O GitHub Pages é um serviço de hospedagem de site estático que usa arquivos HTML, CSS e JavaScript diretamente de um repositório no GitHub e, como opção, executa os arquivos por meio de um processo e publica um site.</p>
+<h5 id="remover-a-branch-gh-pages">Remover a branch gh-pages<a class="headerlink" href="#remover-a-branch-gh-pages" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>git push origin :gh-pages
+</code></pre></div>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://pt.wikipedia.org/wiki/Git">https://pt.wikipedia.org/wiki/Git</a></li>
+<li><a href="https://www.devmedia.com.br/como-usar-os-comandos-do-git/33665">https://www.devmedia.com.br/como-usar-os-comandos-do-git/33665</a></li>
+<li><a href="https://www.atlassian.com/br/git/tutorials">https://www.atlassian.com/br/git/tutorials</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../firebase/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Firebase
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../maven/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Maven
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>

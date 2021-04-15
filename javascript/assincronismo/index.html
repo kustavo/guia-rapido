@@ -1,0 +1,2247 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guia para consultas rápidas em assuntos relacionados às áreas de programação, desenvolvimento e outras áreas de TI.">
+      
+      
+      
+        <meta name="author" content="Gustavo Araujo">
+      
+      
+        <link rel="canonical" href="https://kustavo.github.io/guia-rapido/javascript/assincronismo/">
+      
+      <link rel="icon" href="../../_extras/favicon.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.1">
+    
+    
+      
+        <title>Javascript assíncrono - Guia Rápido</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9299cb39.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../_extras/extra.css">
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8CBSJDDZK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-Y8CBSJDDZK");
+
+    console.log(">> analytics...");
+</script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#javascript-assincrono" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guia Rápido" class="md-header__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guia Rápido
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Javascript assíncrono
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../dotnet/introducao/" class="md-tabs__link">
+        .Net
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introducao/" class="md-tabs__link md-tabs__link--active">
+        Javascript
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../design-patterns/observer/" class="md-tabs__link">
+        Padrões de projeto
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../linux/introducao/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../html/introducao/" class="md-tabs__link">
+        Html
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../css/introducao/" class="md-tabs__link">
+        Css
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../markdown/markdown/" class="md-tabs__link">
+        Markdown
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../programas/docker/" class="md-tabs__link">
+        Programas
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ingles/introducao/" class="md-tabs__link">
+        Inglês
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../android/android/" class="md-tabs__link">
+        Outros
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guia Rápido" class="md-nav__button md-logo" aria-label="Guia Rápido" data-md-component="logo">
+      
+  <img src="../../_extras/logo.svg" alt="logo">
+
+    </a>
+    Guia Rápido
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kustavo/guia-rapido/" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        .Net
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label=".Net" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          .Net
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/instalacao-e-configuracao/" class="md-nav__link">
+        Instalação e configuração
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/interface-linha-comando/" class="md-nav__link">
+        Interface de linha de comando
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/entity-framework/" class="md-nav__link">
+        Entity Framework
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/erros-e-solucoes/" class="md-nav__link">
+        Erros e soluções
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dotnet/matrizes-e-colecoes/" class="md-nav__link">
+        Coleções
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Javascript
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Javascript" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Javascript
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Javascript assíncrono
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Javascript assíncrono
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metodo-then" class="md-nav__link">
+    Método .then()
+  </a>
+  
+    <nav class="md-nav" aria-label="Método .then()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encadeamento" class="md-nav__link">
+    Encadeamento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estado-settled" class="md-nav__link">
+    Estado Settled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promises-de-promises" class="md-nav__link">
+    Promises de Promises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-de-promises" class="md-nav__link">
+    Métodos de Promises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asyncawait" class="md-nav__link">
+    Async/Await
+  </a>
+  
+    <nav class="md-nav" aria-label="Async/Await">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencas-entre-then-e-asyncawait" class="md-nav__link">
+    Diferenças entre .then() e async/await
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Padrões de projeto
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Padrões de projeto" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Padrões de projeto
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/observer/" class="md-nav__link">
+        Observer
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Linux
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Shell
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Shell" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/linux-shell/" class="md-nav__link">
+        Linux shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/bash/" class="md-nav__link">
+        Bash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/dash/" class="md-nav__link">
+        Dash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/zsh/" class="md-nav__link">
+        Z-shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/shell/gnome-terminal/" class="md-nav__link">
+        Gnome terminal
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/arquivos-e-diretorios/" class="md-nav__link">
+        Arquivos e diretórios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/servicos-e-processos/" class="md-nav__link">
+        Serviços e processos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/sessao-e-usuario/" class="md-nav__link">
+        Sessão e usuário
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_6" type="checkbox" id="__nav_5_6" >
+      
+      <label class="md-nav__link" for="__nav_5_6">
+        Gerenciador de pacotes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Gerenciador de pacotes" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Gerenciador de pacotes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/apt/" class="md-nav__link">
+        Apt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/snap/" class="md-nav__link">
+        Snap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/flatpak/" class="md-nav__link">
+        Flatpak
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/gerenciador-pacotes/yaourt/" class="md-nav__link">
+        Yaourt
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_7" type="checkbox" id="__nav_5_7" >
+      
+      <label class="md-nav__link" for="__nav_5_7">
+        Distribuições e ambientes gráficos
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Distribuições e ambientes gráficos" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Distribuições e ambientes gráficos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/gnome/" class="md-nav__link">
+        Gnome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/pop-os/" class="md-nav__link">
+        Pop!_OS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/manjaro/" class="md-nav__link">
+        Manjaro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/distribuicoes-e-ambientes-graficos/arch-linux/" class="md-nav__link">
+        Arch Linux
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_8" type="checkbox" id="__nav_5_8" >
+      
+      <label class="md-nav__link" for="__nav_5_8">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_8">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/imagemagick/" class="md-nav__link">
+        Imagemagick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/ntfsfix/" class="md-nav__link">
+        Ntfsfix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/puddletag/" class="md-nav__link">
+        Puddletag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/programas/rsync/" class="md-nav__link">
+        Rsync
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/certificado-ssl/" class="md-nav__link">
+        Certificado SSL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Html
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Html" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      <label class="md-nav__link" for="__nav_7">
+        Css
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Css" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/grid/" class="md-nav__link">
+        Grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../css/flexbox/" class="md-nav__link">
+        Flexbox
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      <label class="md-nav__link" for="__nav_8">
+        Markdown
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Markdown" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Markdown
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/markdown-to-medium/" class="md-nav__link">
+        Mardown para plataforma Medium
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../markdown/mkdocs/" class="md-nav__link">
+        MkDocs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      <label class="md-nav__link" for="__nav_9">
+        Programas
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Programas" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Programas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/docker-compose/" class="md-nav__link">
+        Docker-Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/firebase/" class="md-nav__link">
+        Firebase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/maven/" class="md-nav__link">
+        Maven
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/mysql/" class="md-nav__link">
+        MySQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/nodejs/" class="md-nav__link">
+        Node.js
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/postgresql/" class="md-nav__link">
+        PostgreSQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/raspberry/" class="md-nav__link">
+        Raspberry Pi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/veracrypt/" class="md-nav__link">
+        VeraCrypt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programas/visual-studio-code/" class="md-nav__link">
+        Visual Studio Code
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      <label class="md-nav__link" for="__nav_10">
+        Inglês
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Inglês" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Inglês
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/introducao/" class="md-nav__link">
+        Introdução
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/historia/" class="md-nav__link">
+        História
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ingles/verbos/" class="md-nav__link">
+        Verbos
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      <label class="md-nav__link" for="__nav_11">
+        Outros
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Outros" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Outros
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../android/android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/sql/" class="md-nav__link">
+        SQL
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metodo-then" class="md-nav__link">
+    Método .then()
+  </a>
+  
+    <nav class="md-nav" aria-label="Método .then()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encadeamento" class="md-nav__link">
+    Encadeamento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estado-settled" class="md-nav__link">
+    Estado Settled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promises-de-promises" class="md-nav__link">
+    Promises de Promises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-de-promises" class="md-nav__link">
+    Métodos de Promises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asyncawait" class="md-nav__link">
+    Async/Await
+  </a>
+  
+    <nav class="md-nav" aria-label="Async/Await">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencas-entre-then-e-asyncawait" class="md-nav__link">
+    Diferenças entre .then() e async/await
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referências
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kustavo/guia-rapido/edit/master/docs/javascript/assincronismo.md" title="Editar esta página" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="javascript-assincrono">Javascript assíncrono<a class="headerlink" href="#javascript-assincrono" title="Permanent link">&para;</a></h1>
+<p>Com o avanço das tecnologias frontend e principalmente do Javascript, a programação assíncrona se tornou cada vez mais necessária e comum nas aplicações, principalmente em SPA’s. Desde os primórdios do jQuery possuímos as requisições XMLHttpRequest (AJAX) que faziam um trabalho assíncrono.</p>
+<p>É para esse tipo de situação, que requer processamento assíncrono que existem as Promises, ou, literalmente, promessas. Promise é um objeto usado para processamento assíncrono. Um Promise (de "promessa") representa um valor que pode estar disponível agora, no futuro ou nunca. Em outras palavras, uma Promise é um objeto que representa a eventual conclusão ou falha de uma operação assíncrona.</p>
+<p>Existem duas formas de se trabalhar com processamento assíncrono (ou seja, Promises) em JavaScript: utilizando o método <code>.then()</code> ou as palavras-chave <code>async</code> e <code>await</code>.</p>
+<h2 id="metodo-then">Método .then()<a class="headerlink" href="#metodo-then" title="Permanent link">&para;</a></h2>
+<p>Promises, como já dissemos, definem uma ação que vai ser executada no futuro, ou seja, ela pode ser resolvida (com sucesso) ou rejeitada (com erro). A Promise retorna um método <code>.then()</code> e outro <code>.catch()</code>. Utilizamos o <code>.then()</code> para tratar quando queremos resolver a Promise, e o <code>.catch()</code> quando queremos tratar os erros de uma Promise rejeitada. Tanto <code>.then()</code> quanto <code>.catch()</code> retornam outra Promise e é isso que permite que façamos o encadeamento de <code>then().then().then()</code>.</p>
+<p>Para criarmos uma Promise é muito simples, basta inicializar um <code>new Promise()</code> que recebe uma função como parâmetro, esta função tem a assinatura <code>(resolve, reject) =&gt; {}</code> , então podemos realizar nossas tarefas assíncronas no corpo desta função, quando queremos retornar o resultado final fazemos <code>resolve(resultado)</code> e quando queremos retornar um erro fazemos <code>reject(erro)</code>. O método <code>finally()</code> sempre será executado, independente se a Promise foi resolvida ou rejeitada.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">promessa</span><span class="p">(</span><span class="nx">resolver</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">resolver</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Erro!&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Sucesso!&quot;</span><span class="p">);</span>
+        <span class="p">},</span> <span class="mf">3000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">promessa</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sempre executado&quot;</span><span class="p">));</span>
+<span class="c1">// Saída:</span>
+<span class="c1">// Sucesso!</span>
+<span class="c1">// Sempre executado</span>
+
+
+<span class="nx">promessa</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sempre executado&quot;</span><span class="p">));</span>
+<span class="c1">// Saída:</span>
+<span class="c1">// Erro!</span>
+<span class="c1">// Sempre executado</span>
+</code></pre></div>
+<p>Formas de recuperar a resposta de uma Promise.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">promessa</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Sucesso!&quot;</span><span class="p">);</span>
+
+    <span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Erro!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Forma 1</span>
+<span class="nx">promessa</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+        <span class="p">(</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">),</span>
+        <span class="p">(</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sempre executado&quot;</span><span class="p">));</span>
+
+<span class="c1">// Forma 2</span>
+<span class="nx">promessa</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">));</span>
+<span class="nx">promessa</span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">));</span>
+<span class="nx">promessa</span><span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sempre executado&quot;</span><span class="p">));</span>
+
+<span class="c1">// Forma 3</span>
+<span class="nx">promessa</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sempre executado&quot;</span><span class="p">));</span>
+
+<span class="c1">// Saída igual para todos:</span>
+<span class="c1">// Sucesso!</span>
+<span class="c1">// Sempre executado</span>
+<span class="c1">// ou</span>
+<span class="c1">// Erro!</span>
+<span class="c1">// Sempre executado</span>
+</code></pre></div>
+<p>Essencialmente, uma Promise é o objeto retornado no qual foi adicionado callbacks, ao invés de passar callbacks para uma função.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">successCallback</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It succeeded with &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">failureCallback</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;It failed with &quot;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Exemplo usando callbacks</span>
+<span class="nx">doSomething</span><span class="p">(</span><span class="nx">successCallback</span><span class="p">,</span> <span class="nx">failureCallback</span><span class="p">);</span>
+
+<span class="c1">// Exemplo usando Promises</span>
+<span class="nx">doSomething</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">successCallback</span><span class="p">,</span> <span class="nx">failureCallback</span><span class="p">);</span>
+</code></pre></div>
+<p>Ao contrário do modo tradicional de passar callbacks, uma Promise vem com algumas garantias:</p>
+<ul>
+<li>Callbacks nunca serão chamados antes da conclusão da execução atual do loop de eventos do JavaScript.</li>
+<li>Callbacks adicionadas com <code>.then()</code> mesmo depois do sucesso ou falha da operação assíncrona, serão chamadas, como acima.</li>
+<li>Múltiplos callbacks podem ser adicionados chamando-se <code>.then()</code> várias vezes, para serem executados independentemente da ordem de inserção.</li>
+</ul>
+<h3 id="encadeamento">Encadeamento<a class="headerlink" href="#encadeamento" title="Permanent link">&para;</a></h3>
+<p>Em alguns casos teremos uma Promise que retorna outra Promise e para acessar o resultado dessa segunda iremos precisar encadear as chamadas. No exemplo abaixo, estamos executando 3 ações após a primeira Promise, a cada ação nós escrevemos no console o que estamos fazendo e retornamos o <strong>mesmo valor para a próxima Promise</strong>. Cada <code>.then()</code> retorna outra Promise, então todo o valor retornado dentro de um <code>.then()</code> é como se estivéssemos dando um <code>resolve(res)</code> que retornará o valor (string) da Promise anterior. Estamos declarando dois handlers de erro. O que deve acontecer é que, quando a Promise for rejeitada, ele deverá chamar o primeiro handler <code>erro1()</code>, mas todo o resto do fluxo segue normalmente. Lembre-se que lançar um <code>throw()</code> é diferente de rejeitar uma Promise. O <code>throw()</code> irá parar a execução do sistema, mas um <code>reject()</code> irá manter o sistema sendo executado, por esta razão é possível ter múltiplos <code>.catch()</code> em uma Promise. Cada <code>.catch()</code> irá capturar o erro relativo às Promises anteriores, uma vez capturado, o valor que ele retornar será passado para a próxima Promise que executará normalmente.</p>
+<p>Neste exemplo o último <code>.catch()</code> não será acionado, pois as demais só retornam um <code>resolve(string)</code> e não são passíveis de erro.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">promessa</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Sucesso! Resposta&quot;</span> <span class="o">+</span> <span class="nx">n</span><span class="p">);</span>
+
+    <span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Erro!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promessa</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="nx">acao1</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">res</span><span class="si">}</span><span class="sb"> na ação 1`</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="nx">erro1</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Erros que acontecem na ação 1</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Primeiro catch&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">&quot;Erro ação 1&quot;</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="nx">acao2</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">res</span><span class="si">}</span><span class="sb"> na ação 2`</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="nx">acao3</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">res</span><span class="si">}</span><span class="sb"> na ação 3`</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="nx">erro</span><span class="p">(</span><span class="nx">rej</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Erros que acontecem nas ações 2 e 3</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">rej</span><span class="p">);</span>
+    <span class="p">});</span>
+
+
+<span class="c1">// Saída:</span>
+<span class="c1">// &quot;Sucesso! Resposta: 0.8493631956228549 na ação 1&quot;</span>
+<span class="c1">// &quot;Sucesso! Resposta: 0.8493631956228549 na ação 2&quot;</span>
+<span class="c1">// &quot;Sucesso! Resposta: 0.8493631956228549 na ação 3&quot;</span>
+<span class="c1">// ou</span>
+<span class="c1">// &quot;Primeiro catch&quot;</span>
+<span class="c1">// &quot;Erro ação 1 na ação 2&quot;</span>
+<span class="c1">// &quot;Erro ação 1 na ação 3&quot;</span>
+</code></pre></div>
+<h3 id="estado-settled">Estado Settled<a class="headerlink" href="#estado-settled" title="Permanent link">&para;</a></h3>
+<p>O estado <code>settled</code> é quando temos uma Promise completamente resolvida, que já recebeu seus valores de <em>resolved</em> ou <em>reject</em>, ou seja, é uma Promise que já "acabou". Mesmo criando um novo <em>handler</em> após 2000ms, ele sempre irá retornar o valor de <em>resolve</em> que já foi resolvido.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">promessa</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Resultado &quot;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">());</span>
+
+    <span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Erro!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">promessa</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">)).</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">));</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">promessa</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">)).</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erro</span><span class="p">)),</span> <span class="mf">2000</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// Resultado 0.9302392114354243</span>
+<span class="c1">// Resultado 0.9302392114354243</span>
+</code></pre></div>
+<h3 id="promises-de-promises">Promises de Promises<a class="headerlink" href="#promises-de-promises" title="Permanent link">&para;</a></h3>
+<p>É possível para que uma Promise retorne outra Promise para ser resolvida. Quando retornamos uma Promise para outra Promise, só vamos ter a resolução completa do conjunto quando ambas as Promises entrarem no estado <code>settled</code>. Ou seja, se, dentro de uma Promise, chamamos outra Promise, a primeira só se resolverá após o retorno da segunda como <code>settled</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Start&quot;</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">1</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">resposta</span> <span class="o">+</span> <span class="mf">1</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">resposta</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resposta</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Stop&quot;</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// Start</span>
+<span class="c1">// Stop</span>
+<span class="c1">// 2</span>
+</code></pre></div>
+<h3 id="metodos-de-promises">Métodos de Promises<a class="headerlink" href="#metodos-de-promises" title="Permanent link">&para;</a></h3>
+<h4 id="promiseresolve-e-promisereject">Promise.resolve e Promise.reject<a class="headerlink" href="#promiseresolve-e-promisereject" title="Permanent link">&para;</a></h4>
+<p>Estes dois métodos são atalhos para quando queremos retornar uma Promise que sempre terá o mesmo valor, ou sempre resolvida, ou sempre rejeitada.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">1056</span><span class="p">))</span>
+
+<span class="c1">// Formas reduzidas</span>
+<span class="kd">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mf">1056</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Erro&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="promiseall">Promise.all<a class="headerlink" href="#promiseall" title="Permanent link">&para;</a></h4>
+<p>A ideia do método <code>Promise.all</code> é executar ações simultaneamente, ou seja, disparar uma série de Promises ao mesmo tempo e esperar pelo retorno de todas elas.</p>
+<p>O método <code>Promise.all</code> recebe um Array de Promises não resolvidas e inicia todas elas. Ele só vai terminar em dois casos:</p>
+<ol>
+<li>Todas as Promises do array foram resolvidas</li>
+<li>Pelo menos uma Promise foi rejeitada</li>
+</ol>
+<p>Abaixo um exemplo com todas Promises resolvidas. <code>Promise.all</code> espera todas as Promises se resolverem antes de chamar seu handler, no caso de sucesso, o <code>Promise.all</code> retorna um <em>array</em> com todos os resultados das Promises enviadas.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">2500</span><span class="p">)),</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">500</span><span class="p">)),</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">1000</span><span class="p">)),</span>
+<span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">length</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// 3</span>
+</code></pre></div>
+<p>Abaixo um exemplo com uma promise rejeitada. Quando a segunda Promise é rejeitada, todos os <em>handlers</em> são chamados imediatamente, ou seja, o método retorna o valor do erro da segunda Promise para o <code>.catch()</code> e ignora completamente as outras Promises, elas ainda são executadas, mas não tem seus valores consumidos por ninguém.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">2500</span><span class="p">)),</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">reject</span><span class="p">(),</span> <span class="mf">500</span><span class="p">)),</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">1000</span><span class="p">)),</span>
+<span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">length</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// Error&gt; undefined  </span>
+</code></pre></div>
+<h4 id="promiseallsettled">Promise.allSettled<a class="headerlink" href="#promiseallsettled" title="Permanent link">&para;</a></h4>
+<p>Este método veio para sanar um grande problema com o <code>Promise.all</code>. Em muitos casos reais, nós queremos executar várias Promises de forma paralela e trazer o resultado de todas elas, e não só o erro ou então só o array de sucessos, nós queremos tanto os erros, quanto os sucessos.</p>
+<p>Este é um problema comum com o <code>Promise.all</code> , quando queremos pegar o resultado de todas as Promises, temos que fazer uma função de reflexão, que nada mais faz do que atribuir um <em>handler</em> para cada uma das Promises no array e jogar isso tudo dentro do <code>Promise.all</code>. Desta forma estamos sobrescrevendo o comportamento original da Promise pelo nosso próprio e retornando para cada valor um objeto com as descrições do que aconteceu.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">reflect</span><span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+        <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span> <span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;fulfilled&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">res</span> <span class="p">};</span>
+        <span class="p">},</span>
+        <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span> <span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;rejected&quot;</span><span class="p">,</span> <span class="nx">reason</span><span class="o">:</span> <span class="nx">error</span> <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span> <span class="mf">1500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span> <span class="mf">500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span> <span class="mf">1000</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p4</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">reject</span><span class="p">(</span><span class="mf">4</span><span class="p">),</span> <span class="mf">100</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p5</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span> <span class="mf">300</span><span class="p">));</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">promises</span> <span class="o">=</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">,</span> <span class="nx">p4</span><span class="p">,</span> <span class="nx">p5</span><span class="p">];</span>
+
+    <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">promises</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">reflect</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">successfulPromises</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&quot;fulfilled&quot;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">successfulPromises</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// [{</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 1</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 2</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 3</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 5</span>
+<span class="c1">// }]</span>
+</code></pre></div>
+<p>O método <code>Promise.allSettled</code> tem a proposta de abstrair a função <code>reflect</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span> <span class="mf">2500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span> <span class="mf">500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span> <span class="mf">1000</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p4</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">reject</span><span class="p">(</span><span class="mf">4</span><span class="p">),</span> <span class="mf">100</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p5</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span> <span class="mf">300</span><span class="p">));</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">promises</span> <span class="o">=</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">,</span> <span class="nx">p4</span><span class="p">,</span> <span class="nx">p5</span><span class="p">];</span>
+    <span class="nb">Promise</span><span class="p">.</span><span class="nx">allSettled</span><span class="p">(</span><span class="nx">promises</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">successfulPromises</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&quot;fulfilled&quot;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">successfulPromises</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// [{</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 1</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 2</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 3</span>
+<span class="c1">// }, {</span>
+<span class="c1">//   status: &quot;fulfilled&quot;,</span>
+<span class="c1">//   value: 5</span>
+<span class="c1">// }]</span>
+</code></pre></div>
+<h4 id="promiserace">Promise.race<a class="headerlink" href="#promiserace" title="Permanent link">&para;</a></h4>
+<p>O método <code>Promise.race</code> faz exatamente o que o nome diz, ele recebe um array de Promises, inicia todas elas, a que retornar Primeiro vai ser o retorno do método por completo. Ele é um caso especial do <code>Promise.all</code> onde, ao invés de esperar todas as Promises serem resolvidas, simplesmente retorna o primeiro resultado que obtiver</p>
+<p>No exemplo abaixo temos dois arrays de Promises, um deles é resolvido em 4s e depois rejeitado em 8s, enquanto o outro é rejeitado em 2s e depois resolvido em 6s e 10s. No primeiro <code>Promise.race</code> aguarda duas Promises. O primeiro tem sua Promise resolvida e ele já a retorna, porque é o resultado que ele espera, então a segunda Promise (que é rejeitada) não é sequer consumida.
+No segundo <code>Promise.race</code> aguarda três Promises, temos uma Promise que é rejeitada logo de cara, então todas as demais Promises são ignoradas e o handler catch é chamado.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mf">4000</span><span class="p">)),</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">reject</span><span class="p">,</span> <span class="mf">8000</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="kd">const</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span>
+  <span class="nx">p1</span><span class="p">,</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mf">6000</span><span class="p">)),</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mf">10000</span><span class="p">)),</span>
+  <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">reject</span><span class="p">,</span> <span class="mf">2000</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="nx">p2</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+<span class="nx">p2</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="asyncawait">Async/Await<a class="headerlink" href="#asyncawait" title="Permanent link">&para;</a></h2>
+<p>Os <code>async</code> e <code>await</code> são <em>keywords</em> que foram introduzidas no ES8 em 2017. Basicamente é um syntax sugar, adicionada somente para poder facilitar a escrita do <code>.then()</code> e <code>.catch()</code>. O <code>async/await</code> trabalha com o código baseado em Promises, porém esconde as promessas para que a leitura seja mais fluída e simples de entender.</p>
+<p>O motivo pela adição do <code>async/await</code> foi facilitar quando era necessário o aninhando Promises dentro de Promises. Este aninhando tornava tudo muito mais difícil de se ler. No exemplo abaixo temos a comparação de trechos de código equivalentes usando <code>async/await</code> e <code>Promise</code> respectivamente.</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;Ok!&#39;</span>
+ <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Erro&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+ <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">foo</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+ <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">erro</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">erro</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">bar</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">return</span> <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;Ok!&#39;</span><span class="p">)</span>
+ <span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;Erro&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">foo</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">erro</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">erro</span><span class="p">)})</span>
+</code></pre></div>
+<p>Definindo uma função como <code>async</code>, podemos utilizar a palavra-chave <code>await</code> antes de qualquer expressão que retorne uma promessa. A palavra-chave <code>await</code> recebe uma Promise e a transforma em um valor de retorno ou lança uma exceção em caso de erro. Quando utilizamos <code>await</code>, o JavaScript vai <strong>aguardar</strong> até que a Promise finalize.</p>
+<p>Uma função declarada como <code>async</code> significa que o valor de retorno da função será uma Promise. Se a Promise se resolver normalmente, o objeto Promise retornará o valor. Caso lance uma exceção, podemos usar o <code>try/catch</code> assim como em programas síncronos.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">1500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">4000</span><span class="p">));</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">promises</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;P1-Start&quot;</span><span class="p">);</span>
+    <span class="k">await</span> <span class="nx">p1</span><span class="p">;</span> <span class="c1">// espera resolução de p1</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;P1-End, P2-Start&quot;</span><span class="p">);</span>
+    <span class="k">await</span> <span class="nx">p2</span><span class="p">;</span> <span class="c1">// espera resolução de p2</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;P2-End&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Start&quot;</span><span class="p">);</span>
+<span class="nx">promises</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;End&quot;</span><span class="p">);</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// &quot;Start&quot;</span>
+<span class="c1">// &quot;P1-Start&quot;</span>
+<span class="c1">// &quot;End&quot;</span>
+<span class="c1">// &quot;P1-End, P2-Start&quot;</span>
+<span class="c1">// &quot;P2-End&quot;</span>
+</code></pre></div>
+<p>O <code>await</code> só funciona se estiver dentro de outra função async. Caso não esteja, você ainda pode usar <code>.then()</code> normalmente:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;um&quot;</span><span class="p">),</span> <span class="mf">1500</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;dois&quot;</span><span class="p">),</span> <span class="mf">3000</span><span class="p">));</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">promises</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">r1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">p1</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r1</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">r2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">p2</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Usando await em uma função async</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">promises</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// ou usando o then()</span>
+<span class="nx">promises</span><span class="p">().</span><span class="nx">then</span><span class="p">();</span>
+
+<span class="c1">// Saída em ambos:</span>
+<span class="c1">// um</span>
+<span class="c1">// dois</span>
+</code></pre></div>
+<p>No estado <em>settled</em>, assim como utilizando os métodos <code>.then()</code> e <code>.catch()</code>, quando uma Promise é completamente resolvida, se definirmos um segundo handler para a Promise, o valor será retornado imediatamente, já que a Promise já foi resolvida.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(),</span> <span class="mf">4000</span><span class="p">));</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">promises</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">p</span><span class="p">;</span> <span class="c1">// retorno após 4s</span>
+  <span class="k">await</span> <span class="nx">p</span><span class="p">;</span> <span class="c1">// retorno imediato após o primeiro await</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="diferencas-entre-then-e-asyncawait">Diferenças entre .then() e async/await<a class="headerlink" href="#diferencas-entre-then-e-asyncawait" title="Permanent link">&para;</a></h3>
+<p>Em termos de sintaxe, o método <code>.then()</code> traz uma sintaxe que faz mais sentido quando utilizamos o JavaScript de forma funcional, enquanto o fluxo das declarações com <code>async/await</code> fazem sentido ao serem utilizadas em métodos de classes.</p>
+<p>O <code>async/await</code> surgiu como uma opção mais legível ao <code>.then()</code>, mas é importante notar que estes métodos <strong>não são logicamente equivalentes</strong>. Enquanto <code>async/await</code> faz o processamento de forma sequencial, Promises com <code>.then()</code> são processadas em paralelo, o que faz com que este método seja mais rápido. O <code>async/await</code> simplifica a escrita e a interpretação do código, mas não é tão flexível e só funciona com uma Promise por vez.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">),</span> <span class="mf">3000</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">usandoThen</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;um&quot;</span><span class="p">);</span>
+    <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;dois&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">usandoThen</span><span class="p">();</span> <span class="c1">// Resolução em 3s</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">usandoAsyncWait</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;um&quot;</span><span class="p">);</span> <span class="c1">// espera resolver</span>
+    <span class="k">await</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;dois&quot;</span><span class="p">);</span> <span class="c1">// espera resolver</span>
+<span class="p">}</span>
+<span class="nx">usandoAsyncWait</span><span class="p">();</span> <span class="c1">// Resolução em 6s</span>
+
+<span class="c1">// Saída em ambos:</span>
+<span class="c1">// um</span>
+<span class="c1">// dois</span>
+</code></pre></div>
+<p>Uma forma de usar o paralelismo é iniciar as Promises antes do <code>await</code>, atribuindo em variáveis.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">),</span> <span class="mf">3000</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;um&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;dois&quot;</span><span class="p">);</span>
+
+    <span class="k">await</span> <span class="nx">p1</span><span class="p">;</span>
+    <span class="k">await</span> <span class="nx">p2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">bar</span><span class="p">();</span> <span class="c1">// Resolução em 3s</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// um</span>
+<span class="c1">// dois</span>
+</code></pre></div>
+<p>Outro exemplo de forma de paralelizar a execução de Promises.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Exemplo sequencial</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">logInOrder</span><span class="p">(</span><span class="nx">urls</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">url</span> <span class="k">of</span> <span class="nx">urls</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Exemplo paralelo</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">logInOrder</span><span class="p">(</span><span class="nx">urls</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Buscar todas url em paralelo</span>
+    <span class="kd">const</span> <span class="nx">textPromises</span> <span class="o">=</span> <span class="nx">urls</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="k">async</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="c1">// Escreve log em sequencia</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">textPromise</span> <span class="k">of</span> <span class="nx">textPromises</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span> <span class="nx">textPromise</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Outra forma de usar o paralelismo em <code>async/await</code> é usar o método <code>Promise.all</code> que disparar uma série de Promises ao mesmo tempo e esperar pelo retorno de todas elas.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">),</span> <span class="mf">3000</span><span class="p">)).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">[</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;um&quot;</span><span class="p">),</span> <span class="nx">novaPromise</span><span class="p">(</span><span class="s2">&quot;dois&quot;</span><span class="p">)]);</span>
+<span class="p">}</span>
+<span class="nx">bar</span><span class="p">();</span> <span class="c1">// Resolução em 3s</span>
+
+<span class="c1">// Saída:</span>
+<span class="c1">// um dois</span>
+</code></pre></div>
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://medium.com/trainingcenter/entendendo-promises-de-uma-vez-por-todas-32442ec725c2">https://medium.com/trainingcenter/entendendo-promises-de-uma-vez-por-todas-32442ec725c2</a></li>
+<li><a href="https://blog.rocketseat.com.br/javascript-assincrono-promises">https://blog.rocketseat.com.br/javascript-assincrono-promises</a></li>
+<li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises">https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../introducao/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              Introdução
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../design-patterns/observer/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Observer
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "search.suggest", "search.highlight", "search.share", "navigation.instant", "navigation.sections"], "translations": {"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Buscar", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.7353b375.min.js"></script>
+      
+        <script src="../../_extras/extra.js"></script>
+      
+    
+  </body>
+</html>
